@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feminine Strength Co. — My Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1E3329;
+  --primary-light: #2a4a3a;
+  --accent: #C4A882;
+  --accent-light: #d4bc9e;
+  --sage: #7A9E7E;
+  --cream: #FAF7F2;
+  --cream-dark: #F0EBE1;
+  --text-dark: #1a1a1a;
+  --text-mid: #4a4a4a;
+  --text-muted: #8a8a8a;
+  --white: #ffffff;
+  --border: rgba(196,168,130,0.25);
+  --border-strong: rgba(196,168,130,0.5);
+  --success: #3B6D11;
+  --success-bg: #EAF3DE;
+  --warning: #BA7517;
+  --warning-bg: #FAEEDA;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text-dark); min-height:100vh; }
+
+nav { background:var(--primary); padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:56px; position:sticky; top:0; z-index:100; }
+.nav-brand { font-family:'Cormorant Garamond',serif; color:var(--accent); font-size:1rem; letter-spacing:0.08em; text-transform:uppercase; }
+.nav-tabs { display:flex; height:100%; overflow-x:auto; }
+.nav-tab { background:none; border:none; color:rgba(255,255,255,0.5); font-family:'DM Sans',sans-serif; font-size:0.73rem; letter-spacing:0.05em; text-transform:uppercase; padding:0 0.9rem; height:100%; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; white-space:nowrap; }
+.nav-tab:hover { color:rgba(255,255,255,0.85); }
+.nav-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+.agent-pill { display:flex; align-items:center; gap:5px; font-size:0.7rem; color:var(--sage); white-space:nowrap; }
+.agent-dot { width:6px; height:6px; border-radius:50%; background:var(--sage); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.page { display:none; }
+.page.active { display:block; }
+.container { max-width:900px; margin:0 auto; padding:2rem 1.5rem; }
+.page-title { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:400; color:var(--primary); margin-bottom:0.2rem; }
+.page-sub { font-size:0.82rem; color:var(--text-muted); margin-bottom:1.75rem; }
+.row { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:0.2rem; }
+.section-label { font-size:0.7rem; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.65rem; }
+.divider { height:1px; background:var(--border); margin:1.5rem 0; }
+
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0.85rem; margin-bottom:1.5rem; }
+.metric-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.1rem; }
+.metric-label { font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.3rem; }
+.metric-value { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:500; color:var(--primary); line-height:1; }
+.metric-note { font-size:0.72rem; color:var(--success); margin-top:0.25rem; }
+
+.briefing { background:var(--primary); border-radius:12px; padding:1.4rem; margin-bottom:1.5rem; }
+.briefing-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem; }
+.briefing-label { font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:6px; }
+.briefing-time { font-size:0.72rem; color:rgba(255,255,255,0.35); }
+.briefing-text { font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:rgba(255,255,255,0.88); line-height:1.75; font-style:italic; }
+.briefing-actions { margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap; }
+.briefing-btn { background:rgba(196,168,130,0.15); border:1px solid rgba(196,168,130,0.3); color:var(--accent-light); font-family:'DM Sans',sans-serif; font-size:0.75rem; padding:0.35rem 0.85rem; border-radius:20px; cursor:pointer; }
+.briefing-btn:hover { background:rgba(196,168,130,0.28); }
+
+.activity-feed { background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:1.25rem; }
+.activity-item { display:flex; align-items:flex-start; gap:0.75rem; padding:0.85rem 1.1rem; border-bottom:1px solid var(--border); font-size:0.82rem; }
+.activity-item:last-child { border-bottom:none; }
+.adot { width:7px; height:7px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+.adot-agent { background:var(--sage); }
+.adot-visitor { background:var(--accent); }
+.adot-sale { background:var(--success); }
+.activity-desc { color:var(--text-mid); line-height:1.5; flex:1; }
+.activity-desc strong { color:var(--text-dark); font-weight:500; }
+.activity-time { color:var(--text-muted); font-size:0.72rem; white-space:nowrap; }
+
+.btn { background:var(--primary); color:white; border:none; font-family:'DM Sans',sans-serif; font-size:0.8rem; padding:0.52rem 1.1rem; border-radius:6px; cursor:pointer; transition:background 0.2s; }
+.btn:hover { background:var(--primary-light); }
+.btn-outline { background:none; border:1px solid var(--border-strong); color:var(--text-mid); font-family:'DM Sans',sans-serif; font-size:0.78rem; padding:0.45rem 0.9rem; border-radius:6px; cursor:pointer; }
+.btn-sm { background:none; border:1px solid var(--border-strong); color:var(--text-mid); font-family:'DM Sans',sans-serif; font-size:0.73rem; padding:0.3rem 0.65rem; border-radius:5px; cursor:pointer; }
+.btn-refresh { background:none; border:1px solid var(--border-strong); color:var(--text-mid); font-family:'DM Sans',sans-serif; font-size:0.75rem; padding:0.32rem 0.75rem; border-radius:6px; cursor:pointer; }
+
+.pill { font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; padding:0.22rem 0.6rem; border-radius:20px; display:inline-block; }
+.pill-active { background:var(--success-bg); color:var(--success); }
+.pill-synced { background:rgba(196,168,130,0.15); color:#7a5c2e; }
+.pill-draft { background:#f1efe8; color:#5f5e5a; }
+
+/* STORE */
+.store-hero { text-align:center; padding:2.5rem 1rem 2rem; }
+.store-eyebrow { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem; }
+.store-title { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:400; color:var(--primary); margin-bottom:0.65rem; }
+.store-sub { font-size:0.88rem; color:var(--text-mid); max-width:380px; margin:0 auto; line-height:1.6; }
+.product-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.1rem; }
+.product-card { background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden; transition:transform 0.2s; }
+.product-card:hover { transform:translateY(-2px); }
+.product-card.featured { border-color:var(--accent); border-width:1.5px; }
+.product-badge { background:var(--primary); color:var(--accent); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.28rem 0.75rem; display:inline-block; }
+.product-badge.gold { background:var(--accent); color:var(--primary); }
+.product-body { padding:1.1rem; }
+.product-type { font-size:0.68rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem; }
+.product-name { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:500; color:var(--primary); margin-bottom:0.45rem; line-height:1.2; }
+.product-desc { font-size:0.81rem; color:var(--text-mid); line-height:1.6; margin-bottom:1rem; }
+.product-footer { display:flex; align-items:center; justify-content:space-between; padding-top:0.85rem; border-top:1px solid var(--border); }
+.product-price { font-family:'Cormorant Garamond',serif; font-size:1.25rem; color:var(--primary); }
+.product-price .period { font-size:0.72rem; color:var(--text-muted); font-family:'DM Sans',sans-serif; }
+.btn-buy { background:var(--primary); color:var(--cream); border:none; font-family:'DM Sans',sans-serif; font-size:0.78rem; padding:0.5rem 1rem; border-radius:6px; cursor:pointer; transition:background 0.2s; }
+.btn-buy:hover { background:var(--primary-light); }
+.btn-free-dl { background:var(--cream-dark); color:var(--primary); border:1px solid var(--border-strong); font-family:'DM Sans',sans-serif; font-size:0.78rem; padding:0.5rem 1rem; border-radius:6px; cursor:pointer; }
+
+.bar-chart { display:flex; align-items:flex-end; gap:7px; height:110px; margin-top:0.75rem; }
+.bar-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
+.bar { width:100%; background:var(--primary); border-radius:3px 3px 0 0; opacity:0.12; min-height:4px; }
+.bar.filled { opacity:0.85; }
+.bar.today-bar { background:var(--sage); opacity:1; }
+.bar-label { font-size:0.66rem; color:var(--text-muted); }
+
+.task-row { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; margin-bottom:0.75rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.task-name { font-weight:500; font-size:0.88rem; margin-bottom:0.2rem; }
+.task-meta { font-size:0.76rem; color:var(--text-muted); }
+.task-desc { font-size:0.76rem; color:var(--text-muted); margin-top:2px; }
+
+.email-header-bar { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:0.9rem 1.1rem; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between; }
+.email-tabs { display:flex; border-bottom:1px solid var(--border); margin-bottom:1rem; }
+.email-tab { background:none; border:none; border-bottom:2px solid transparent; font-family:'DM Sans',sans-serif; font-size:0.82rem; color:var(--text-muted); padding:0.6rem 1rem; cursor:pointer; }
+.email-tab.active { color:var(--primary); border-bottom-color:var(--primary); }
+
+.campaign-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.1rem 1.25rem; margin-bottom:0.75rem; }
+.creative-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem; margin-bottom:0.75rem; }
+.creative-type { font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:0.3rem; }
+.creative-headline { font-weight:500; font-size:0.88rem; margin-bottom:0.25rem; }
+.creative-body { font-size:0.8rem; color:var(--text-mid); line-height:1.5; }
+
+.file-row { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:0.8rem 1.1rem; margin-bottom:0.55rem; display:flex; align-items:center; gap:0.75rem; }
+.file-icon { width:34px; height:34px; background:var(--cream-dark); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:500; color:var(--primary); flex-shrink:0; }
+.file-name { font-size:0.85rem; font-weight:500; }
+.file-desc { font-size:0.73rem; color:var(--text-muted); margin-top:1px; }
+.file-meta { margin-left:auto; font-size:0.72rem; color:var(--text-muted); white-space:nowrap; }
+
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(30,51,41,0.5); z-index:200; align-items:center; justify-content:center; padding:1rem; }
+.modal-overlay.open { display:flex; }
+.modal { background:var(--white); border-radius:14px; padding:1.75rem; width:100%; max-width:440px; max-height:90vh; overflow-y:auto; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--primary); margin-bottom:1.25rem; }
+.form-group { margin-bottom:0.9rem; }
+.form-label { display:block; font-size:0.76rem; letter-spacing:0.04em; color:var(--text-mid); margin-bottom:0.35rem; }
+.form-input, .form-select, .form-textarea { width:100%; font-family:'DM Sans',sans-serif; font-size:0.875rem; color:var(--text-dark); background:var(--cream); border:1px solid var(--border-strong); border-radius:7px; padding:0.58rem 0.85rem; outline:none; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--accent); }
+.form-textarea { resize:vertical; min-height:80px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.modal-footer { display:flex; gap:0.75rem; justify-content:flex-end; margin-top:1.1rem; padding-top:0.9rem; border-top:1px solid var(--border); }
+.card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.25rem; margin-bottom:1rem; }
+
+.toast { position:fixed; bottom:1.5rem; right:1.5rem; background:var(--primary); color:white; font-size:0.8rem; padding:0.7rem 1rem; border-radius:8px; border-left:3px solid var(--accent); z-index:300; transform:translateY(80px); opacity:0; transition:all 0.3s; max-width:280px; line-height:1.4; }
+.toast.show { transform:translateY(0); opacity:1; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Feminine Strength Co.</span>
+  <div class="nav-tabs">
+    <button class="nav-tab" onclick="showPage('dashboard')">Dashboard</button>
+    <button class="nav-tab active" onclick="showPage('store')">Store</button>
+    <button class="nav-tab" onclick="showPage('analytics')">Analytics</button>
+    <button class="nav-tab" onclick="showPage('products')">Products</button>
+    <button class="nav-tab" onclick="showPage('tasks')">Tasks</button>
+    <button class="nav-tab" onclick="showPage('email')">Email</button>
+    <button class="nav-tab" onclick="showPage('ads')">Ads</button>
+    <button class="nav-tab" onclick="showPage('files')">Files</button>
+  </div>
+  <div class="agent-pill"><div class="agent-dot"></div>Agent active</div>
+</nav>
+
+<!-- DASHBOARD -->
+<div id="page-dashboard" class="page">
+  <div class="container">
+    <div class="row">
+      <div><h1 class="page-title">Good morning, Christin.</h1><p class="page-sub">Here's what your business looks like today.</p></div>
+      <button class="btn-refresh" onclick="refreshBriefing()">↻ Refresh</button>
+    </div>
+    <div class="briefing">
+      <div class="briefing-header">
+        <div class="briefing-label"><span style="width:6px;height:6px;border-radius:50%;background:var(--sage);display:inline-block;"></span>Agent briefing — 7:00 AM</div>
+        <span class="briefing-time" id="briefing-updated">Today, 7:00 AM</span>
+      </div>
+      <div class="briefing-text" id="briefing-text">Your store is live with 6 products across two PDFs, two apps, and a bundle. Strong, Not Sorry PDF at $27 and the Fat Loss Fix + Meal Generator at $27 are your best entry points. Compass and Strong Not Sorry apps have 7-day free trials — lead with those on TikTok. Add your hub URL to your bio today.</div>
+      <div class="briefing-actions">
+        <button class="briefing-btn" onclick="showPage('store')">View store</button>
+        <button class="briefing-btn" onclick="showPage('analytics')">View analytics</button>
+        <button class="briefing-btn" onclick="showPage('ads')">Plan content</button>
+      </div>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="metric-label">Products live</div><div class="metric-value">6</div><div class="metric-note">All products active</div></div>
+      <div class="metric-card"><div class="metric-label">Visitors today</div><div class="metric-value" id="dash-visitors">—</div><div class="metric-note">Store is live</div></div>
+      <div class="metric-card"><div class="metric-label">Total revenue</div><div class="metric-value" id="dash-revenue">$0</div><div class="metric-note" style="color:var(--text-muted);">Getting started</div></div>
+      <div class="metric-card"><div class="metric-label">Pending tasks</div><div class="metric-value" id="pending-count">0</div><div class="metric-note" style="color:var(--text-muted);">All clear</div></div>
+    </div>
+    <div class="section-label">Recent activity</div>
+    <div class="activity-feed">
+      <div class="activity-item"><div class="adot adot-agent"></div><div class="activity-desc"><strong>Store updated</strong> — 6 products live with real Stripe payment links</div><div class="activity-time">Just now</div></div>
+      <div class="activity-item"><div class="adot adot-agent"></div><div class="activity-desc"><strong>Compass app</strong> live at christinfisher74.github.io/compass — $14.99/month</div><div class="activity-time">This week</div></div>
+      <div class="activity-item"><div class="adot adot-agent"></div><div class="activity-desc"><strong>Strong Not Sorry app</strong> live at christinfisher74.github.io/strongnotsorry — $19.99/month</div><div class="activity-time">This week</div></div>
+      <div class="activity-item"><div class="adot adot-agent"></div><div class="activity-desc"><strong>Meal Generator</strong> live at christinfisher74.github.io/workout-assistant — $27 one-time</div><div class="activity-time">This week</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORE -->
+<div id="page-store" class="page active">
+  <div class="container">
+    <div class="store-hero">
+      <div class="store-eyebrow">Feminine Strength Co.</div>
+      <h1 class="store-title">My Digital Store</h1>
+      <p class="store-sub">Tools, guides, and resources for women who are done starting over.</p>
+    </div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-badge">Free</div>
+        <div class="product-body">
+          <div class="product-type">Guide · Instant delivery</div>
+          <div class="product-name">Help Me.</div>
+          <div class="product-desc">You feel off — energy, weight, mood — and nobody can tell you why. This free guide breaks down exactly what's happening in your body after 35, so you can stop guessing and start understanding.</div>
+          <div class="product-footer">
+            <div class="product-price">Free</div>
+            <button class="btn-free-dl" onclick="handleBuy('','Help Me.')">Download free</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card featured">
+        <div class="product-badge">Most popular</div>
+        <div class="product-body">
+          <div class="product-type">PDF Guide · Instant download</div>
+          <div class="product-name">Strong, Not Sorry</div>
+          <div class="product-desc">A 4-week strength training guide for women 35–55. Hybrid home and gym tracks, three experience levels, coaching cues, and a 4-week progression system. Real programming, no apologies. Yours forever.</div>
+          <div class="product-footer">
+            <div class="product-price">$27 <span class="period">one-time</span></div>
+            <button class="btn-buy" onclick="window.open('https://buy.stripe.com/3cIbJ3fqY68d2TE9l3cEw0o','_blank')">Buy now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-badge">New</div>
+        <div class="product-body">
+          <div class="product-type">PDF + App · Instant access</div>
+          <div class="product-name">Fat Loss Fix + Meal Generator</div>
+          <div class="product-desc">Hormone-smart nutrition for women 35–55, plus an interactive meal generator that builds personalized 7-day plans around your protein target, preferences, and energy level. No diet rules. Just real food.</div>
+          <div class="product-footer">
+            <div class="product-price">$27 <span class="period">one-time</span></div>
+            <button class="btn-buy" onclick="window.open('https://buy.stripe.com/8x228t2Ec1RX9i268RcEw0l','_blank')">Buy now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-badge gold">App</div>
+        <div class="product-body">
+          <div class="product-type">App · Monthly subscription</div>
+          <div class="product-name">Compass</div>
+          <div class="product-desc">Your hormone health companion. Daily check-ins, cycle-phase guidance, breathwork, symptom tracking, and recovery support — built for women navigating perimenopause, menopause, and midlife. 7-day free trial.</div>
+          <div class="product-footer">
+            <div class="product-price">$14.99 <span class="period">/month</span></div>
+            <button class="btn-buy" onclick="window.open('https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k','_blank')">Start free trial</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-badge gold">App</div>
+        <div class="product-body">
+          <div class="product-type">App · Monthly subscription</div>
+          <div class="product-name">Strong, Not Sorry — App</div>
+          <div class="product-desc">Progressive strength training that meets you where you are. Hybrid home and gym tracks, three experience levels, daily energy check-in, workout logging with rest timers. New programming monthly. 7-day free trial.</div>
+          <div class="product-footer">
+            <div class="product-price">$19.99 <span class="period">/month</span></div>
+            <button class="btn-buy" onclick="window.open('https://buy.stripe.com/fZu5kFfqY2W1dyi2WFcEw0m','_blank')">Start free trial</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card featured">
+        <div class="product-badge gold">Best value</div>
+        <div class="product-body">
+          <div class="product-type">Both apps · Monthly subscription</div>
+          <div class="product-name">Compass + Strong, Not Sorry Bundle</div>
+          <div class="product-desc">The complete system. Train with intention, track your hormones, fuel your body, and recover like it matters — all in one subscription. Save $5/month versus subscribing separately. 7-day free trial.</div>
+          <div class="product-footer">
+            <div class="product-price">$29.99 <span class="period">/month</span></div>
+            <button class="btn-buy" onclick="window.open('https://buy.stripe.com/cNi3cx6UsgMR3XIdBjcEw0n','_blank')">Start free trial</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ANALYTICS -->
+<div id="page-analytics" class="page">
+  <div class="container">
+    <h1 class="page-title">Analytics</h1>
+    <p class="page-sub">Visitors, carts, and sales from your live storefront.</p>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="metric-label">Visitors</div><div class="metric-value">—</div></div>
+      <div class="metric-card"><div class="metric-label">Carts</div><div class="metric-value">0</div></div>
+      <div class="metric-card"><div class="metric-label">Sales</div><div class="metric-value">0</div></div>
+      <div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">$0</div></div>
+    </div>
+    <div class="card">
+      <div style="font-weight:500;font-size:0.88rem;margin-bottom:0.5rem;">Visitors this week</div>
+      <div class="bar-chart">
+        <div class="bar-col"><div class="bar" style="height:18%;"></div><div class="bar-label">Mon</div></div>
+        <div class="bar-col"><div class="bar" style="height:0%;"></div><div class="bar-label">Tue</div></div>
+        <div class="bar-col"><div class="bar" style="height:28%;"></div><div class="bar-label">Wed</div></div>
+        <div class="bar-col"><div class="bar" style="height:12%;"></div><div class="bar-label">Thu</div></div>
+        <div class="bar-col"><div class="bar" style="height:0%;"></div><div class="bar-label">Fri</div></div>
+        <div class="bar-col"><div class="bar filled" style="height:55%;"></div><div class="bar-label">Sat</div></div>
+        <div class="bar-col"><div class="bar today-bar" style="height:100%;"></div><div class="bar-label">Today</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div id="page-products" class="page">
+  <div class="container">
+    <div class="row" style="margin-bottom:1.5rem;">
+      <div><h1 class="page-title">Products</h1><p class="page-sub" style="margin-bottom:0;">6 products active</p></div>
+      <button class="btn" onclick="document.getElementById('modal-product').classList.add('open')">+ Add product</button>
+    </div>
+    <div class="task-row">
+      <div><div class="task-name">Help Me.</div><div class="task-meta">Free · One-time · Guide</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;"><span class="pill pill-active">Active</span></div>
+    </div>
+    <div class="task-row">
+      <div><div class="task-name">Strong, Not Sorry — PDF</div><div class="task-meta">$27.00 · One-time · PDF download</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;"><span class="pill pill-active">Active</span><span class="pill pill-synced">Stripe live</span></div>
+    </div>
+    <div class="task-row">
+      <div><div class="task-name">Fat Loss Fix + Meal Generator</div><div class="task-meta">$27.00 · One-time · PDF + App</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;"><span class="pill pill-active">Active</span><span class="pill pill-synced">Stripe live</span></div>
+    </div>
+    <div class="task-row">
+      <div><div class="task-name">Compass App</div><div class="task-meta">$14.99/month · Subscription · christinfisher74.github.io/compass</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;"><span class="pill pill-active">Active</span><span class="pill pill-synced">Stripe live</span></div>
+    </div>
+    <div class="task-row">
+      <div><div class="task-name">Strong, Not Sorry — App</div><div class="task-meta">$19.99/month · Subscription · christinfisher74.github.io/strongnotsorry</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;"><span class="pill pill-active">Active</span><span class="pill pill-synced">Stripe live</span></div>
+    </div>
+    <div class="task-row">
+      <div><div class="task-name">Compass + Strong Not Sorry Bundle</div><div class="task-meta">$29.99/month · Subscription · Both apps</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;"><span class="pill pill-active">Active</span><span class="pill pill-synced">Stripe live</span></div>
+    </div>
+    <div id="extra-products"></div>
+  </div>
+</div>
+
+<!-- TASKS -->
+<div id="page-tasks" class="page">
+  <div class="container">
+    <h1 class="page-title">Tasks</h1>
+    <p class="page-sub">Scheduled briefings and agent tasks.</p>
+    <div class="section-label">Scheduled tasks</div>
+    <div class="task-row">
+      <div><div class="task-name">Daily Briefing</div><div class="task-meta">Every day at 7:00 AM</div><div class="task-desc">Compile business metrics, activity, and one recommended action</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;"><span class="pill pill-active">Active</span><button class="btn-sm" onclick="showToast('Daily briefing paused.')">Pause</button></div>
+    </div>
+    <div class="task-row">
+      <div><div class="task-name">Weekly store check</div><div class="task-meta">Every Monday at 7:00 AM</div><div class="task-desc">Review sales, visitors, and suggest one action for the week</div></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;"><span class="pill pill-active">Active</span><button class="btn-sm" onclick="showToast('Weekly check paused.')">Pause</button></div>
+    </div>
+    <div class="divider"></div>
+    <div class="section-label">Task history</div>
+    <div class="activity-feed" id="task-history">
+      <div class="activity-item"><div class="adot adot-agent"></div><div class="activity-desc"><strong>Store updated</strong> — 6 products with real Stripe links</div><div class="activity-time">Just now</div></div>
+      <div class="activity-item"><div class="adot adot-agent"></div><div class="activity-desc"><strong>All three apps deployed</strong> — Compass, Strong Not Sorry, Meal Generator</div><div class="activity-time">This week</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL -->
+<div id="page-email" class="page">
+  <div class="container">
+    <h1 class="page-title">Email</h1>
+    <p class="page-sub">Your business inbox.</p>
+    <div class="email-header-bar">
+      <div><div style="font-size:0.85rem;font-weight:500;color:var(--primary);">digitalchristin@gmail.com</div><div style="font-size:0.74rem;color:var(--text-muted);margin-top:2px;">Business contact email</div></div>
+      <button class="btn" onclick="document.getElementById('modal-email').classList.add('open')">+ Compose</button>
+    </div>
+    <div class="email-tabs">
+      <button class="email-tab active" onclick="switchEmailTab('inbox',this)">Inbox</button>
+      <button class="email-tab" onclick="switchEmailTab('sent',this)">Sent</button>
+      <button class="email-tab" onclick="switchEmailTab('drafts',this)">Drafts</button>
+    </div>
+    <div id="email-inbox"><div style="text-align:center;padding:2.5rem;color:var(--text-muted);font-size:0.83rem;">No emails yet.</div></div>
+    <div id="email-sent" style="display:none;"><div style="text-align:center;padding:2rem;color:var(--text-muted);font-size:0.83rem;">No sent emails yet.</div></div>
+    <div id="email-drafts" style="display:none;"><div style="text-align:center;padding:2rem;color:var(--text-muted);font-size:0.83rem;">No drafts.</div></div>
+  </div>
+</div>
+
+<!-- ADS -->
+<div id="page-ads" class="page">
+  <div class="container">
+    <h1 class="page-title">Ads</h1>
+    <p class="page-sub">Plan and organize your campaigns.</p>
+    <div class="section-label">Campaigns</div>
+    <div id="campaigns-list">
+      <div class="campaign-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+          <div style="font-weight:500;font-size:0.9rem;">Strong Not Sorry — TikTok launch</div>
+          <span class="pill pill-draft">Draft</span>
+        </div>
+        <div style="font-size:0.78rem;color:var(--text-muted);">TikTok · Women 35–55 · Lead with free trial</div>
+      </div>
+      <div class="campaign-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+          <div style="font-weight:500;font-size:0.9rem;">Compass — Free trial push</div>
+          <span class="pill pill-draft">Draft</span>
+        </div>
+        <div style="font-size:0.78rem;color:var(--text-muted);">Instagram · Reel · Perimenopause audience</div>
+      </div>
+    </div>
+    <button class="btn" style="margin:1rem 0;" onclick="document.getElementById('modal-campaign').classList.add('open')">+ New campaign</button>
+    <div class="divider"></div>
+    <div class="section-label">Ad copy library</div>
+    <div id="copy-library">
+      <div class="creative-card">
+        <div class="creative-type">TikTok / Instagram · Strong Not Sorry App</div>
+        <div class="creative-headline">Your body didn't fail you. The program did.</div>
+        <div class="creative-body">Strong, Not Sorry is a training app built specifically for women 35–55. Home or gym. Your energy level. Your experience. 7-day free trial — link in bio.</div>
+      </div>
+      <div class="creative-card">
+        <div class="creative-type">Instagram Reel · Compass</div>
+        <div class="creative-headline">What if your phone actually helped you feel better?</div>
+        <div class="creative-body">Compass is a hormone health app for women in perimenopause and menopause. Daily guidance, breathwork, cycle tracking. $14.99/month. 7-day free trial.</div>
+      </div>
+      <div class="creative-card">
+        <div class="creative-type">Caption · Coaching — DM STRONG</div>
+        <div class="creative-headline">DM me STRONG if you're ready.</div>
+        <div class="creative-body">I work with women 35–55 who are tired of programs built for someone else. In-person South Jersey or online. DM STRONG and I'll send you the details.</div>
+      </div>
+      <div class="creative-card">
+        <div class="creative-type">Caption · Free guide — DM HELP ME</div>
+        <div class="creative-headline">DM me HELP ME for the free guide.</div>
+        <div class="creative-body">If your body feels different — energy, weight, sleep, mood — this guide is for you. DM HELP ME and I'll send it over.</div>
+      </div>
+    </div>
+    <button class="btn-outline" onclick="document.getElementById('modal-copy').classList.add('open')">+ Add to library</button>
+  </div>
+</div>
+
+<!-- FILES -->
+<div id="page-files" class="page">
+  <div class="container">
+    <h1 class="page-title">Files</h1>
+    <p class="page-sub">Business documents and product assets.</p>
+    <div class="section-label">Identity</div>
+    <div class="file-row"><div class="file-icon">MD</div><div><div class="file-name">SOUL.md</div><div class="file-desc">AI personality & voice — Feminine Strength Co.</div></div><div class="file-meta">Active</div></div>
+    <div class="file-row"><div class="file-icon">MD</div><div><div class="file-name">BUSINESS.md</div><div class="file-desc">Business overview, niche, goals</div></div><div class="file-meta">Active</div></div>
+    <div class="divider"></div>
+    <div class="section-label">Product assets</div>
+    <div class="file-row"><div class="file-icon">PDF</div><div><div class="file-name">help-me-freebie.pdf</div><div class="file-desc">Free guide — upload to homebase repo</div></div><div class="file-meta">Pending</div></div>
+    <div class="file-row"><div class="file-icon">PDF</div><div><div class="file-name">strong-not-sorry.pdf</div><div class="file-desc">$27 PDF guide — upload to homebase repo</div></div><div class="file-meta">Pending</div></div>
+    <div class="file-row"><div class="file-icon">PDF</div><div><div class="file-name">fat-loss-fix.pdf</div><div class="file-desc">$27 nutrition guide — upload to homebase repo</div></div><div class="file-meta">Pending</div></div>
+    <div class="divider"></div>
+    <div class="section-label">Live apps</div>
+    <div class="file-row"><div class="file-icon">APP</div><div><div class="file-name">Compass App</div><div class="file-desc">christinfisher74.github.io/compass — $14.99/month</div></div><div class="file-meta">Live ✓</div></div>
+    <div class="file-row"><div class="file-icon">APP</div><div><div class="file-name">Strong, Not Sorry App</div><div class="file-desc">christinfisher74.github.io/strongnotsorry — $19.99/month</div></div><div class="file-meta">Live ✓</div></div>
+    <div class="file-row"><div class="file-icon">APP</div><div><div class="file-name">Meal Generator</div><div class="file-desc">christinfisher74.github.io/workout-assistant — $27 one-time</div></div><div class="file-meta">Live ✓</div></div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-product" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <div class="modal-title">Add product</div>
+    <div class="form-group"><label class="form-label">Product name *</label><input type="text" class="form-input" id="new-pname" placeholder="Product name"></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="new-pdesc" placeholder="Brief description"></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Price (USD)</label><input type="text" class="form-input" id="new-pprice" placeholder="27.00"></div>
+      <div class="form-group"><label class="form-label">Pricing</label><select class="form-select" id="new-pmodel"><option>One-time</option><option>Monthly</option><option>Free</option></select></div>
+    </div>
+    <div class="form-group"><label class="form-label">Stripe payment link</label><input type="text" class="form-input" id="new-pstripe" placeholder="https://buy.stripe.com/…"></div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="document.getElementById('modal-product').classList.remove('open')">Cancel</button>
+      <button class="btn" onclick="saveProduct()">Save product</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-email" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <div class="modal-title">New email</div>
+    <div class="form-group"><label class="form-label">To</label><input type="email" class="form-input" placeholder="recipient@email.com"></div>
+    <div class="form-group"><label class="form-label">Subject</label><input type="text" class="form-input" placeholder="Subject line"></div>
+    <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" style="min-height:140px;" placeholder="Your message…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="document.getElementById('modal-email').classList.remove('open')">Cancel</button>
+      <button class="btn" onclick="document.getElementById('modal-email').classList.remove('open');showToast('Email sent.')">Send</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-campaign" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <div class="modal-title">New campaign</div>
+    <div class="form-group"><label class="form-label">Campaign name *</label><input type="text" class="form-input" id="camp-name" placeholder="e.g. Strong Not Sorry TikTok push"></div>
+    <div class="form-group"><label class="form-label">Platform</label><select class="form-select" id="camp-platform"><option>TikTok</option><option>Instagram</option><option>Both</option></select></div>
+    <div class="form-group"><label class="form-label">Format</label><select class="form-select" id="camp-format"><option>Reel</option><option>Story</option><option>Post</option></select></div>
+    <div class="form-group"><label class="form-label">Target audience</label><input type="text" class="form-input" id="camp-audience" placeholder="e.g. women 35–55"></div>
+    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="camp-notes" placeholder="Goals, timing, ideas…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="document.getElementById('modal-campaign').classList.remove('open')">Cancel</button>
+      <button class="btn" onclick="saveCampaign()">Save campaign</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-copy" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <div class="modal-title">Add to copy library</div>
+    <div class="form-group"><label class="form-label">Format / platform</label><input type="text" class="form-input" id="copy-type" placeholder="e.g. TikTok · Strong Not Sorry"></div>
+    <div class="form-group"><label class="form-label">Headline</label><input type="text" class="form-input" id="copy-headline" placeholder="Hook or headline"></div>
+    <div class="form-group"><label class="form-label">Body copy</label><textarea class="form-textarea" id="copy-body" placeholder="Full caption or script…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="document.getElementById('modal-copy').classList.remove('open')">Cancel</button>
+      <button class="btn" onclick="saveCopy()">Save to library</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORE_KEY = 'fsc_myhub_v2';
+function load() { try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch(e) { return {}; } }
+function save(d) { try { localStorage.setItem(STORE_KEY, JSON.stringify(d)); } catch(e) {} }
+
+let data = load();
+let extraProducts = data.extraProducts || [];
+let campaigns = data.campaigns || [];
+let copyLibrary = data.copyLibrary || [];
+
+function saveAll() { data = { extraProducts, campaigns, copyLibrary }; save(data); }
+
+function handleBuy(link, name) {
+  const links = {
+    'Help Me.': '',
+    'Strong, Not Sorry': 'https://buy.stripe.com/3cIbJ3fqY68d2TE9l3cEw0o',
+    'Fat Loss Fix + Meal Generator': 'https://buy.stripe.com/8x228t2Ec1RX9i268RcEw0l',
+    'Compass': 'https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k',
+    'Strong, Not Sorry — App': 'https://buy.stripe.com/fZu5kFfqY2W1dyi2WFcEw0m',
+    'Bundle': 'https://buy.stripe.com/cNi3cx6UsgMR3XIdBjcEw0n',
+  };
+  const sl = links[name] || link;
+  if (sl && sl.startsWith('http')) { window.open(sl, '_blank'); }
+  else { showToast('Help Me. freebie — add your MailerLite link here.'); }
+}
+
+function saveProduct() {
+  const name = document.getElementById('new-pname').value.trim();
+  if (!name) { showToast('Please enter a product name.'); return; }
+  extraProducts.push({ name, desc: document.getElementById('new-pdesc').value.trim(), price: document.getElementById('new-pprice').value.trim(), model: document.getElementById('new-pmodel').value, stripe: document.getElementById('new-pstripe').value.trim() });
+  saveAll(); renderExtraProducts();
+  document.getElementById('modal-product').classList.remove('open');
+  ['new-pname','new-pdesc','new-pprice','new-pstripe'].forEach(id => document.getElementById(id).value = '');
+  showToast(name + ' added.');
+}
+
+function renderExtraProducts() {
+  const el = document.getElementById('extra-products');
+  if (!el) return;
+  el.innerHTML = extraProducts.map((p,i) => `<div class="task-row"><div><div class="task-name">${p.name}</div><div class="task-meta">${p.model==='Free'?'Free':'$'+p.price} · ${p.model}</div></div><div style="display:flex;gap:0.5rem;"><span class="pill pill-active">Active</span><button class="btn-sm" onclick="removeExtra(${i})">Remove</button></div></div>`).join('');
+}
+
+function removeExtra(i) { extraProducts.splice(i,1); saveAll(); renderExtraProducts(); }
+
+function saveCampaign() {
+  const name = document.getElementById('camp-name').value.trim();
+  if (!name) return;
+  campaigns.push({ name, platform: document.getElementById('camp-platform').value, format: document.getElementById('camp-format').value, audience: document.getElementById('camp-audience').value, notes: document.getElementById('camp-notes').value });
+  saveAll(); renderCampaigns();
+  document.getElementById('modal-campaign').classList.remove('open');
+  ['camp-name','camp-audience','camp-notes'].forEach(id => document.getElementById(id).value = '');
+  showToast('Campaign saved.');
+}
+
+function renderCampaigns() {
+  const list = document.getElementById('campaigns-list');
+  const fixed = `<div class="campaign-card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;"><div style="font-weight:500;font-size:0.9rem;">Strong Not Sorry — TikTok launch</div><span class="pill pill-draft">Draft</span></div><div style="font-size:0.78rem;color:var(--text-muted);">TikTok · Women 35–55 · Lead with free trial</div></div><div class="campaign-card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;"><div style="font-weight:500;font-size:0.9rem;">Compass — Free trial push</div><span class="pill pill-draft">Draft</span></div><div style="font-size:0.78rem;color:var(--text-muted);">Instagram · Reel · Perimenopause audience</div></div>`;
+  list.innerHTML = fixed + campaigns.map((c,i) => `<div class="campaign-card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;"><div style="font-weight:500;font-size:0.9rem;">${c.name}</div><div style="display:flex;gap:0.5rem;"><span class="pill pill-draft">Draft</span><button class="btn-sm" onclick="removeCampaign(${i})">Remove</button></div></div><div style="font-size:0.78rem;color:var(--text-muted);">${c.platform} · ${c.format}${c.audience?' · '+c.audience:''}</div></div>`).join('');
+}
+
+function removeCampaign(i) { campaigns.splice(i,1); saveAll(); renderCampaigns(); }
+
+function saveCopy() {
+  const headline = document.getElementById('copy-headline').value.trim();
+  if (!headline) return;
+  copyLibrary.push({ type: document.getElementById('copy-type').value.trim(), headline, body: document.getElementById('copy-body').value.trim() });
+  saveAll(); renderCopyLibrary();
+  document.getElementById('modal-copy').classList.remove('open');
+  ['copy-type','copy-headline','copy-body'].forEach(id => document.getElementById(id).value = '');
+  showToast('Copy saved.');
+}
+
+function renderCopyLibrary() {
+  const lib = document.getElementById('copy-library');
+  const fixed = `<div class="creative-card"><div class="creative-type">TikTok / Instagram · Strong Not Sorry App</div><div class="creative-headline">Your body didn't fail you. The program did.</div><div class="creative-body">Strong, Not Sorry is a training app built for women 35–55. Home or gym. Your energy level. Your experience. 7-day free trial — link in bio.</div></div><div class="creative-card"><div class="creative-type">Instagram Reel · Compass</div><div class="creative-headline">What if your phone actually helped you feel better?</div><div class="creative-body">Compass is a hormone health app for women in perimenopause and menopause. Daily guidance, breathwork, cycle tracking. $14.99/month. 7-day free trial.</div></div><div class="creative-card"><div class="creative-type">Caption · DM STRONG</div><div class="creative-headline">DM me STRONG if you're ready.</div><div class="creative-body">I work with women 35–55 who are tired of programs built for someone else. In-person South Jersey or online. DM STRONG.</div></div><div class="creative-card"><div class="creative-type">Caption · DM HELP ME</div><div class="creative-headline">DM me HELP ME for the free guide.</div><div class="creative-body">If your body feels different — energy, weight, sleep, mood — this free guide is for you. DM HELP ME.</div></div>`;
+  lib.innerHTML = fixed + copyLibrary.map((c,i) => `<div class="creative-card">${c.type?`<div class="creative-type">${c.type}</div>`:''}<div class="creative-headline">${c.headline}</div>${c.body?`<div class="creative-body">${c.body}</div>`:''}<button class="btn-sm" style="margin-top:0.6rem;" onclick="removeCopy(${i})">Remove</button></div>`).join('');
+}
+
+function removeCopy(i) { copyLibrary.splice(i,1); saveAll(); renderCopyLibrary(); }
+
+const briefings = [
+  "Your store is live with 6 products. Lead with the free trial on Compass and Strong Not Sorry — that's the lowest friction entry point. One TikTok today pointing to your hub link could be your first sale.",
+  "Morning. Three apps live, two PDFs ready. Your funnel is complete — free guide, $27 one-time purchases, and monthly subscriptions. Add your hub URL to your TikTok bio today.",
+  "Store is healthy. The bundle at $29.99/month saves her $5 versus buying separately — lead with that in your next post. DM trigger word HELP ME is your highest-converting touchpoint.",
+  "Six products live. Next priority is MailerLite — your Help Me freebie needs an email sequence to convert subscribers into buyers. That's your next revenue lever.",
+];
+
+function refreshBriefing() {
+  const el = document.getElementById('briefing-text');
+  el.style.opacity = '0.4';
+  setTimeout(() => {
+    el.textContent = briefings[Math.floor(Math.random() * briefings.length)];
+    el.style.opacity = '1';
+    const now = new Date();
+    document.getElementById('briefing-updated').textContent = 'Updated ' + now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    showToast('Briefing updated.');
+  }, 600);
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const names = ['dashboard','store','analytics','products','tasks','email','ads','files'];
+  const tabs = document.querySelectorAll('.nav-tab');
+  const idx = names.indexOf(name);
+  if (tabs[idx]) tabs[idx].classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function switchEmailTab(tab, btn) {
+  document.querySelectorAll('.email-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  ['inbox','sent','drafts'].forEach(t => { const el = document.getElementById('email-'+t); if(el) el.style.display = t===tab?'block':'none'; });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+renderExtraProducts();
+renderCampaigns();
+renderCopyLibrary();
+</script>
+</body>
+</html>
