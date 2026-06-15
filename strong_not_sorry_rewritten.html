@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strong, Not Sorry — Christin Fisher</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --forest: #1E3329;
+    --taupe: #C4A882;
+    --olive: #7A9E7E;
+    --cream: #FAF7F2;
+    --dark-taupe: #8B6F4E;
+    --text: #2C2C2C;
+    --light-olive: #e8f0e9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--forest);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,168,130,0.15);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: 60px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,168,130,0.1);
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 32px;
+  }
+
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 88px;
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    max-width: 700px;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--taupe);
+  }
+
+  .cover-subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(250,247,242,0.7);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+  }
+
+  .cover-author {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--taupe);
+  }
+
+  .cover-price {
+    position: absolute;
+    bottom: 72px;
+    right: 72px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(250,247,242,0.2);
+  }
+
+  /* PAGE LAYOUT */
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 48px;
+    page-break-after: always;
+  }
+
+  .page-full {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* SECTION DIVIDER */
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(196,168,130,0.12);
+    line-height: 1;
+    margin-bottom: -20px;
+    margin-left: -8px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--forest);
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--dark-taupe);
+  }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 16px;
+    margin-top: 40px;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: #3a3530;
+  }
+
+  p strong {
+    font-weight: 500;
+    color: var(--forest);
+  }
+
+  /* PULLQUOTE */
+  .pullquote {
+    border-left: 3px solid var(--taupe);
+    padding: 24px 32px;
+    margin: 40px 0;
+    background: rgba(196,168,130,0.06);
+  }
+
+  .pullquote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* DARK SECTION */
+  .dark-section {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 80px 72px;
+  }
+
+  .dark-section h2 {
+    color: var(--cream);
+  }
+
+  .dark-section h2 em {
+    color: var(--taupe);
+  }
+
+  .dark-section p {
+    color: rgba(250,247,242,0.8);
+  }
+
+  .dark-section h3 {
+    color: var(--taupe);
+  }
+
+  .dark-section .pullquote {
+    border-left-color: var(--taupe);
+    background: rgba(196,168,130,0.08);
+  }
+
+  .dark-section .pullquote p {
+    color: var(--cream);
+  }
+
+  /* SYMPTOM LIST */
+  .symptom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .symptom-item {
+    background: rgba(196,168,130,0.08);
+    border: 1px solid rgba(196,168,130,0.2);
+    padding: 16px 20px;
+    border-radius: 2px;
+    font-size: 13.5px;
+    color: var(--cream);
+    line-height: 1.4;
+  }
+
+  .symptom-item::before {
+    content: '→ ';
+    color: var(--taupe);
+    font-weight: 500;
+  }
+
+  /* PRINCIPLES */
+  .principle {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 36px;
+    align-items: flex-start;
+  }
+
+  .principle-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--taupe);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+  }
+
+  .principle-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .principle-content p {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* TRAINING TABLES */
+  .workout-block {
+    background: var(--cream);
+    border: 1px solid rgba(30,51,41,0.12);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .workout-block-header {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .workout-block-header h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .workout-block-header span {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  .workout-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .workout-table th {
+    background: rgba(30,51,41,0.05);
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--forest);
+    border-bottom: 1px solid rgba(30,51,41,0.1);
+  }
+
+  .workout-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(30,51,41,0.06);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .workout-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .workout-table tr:nth-child(even) td {
+    background: rgba(196,168,130,0.04);
+  }
+
+  .workout-table .exercise-name {
+    font-weight: 500;
+    color: var(--forest);
+  }
+
+  .workout-table .sets-reps {
+    color: var(--dark-taupe);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .workout-table .cue {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+  }
+
+  /* PROGRESSION TABLE */
+  .progression-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 13px;
+  }
+
+  .progression-table th {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .progression-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(30,51,41,0.08);
+    vertical-align: top;
+  }
+
+  .progression-table tr:nth-child(even) td {
+    background: rgba(196,168,130,0.05);
+  }
+
+  .week-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--forest);
+    white-space: nowrap;
+  }
+
+  /* REST DAYS */
+  .rest-day-box {
+    background: var(--light-olive);
+    border-left: 4px solid var(--olive);
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .rest-day-box h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .rest-day-box p {
+    font-size: 13.5px;
+    margin: 0;
+    color: #3a3530;
+  }
+
+  /* NUTRITION */
+  .nutrition-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(30,51,41,0.08);
+    padding: 18px 0;
+    align-items: start;
+  }
+
+  .nutrition-row:last-child {
+    border-bottom: none;
+  }
+
+  .nutrition-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    padding-top: 2px;
+  }
+
+  .nutrition-content {
+    font-size: 14px;
+    color: #3a3530;
+    line-height: 1.6;
+  }
+
+  /* PROTEIN CHART */
+  .protein-chart {
+    margin: 32px 0;
+    border: 1px solid rgba(30,51,41,0.1);
+    overflow: hidden;
+  }
+
+  .protein-chart-header {
+    background: var(--taupe);
+    color: var(--forest);
+    padding: 12px 20px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .protein-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(30,51,41,0.06);
+    font-size: 13.5px;
+  }
+
+  .protein-row:last-child {
+    border-bottom: none;
+  }
+
+  .protein-row:nth-child(even) {
+    background: rgba(196,168,130,0.05);
+  }
+
+  .protein-row .weight {
+    color: #666;
+  }
+
+  .protein-row .target {
+    font-weight: 500;
+    color: var(--forest);
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 80px 72px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    color: var(--cream);
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+
+  .cta-section p {
+    color: rgba(250,247,242,0.75);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    font-size: 15px;
+  }
+
+  .cta-primary {
+    display: inline-block;
+    background: var(--taupe);
+    color: var(--forest);
+    padding: 16px 40px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-bottom: 16px;
+  }
+
+  .cta-secondary {
+    display: block;
+    font-size: 13px;
+    color: rgba(250,247,242,0.5);
+    margin-top: 16px;
+  }
+
+  .cta-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(196,168,130,0.3);
+    margin: 40px auto;
+  }
+
+  /* DIVIDER LINE */
+  .rule {
+    border: none;
+    border-top: 1px solid rgba(30,51,41,0.1);
+    margin: 40px 0;
+  }
+
+  .rule-taupe {
+    border-top-color: rgba(196,168,130,0.3);
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    margin: 24px 0;
+  }
+
+  .checklist li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(30,51,41,0.07);
+    padding-left: 28px;
+    position: relative;
+    font-size: 14px;
+    color: #3a3530;
+  }
+
+  .checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--olive);
+    font-weight: 500;
+  }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    background: rgba(196,168,130,0.15);
+    color: var(--dark-taupe);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+
+  /* INTRO BOX */
+  .intro-box {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 40px 48px;
+    margin-bottom: 48px;
+  }
+
+  .intro-box p {
+    color: rgba(250,247,242,0.85);
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .intro-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .intro-box strong {
+    color: var(--taupe);
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: rgba(122,158,126,0.1);
+    border: 1px solid rgba(122,158,126,0.25);
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+
+  .highlight-box p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  @media print {
+    .page { page-break-after: always; }
+    body { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Christin Fisher, CPT · Feminine Strength Co.</div>
+  <h1>Strong,<br><em>Not<br>Sorry</em></h1>
+  <p class="cover-subtitle">A 4-week strength training guide for women 35–55 who are done doing more and ready to do what actually works.</p>
+  <div class="cover-author">christin fisher</div>
+  <div class="cover-price">$27</div>
+</div>
+
+<!-- SECTION 1: IT'S NOT YOU -->
+<div class="dark-section">
+  <div style="max-width:580px; margin:0 auto; padding:80px 0;">
+    <div class="section-number" style="color:rgba(196,168,130,0.1);">01</div>
+    <div class="eyebrow" style="color:var(--taupe);">The truth nobody told you</div>
+    <h2>It's <em>not</em> you.</h2>
+
+    <p>You've been doing the workouts. Trying to eat right. Pushing through the tired. And still — your body feels different. Harder to manage. Less responsive. Like it stopped cooperating somewhere around 38 or 40 and nobody sent you the memo.</p>
+
+    <p>Here's what's actually happening: <strong style="color:var(--taupe);">perimenopause starts earlier than most women are ever told.</strong></p>
+
+    <p>Most people think perimenopause is something that happens in your late 40s, maybe early 50s. The truth is it can begin as early as your mid-30s — and the average woman enters it around 40 to 44, a full decade before menopause itself.</p>
+
+    <p>During perimenopause, estrogen and progesterone begin fluctuating — not crashing yet, just becoming unpredictable. And those fluctuations affect everything: your sleep, your energy, your recovery, your mood, your ability to build and hold muscle, and yes, where your body stores fat.</p>
+
+    <div class="pullquote">
+      <p>"This isn't your body failing you. This is your body changing — and it needs a different approach, not more effort."</p>
+    </div>
+
+    <p>The symptoms are real. And they're often dismissed or misdiagnosed for years:</p>
+
+    <div class="symptom-grid">
+      <div class="symptom-item">Fatigue that sleep doesn't fix</div>
+      <div class="symptom-item">Weight gain around the midsection</div>
+      <div class="symptom-item">Workouts that stopped working</div>
+      <div class="symptom-item">Harder to recover between sessions</div>
+      <div class="symptom-item">Mood changes, anxiety, irritability</div>
+      <div class="symptom-item">Motivation that comes and goes</div>
+      <div class="symptom-item">Brain fog and poor sleep</div>
+      <div class="symptom-item">Feeling like you're doing everything right and getting nowhere</div>
+    </div>
+
+    <p>If any of that sounds familiar — you are not broken, lazy, or falling apart. You are navigating a hormonal shift that nobody prepared you for, with fitness advice that was never designed for your body at this stage.</p>
+
+    <p>This guide is designed for exactly where you are right now.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: WHY MORE IS WORKING AGAINST YOU -->
+<div class="page">
+  <div class="section-number">02</div>
+  <div class="eyebrow">The real problem</div>
+  <h2>More is <em>working against</em> you.</h2>
+
+  <div class="intro-box">
+    <p>The fitness industry was built on the idea that <strong>effort = results.</strong> More cardio. More restriction. More discipline. Push harder. Start over Monday.</p>
+    <p>That model doesn't work well for anyone. But for women in perimenopause and midlife, it can actively backfire.</p>
+  </div>
+
+  <h3>The cardio trap</h3>
+  <p>Cardio is not bad. But chronic cardio — the kind where you're grinding through 5 or 6 sessions a week, pushing hard every time — raises cortisol. And elevated cortisol in an already hormonally shifting body makes fat loss harder, not easier. It tells your body to hold onto fat, especially around your midsection. It disrupts sleep. It increases inflammation.</p>
+  <p>The women who are making progress aren't doing more cardio. They're doing less — and they're lifting.</p>
+
+  <h3>Under-eating</h3>
+  <p>If you've ever thought "I just need to eat less," I want you to hear this clearly: <strong>under-eating is one of the biggest barriers to body composition change in midlife women.</strong> When you eat too little, your body increases cortisol, breaks down muscle for fuel, slows your metabolism, and makes it nearly impossible to build the lean tissue that changes how your body looks and functions.</p>
+  <p>You do not need to eat less. You need to eat smarter — and almost certainly more protein than you think.</p>
+
+  <h3>The perfection cycle</h3>
+  <p>Every workout needs to be optimal. Every meal needs to be clean. Miss a day and you feel like you've failed. Start over Monday. Sound familiar?</p>
+  <p>This cycle — and the stress it creates — is its own hormonal disruptor. The anxiety around doing it "right" is making the doing it harder.</p>
+
+  <div class="pullquote">
+    <p>"You don't need a perfect program. You need a consistent one. Specific. Intentional. Sustainable."</p>
+  </div>
+
+  <p>What actually moves the needle at this stage of life isn't more — it's <strong>targeted strength training, adequate protein, real recovery, and the grace to meet yourself where you are.</strong></p>
+
+  <hr class="rule">
+
+  <div class="highlight-box">
+    <p><strong>A note before we go further:</strong> Everything you've been doing is probably more right than you think. The goal of this guide isn't to tell you that you've been doing it all wrong. It's to help you understand why your body responds the way it does now — and make a few specific shifts that will change everything.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: WHAT ACTUALLY WORKS -->
+<div class="dark-section">
+  <div style="max-width:580px; margin:0 auto; padding:80px 0;">
+    <div class="section-number" style="color:rgba(196,168,130,0.08);">03</div>
+    <div class="eyebrow" style="color:var(--taupe);">The actual answer</div>
+    <h2>What <em>actually</em> works.</h2>
+
+    <p>Three things. That's it. When you get these three things right, everything else starts to fall into place.</p>
+
+    <div class="principle" style="margin-top:40px;">
+      <div class="principle-number">1</div>
+      <div class="principle-content">
+        <h4 style="color:var(--taupe); font-family:'Cormorant Garamond',serif; font-size:24px; margin-bottom:10px;">Strength training, 3–4 days a week.</h4>
+        <p style="color:rgba(250,247,242,0.75);">Muscle is your metabolic engine. After 30, you lose 3–8% of muscle mass per decade unless you actively work to build and maintain it. That muscle loss is what slows your metabolism, weakens your bones, increases injury risk, and makes your body harder to manage. Strength training is the single most effective thing you can do for your body in midlife — not just for how you look, but for how you feel, how you age, and how you live. Two to four focused sessions per week is enough. You do not need six days. You need the right days.</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="principle-number">2</div>
+      <div class="principle-content">
+        <h4 style="color:var(--taupe); font-family:'Cormorant Garamond',serif; font-size:24px; margin-bottom:10px;">Protein at every meal.</h4>
+        <p style="color:rgba(250,247,242,0.75);">Protein is the most important thing you're probably not eating enough of. It builds and preserves muscle. It stabilizes blood sugar, which stabilizes mood and energy. It keeps you full. It supports hormonal function. The target for women in midlife is 0.7–1g per pound of target body weight. That sounds like a lot until you realize most women are eating about half of that. We'll cover exactly how to hit it without overhauling your entire life.</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="principle-number">3</div>
+      <div class="principle-content">
+        <h4 style="color:var(--taupe); font-family:'Cormorant Garamond',serif; font-size:24px; margin-bottom:10px;">Recovery is the work.</h4>
+        <p style="color:rgba(250,247,242,0.75);">Sleep is where your muscles repair. It's where cortisol resets. It's where your hormones do the work they can't do when you're running on empty. Walking on your non-lifting days isn't a consolation prize — it's active recovery that keeps your metabolism moving without stressing your system. Rest days are part of the program. Not taking them is not a virtue.</p>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <p>"Fitness should support your life, not run it."</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: THE TRAINING PLAN -->
+<div class="page">
+  <div class="section-number">04</div>
+  <div class="eyebrow">The program</div>
+  <h2>Your 4-week <em>training plan.</em></h2>
+
+  <p>This is a 4-day strength program. The other three days are for walking, mobility, and rest. That's not a compromise — that's the program working.</p>
+
+  <div class="highlight-box" style="margin-bottom:36px;">
+    <p><strong>How to read this program:</strong> RPE means Rate of Perceived Exertion — how hard it feels on a scale of 1–10. You should finish each set feeling like you could have done 1–2 more reps with good form. If you can easily do 5 more reps, go heavier. If your form breaks down, go lighter. Form always comes before load.</p>
+  </div>
+
+  <!-- Weekly Schedule -->
+  <h3>Your weekly schedule</h3>
+  <table class="progression-table" style="margin-bottom:40px;">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Focus</th>
+        <th>What it looks like</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="week-label">Monday</td>
+        <td><strong>Lower Body A</strong></td>
+        <td>Hip-dominant — deadlifts, hip thrusts, hamstrings</td>
+      </tr>
+      <tr>
+        <td class="week-label">Tuesday</td>
+        <td>Active Recovery</td>
+        <td>20–30 min walk + 10 min mobility/stretching</td>
+      </tr>
+      <tr>
+        <td class="week-label">Wednesday</td>
+        <td><strong>Upper Body A</strong></td>
+        <td>Push + pull — chest, back, shoulders, arms</td>
+      </tr>
+      <tr>
+        <td class="week-label">Thursday</td>
+        <td>Rest or Walk</td>
+        <td>Light walk, stretch, sleep — listen to your body</td>
+      </tr>
+      <tr>
+        <td class="week-label">Friday</td>
+        <td><strong>Lower Body B</strong></td>
+        <td>Quad-dominant — squats, lunges, single-leg work</td>
+      </tr>
+      <tr>
+        <td class="week-label">Saturday</td>
+        <td><strong>Upper Body B</strong></td>
+        <td>Pull-focused — rows, lat work, rear delts, core</td>
+      </tr>
+      <tr>
+        <td class="week-label">Sunday</td>
+        <td>Full Rest</td>
+        <td>This is part of the program. Take it.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Workout A: Lower Body -->
+  <div class="workout-block">
+    <div class="workout-block-header">
+      <h4>Lower Body A — Hip Dominant</h4>
+      <span>Mon · 40–45 min</span>
+    </div>
+    <table class="workout-table">
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Sets × Reps</th>
+          <th>RPE</th>
+          <th>Coaching cue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="exercise-name">Barbell or DB Romanian Deadlift</td>
+          <td class="sets-reps">3 × 10</td>
+          <td>7–8</td>
+          <td class="cue">Hinge at the hips, soft knee, feel the hamstring load before you pull</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Barbell or DB Hip Thrust</td>
+          <td class="sets-reps">3 × 12</td>
+          <td>7–8</td>
+          <td class="cue">Drive through the heel, squeeze at the top, chin tucked</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Single-Leg Glute Bridge</td>
+          <td class="sets-reps">3 × 10 each</td>
+          <td>6–7</td>
+          <td class="cue">Control the descent, don't let the hip drop</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Hamstring Curl (DB or Machine)</td>
+          <td class="sets-reps">3 × 12</td>
+          <td>7</td>
+          <td class="cue">Full range, slow on the way down</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Plank Hold</td>
+          <td class="sets-reps">3 × 30–45 sec</td>
+          <td>—</td>
+          <td class="cue">Breathe. Ribs down. Don't hold your breath.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Workout B: Upper Body -->
+  <div class="workout-block">
+    <div class="workout-block-header">
+      <h4>Upper Body A — Push + Pull</h4>
+      <span>Wed · 40–45 min</span>
+    </div>
+    <table class="workout-table">
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Sets × Reps</th>
+          <th>RPE</th>
+          <th>Coaching cue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="exercise-name">DB or Barbell Bench Press</td>
+          <td class="sets-reps">3 × 10</td>
+          <td>7–8</td>
+          <td class="cue">Retract shoulder blades, controlled descent to chest</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">One-Arm DB Row</td>
+          <td class="sets-reps">3 × 10 each</td>
+          <td>7–8</td>
+          <td class="cue">Pull elbow to hip, not to ceiling — feel the lat</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Seated DB Shoulder Press</td>
+          <td class="sets-reps">3 × 12</td>
+          <td>7</td>
+          <td class="cue">Don't flare the ribs, press straight up</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Cable or Band Face Pulls</td>
+          <td class="sets-reps">3 × 15</td>
+          <td>6</td>
+          <td class="cue">External rotation at the top, shoulders back and down</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Tricep Pushdown</td>
+          <td class="sets-reps">3 × 12</td>
+          <td>7</td>
+          <td class="cue">Elbows stay at your sides — don't swing</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Workout C: Lower Body B -->
+  <div class="workout-block">
+    <div class="workout-block-header">
+      <h4>Lower Body B — Quad Dominant</h4>
+      <span>Fri · 40–45 min</span>
+    </div>
+    <table class="workout-table">
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Sets × Reps</th>
+          <th>RPE</th>
+          <th>Coaching cue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="exercise-name">Goblet Squat or Barbell Back Squat</td>
+          <td class="sets-reps">3 × 10</td>
+          <td>7–8</td>
+          <td class="cue">Chest up, knees track over toes, breathe at the top</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Reverse Lunge (DB)</td>
+          <td class="sets-reps">3 × 10 each</td>
+          <td>7</td>
+          <td class="cue">Step back, not out — keep front shin vertical</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Step-Up to Knee Drive</td>
+          <td class="sets-reps">3 × 10 each</td>
+          <td>6–7</td>
+          <td class="cue">Drive through the heel on the box, controlled step down</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Leg Press or DB Sumo Squat</td>
+          <td class="sets-reps">3 × 12</td>
+          <td>7</td>
+          <td class="cue">Full depth, push the floor away</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Dead Bug</td>
+          <td class="sets-reps">3 × 8 each</td>
+          <td>—</td>
+          <td class="cue">Low back stays glued to the floor — breathe out as you extend</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Workout D: Upper Body B -->
+  <div class="workout-block">
+    <div class="workout-block-header">
+      <h4>Upper Body B — Pull Focused</h4>
+      <span>Sat · 40–45 min</span>
+    </div>
+    <table class="workout-table">
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Sets × Reps</th>
+          <th>RPE</th>
+          <th>Coaching cue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="exercise-name">Lat Pulldown or Assisted Pull-Up</td>
+          <td class="sets-reps">3 × 10</td>
+          <td>7–8</td>
+          <td class="cue">Lean back slightly, pull to upper chest, lats do the work</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Seated Cable Row or DB Row</td>
+          <td class="sets-reps">3 × 12</td>
+          <td>7–8</td>
+          <td class="cue">Squeeze shoulder blades together at the end of the row</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Lateral Raises (DB)</td>
+          <td class="sets-reps">3 × 15</td>
+          <td>6–7</td>
+          <td class="cue">Lead with the elbow, slight forward lean, control the drop</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">DB Bicep Curl</td>
+          <td class="sets-reps">3 × 12</td>
+          <td>7</td>
+          <td class="cue">Full range, don't swing — own the bottom position</td>
+        </tr>
+        <tr>
+          <td class="exercise-name">Bird Dog</td>
+          <td class="sets-reps">3 × 8 each</td>
+          <td>—</td>
+          <td class="cue">Slow and controlled, don't let the hip rotate</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rest-day-box">
+    <h4>Recovery days: Tuesday, Thursday, Sunday</h4>
+    <p>Tuesday and Thursday: 20–30 minute walk at a pace where you can hold a conversation. 5–10 minutes of mobility or stretching. This is not optional filler — it's active recovery that keeps blood flowing to the muscles you worked without creating more cortisol stress. Sunday is full rest. Your body rebuilds on the days you don't train.</p>
+  </div>
+</div>
+
+<!-- SECTION 5: PROGRESSION -->
+<div class="page">
+  <div class="section-number">05</div>
+  <div class="eyebrow">How to progress</div>
+  <h2>Four weeks. <em>One goal at a time.</em></h2>
+
+  <p>Progressive overload — gradually increasing the challenge — is how your body gets stronger. But progression doesn't always mean adding weight. At different points in the program, you'll progress differently.</p>
+
+  <table class="progression-table">
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Primary goal</th>
+        <th>What that means</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="week-label">Week 1</td>
+        <td><strong>Learn the movements</strong></td>
+        <td>Focus entirely on form. Choose weights where you finish each set feeling like you could do 3–4 more reps. This is not the week to go heavy. It's the week to build the habit and own the patterns.</td>
+      </tr>
+      <tr>
+        <td class="week-label">Week 2</td>
+        <td><strong>Add 5–10% weight or one rep</strong></td>
+        <td>If your form felt solid in week 1, increase the load slightly on your main lifts. Or add one rep per set if the weight feels right but you want more challenge. Do not do both.</td>
+      </tr>
+      <tr>
+        <td class="week-label">Week 3</td>
+        <td><strong>Shorten rest slightly</strong></td>
+        <td>Keep the weight from week 2. Reduce rest between sets by about 15–20 seconds. This makes the same workout harder without adding load — and improves your conditioning at the same time.</td>
+      </tr>
+      <tr>
+        <td class="week-label">Week 4</td>
+        <td><strong>Push close to technical failure</strong></td>
+        <td>This is your test week. Work up to weights where you finish each set with 1 rep left in the tank — perfect form, nothing left. Record what you lifted. This becomes your baseline for your next month.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box">
+    <p><strong>Track your lifts.</strong> You don't need an app. A notes page on your phone or a small notebook works. Write down the exercise, the weight, the sets and reps. This is how you know you're progressing — and it's one of the most motivating things you can do for yourself.</p>
+  </div>
+
+  <h3>A note on how heavy to go</h3>
+  <p>If you can easily complete all your reps and feel like you could do 5 or 6 more — the weight is too light. You should finish a set feeling challenged, with 1–2 good reps left. <strong>This is how the adaptation happens.</strong> Lifting light weights for high reps will maintain some fitness but it will not build muscle. You have to challenge the tissue.</p>
+  <p>That said — form always comes before load. If you can't control the movement, the weight is too heavy. Back it down, own the pattern, then add load.</p>
+</div>
+
+<!-- SECTION 6: FUEL -->
+<div class="dark-section">
+  <div style="max-width:580px; margin:0 auto; padding:80px 0;">
+    <div class="section-number" style="color:rgba(196,168,130,0.08);">06</div>
+    <div class="eyebrow" style="color:var(--taupe);">Nutrition</div>
+    <h2>Fuel like you <em>mean it.</em></h2>
+
+    <p>Nutrition for women in midlife is not complicated. It just requires undoing some things you were taught that were never true — and replacing them with a few things that actually matter.</p>
+
+    <div class="nutrition-row">
+      <div class="nutrition-label">The one rule</div>
+      <div class="nutrition-content" style="color:rgba(250,247,242,0.8);">Protein at every meal. Not sometimes. Every meal. This is the single most impactful nutrition change you can make right now. Everything else is secondary.</div>
+    </div>
+
+    <div class="nutrition-row">
+      <div class="nutrition-label">How much protein</div>
+      <div class="nutrition-content" style="color:rgba(250,247,242,0.8);">Aim for 0.7–1g per pound of your target body weight. If you want to weigh 145 lbs, eat 100–145g of protein per day. Spread it across 3–4 meals. 30–40g per meal is a good target.</div>
+    </div>
+
+    <div class="nutrition-row">
+      <div class="nutrition-label">Carbs</div>
+      <div class="nutrition-content" style="color:rgba(250,247,242,0.8);">Not the enemy. Your muscles run on glycogen. Carbohydrates fuel your lifting. Eat them — especially on training days. Whole food sources like sweet potatoes, rice, oats, and fruit are ideal.</div>
+    </div>
+
+    <div class="nutrition-row">
+      <div class="nutrition-label">Fats</div>
+      <div class="nutrition-content" style="color:rgba(250,247,242,0.8);">Essential for hormone production. Avocado, olive oil, nuts, salmon, eggs. Don't fear them. Don't overdo them. Include them at most meals.</div>
+    </div>
+
+    <div class="nutrition-row">
+      <div class="nutrition-label">What to skip</div>
+      <div class="nutrition-content" style="color:rgba(250,247,242,0.8);">Tracking every calorie. Cutting carbs. Skipping meals. Eating less to compensate for a workout. These approaches raise cortisol, break down muscle, and work against the hormonal environment you're trying to create.</div>
+    </div>
+
+    <div class="pullquote" style="margin-top:40px;">
+      <p>"You don't need to eat less. You need to eat with intention."</p>
+    </div>
+
+    <!-- Protein targets -->
+    <div class="protein-chart" style="margin-top:40px;">
+      <div class="protein-chart-header">Daily protein targets by goal weight</div>
+      <div class="protein-row">
+        <span class="weight">Goal weight: 120–130 lbs</span>
+        <span class="target">85–130g protein/day</span>
+      </div>
+      <div class="protein-row">
+        <span class="weight">Goal weight: 131–145 lbs</span>
+        <span class="target">92–145g protein/day</span>
+      </div>
+      <div class="protein-row">
+        <span class="weight">Goal weight: 146–160 lbs</span>
+        <span class="target">102–160g protein/day</span>
+      </div>
+      <div class="protein-row">
+        <span class="weight">Goal weight: 161–175 lbs</span>
+        <span class="target">113–175g protein/day</span>
+      </div>
+      <div class="protein-row">
+        <span class="weight">Goal weight: 176–190 lbs</span>
+        <span class="target">123–190g protein/day</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px; color:rgba(250,247,242,0.5); margin-top:16px;">Start at the lower end of the range and build up over 2–3 weeks. Jumping straight to the high end feels overwhelming and isn't necessary.</p>
+  </div>
+</div>
+
+<!-- SECTION 7: RECOVERY -->
+<div class="page">
+  <div class="section-number">07</div>
+  <div class="eyebrow">The part most coaches skip</div>
+  <h2>Recovery <em>is</em> the work.</h2>
+
+  <p>Your muscles don't grow during the workout. They grow during the 48 hours after. Sleep is where cortisol resets, where muscle tissue repairs, where your hormones do the work they can't do when you're running depleted.</p>
+
+  <p>Recovery isn't a reward for training hard. It's the mechanism that makes training hard worth anything.</p>
+
+  <h3>Sleep</h3>
+  <p>Seven to eight hours is the target. This isn't negotiable for women in perimenopause. Poor sleep raises cortisol, disrupts hunger hormones, impairs muscle protein synthesis, and makes everything harder — workouts, nutrition choices, mood, energy. If your sleep is bad, that's the first thing to address, before the program, before anything else.</p>
+
+  <h3>Walking</h3>
+  <p>Walking is the most underrated recovery tool available to you. It keeps blood moving to recovering muscles, it lowers cortisol, it improves insulin sensitivity, and it adds to your daily calorie burn without stressing your system. 8,000–10,000 steps on non-lifting days is the target. You don't have to do it all at once.</p>
+
+  <h3>Stress</h3>
+  <p>Chronic stress and elevated cortisol disrupt every hormonal process in your body. This is not a wellness platitude — it's physiology. If you are chronically stressed and chronically under-recovered, no training program will fully work. Managing stress is part of the program. Daily walks, breathwork, protecting your sleep, saying no to things that aren't necessary — these are training decisions.</p>
+
+  <ul class="checklist">
+    <li>7–8 hours of sleep per night, protected like a training session</li>
+    <li>Walking 20–30 minutes on non-lifting days</li>
+    <li>One cortisol-lowering habit daily: walk, breathwork, a few minutes of quiet</li>
+    <li>Magnesium glycinate at night — supports sleep quality and muscle relaxation</li>
+    <li>Hydration: half your bodyweight in ounces of water per day, minimum</li>
+    <li>Post-workout: 5–10 minutes of stretching the muscles you just trained</li>
+  </ul>
+
+  <div class="pullquote">
+    <p>"Rest isn't something you earn. It's something your body requires. Honor that."</p>
+  </div>
+</div>
+
+<!-- CTA SECTION -->
+<div class="cta-section">
+  <h2>What's <em style="font-style:italic; color:var(--taupe);">next.</em></h2>
+  <p>You have the program. Now put it to work. Four weeks, specific and intentional, showing up for yourself without the pressure to be perfect.</p>
+
+  <div class="cta-divider"></div>
+
+  <p style="font-size:13px; color:rgba(250,247,242,0.5); margin-bottom:8px;">Ready for 1:1 coaching or have questions?</p>
+  <div class="cta-primary">DM me "STRONG" on Instagram</div>
+  <p class="cta-secondary">@christin_fisher</p>
+
+  <div class="cta-divider"></div>
+
+  <p style="font-size:13px; color:rgba(250,247,242,0.5); margin-bottom:8px;">Want the nutrition side fully mapped out?</p>
+  <div class="cta-primary">Get the 40+ Fat Loss Fix</div>
+  <p class="cta-secondary">The companion guide to this program — hormone-smart nutrition for women in midlife.</p>
+
+  <div style="margin-top:64px;">
+    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:rgba(250,247,242,0.6);">You're not starting over.<br>You're building forward.</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:var(--taupe); margin-top:16px;">— Christin</p>
+  </div>
+</div>
+
+</body>
+</html>
