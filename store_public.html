@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Feminine Strength Co. — Christin Fisher</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1E3329;
+  --taupe: #C4A882;
+  --olive: #7A9E7E;
+  --cream: #FAF7F2;
+  --dark-taupe: #8B6F4E;
+  --text: #2C2C2C;
+  --border: rgba(196,168,130,0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: var(--forest);
+  padding: 48px 36px 40px;
+  text-align: center;
+}
+
+.header-eyebrow {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(196,168,130,0.6);
+  margin-bottom: 16px; display: block;
+}
+
+.header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300;
+  line-height: 0.95; color: var(--cream);
+  letter-spacing: -0.02em; margin-bottom: 16px;
+}
+
+.header h1 em { font-style: italic; color: var(--taupe); }
+
+.header-rule {
+  width: 40px; height: 1px;
+  background: rgba(196,168,130,0.35);
+  margin: 0 auto 16px;
+}
+
+.header-sub {
+  font-size: 14px; color: rgba(250,247,242,0.6);
+  line-height: 1.7; max-width: 340px; margin: 0 auto;
+}
+
+/* SOCIAL LINKS */
+.social-bar {
+  background: var(--forest);
+  padding: 0 36px 32px;
+  display: flex; justify-content: center; gap: 16px;
+  border-bottom: 1px solid rgba(196,168,130,0.1);
+}
+
+.social-link {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(250,247,242,0.35);
+  text-decoration: none;
+  border: 1px solid rgba(196,168,130,0.15);
+  padding: 6px 14px;
+  transition: all 0.2s;
+}
+
+.social-link:hover { color: var(--taupe); border-color: rgba(196,168,130,0.4); }
+
+/* STORE */
+.store {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+.store-label {
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--taupe); margin-bottom: 24px; display: block;
+  text-align: center;
+}
+
+/* PRODUCT CARDS */
+.product {
+  background: white;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.product:hover { transform: translateY(-1px); }
+.product.featured { border-color: var(--taupe); border-width: 1.5px; }
+
+.product-badge {
+  background: var(--forest); color: var(--taupe);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 6px 14px; display: inline-block;
+}
+
+.product-badge.gold { background: var(--taupe); color: var(--forest); }
+.product-badge.free { background: var(--olive); color: white; }
+
+.product-body { padding: 18px 20px; }
+
+.product-type {
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: #bbb; margin-bottom: 6px;
+}
+
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400;
+  color: var(--forest); margin-bottom: 8px; line-height: 1.1;
+}
+
+.product-desc {
+  font-size: 13.5px; color: #666;
+  line-height: 1.65; margin-bottom: 16px;
+}
+
+.product-footer {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(30,51,41,0.06);
+}
+
+.product-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; color: var(--forest);
+}
+
+.product-price .period {
+  font-size: 12px; color: #aaa;
+  font-family: 'DM Sans', sans-serif; font-weight: 300;
+}
+
+.btn-buy {
+  background: var(--forest); color: var(--cream);
+  border: none; padding: 11px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: inline-block;
+}
+
+.btn-buy:hover { background: #152520; }
+
+.btn-free {
+  background: var(--olive); color: white;
+  border: none; padding: 11px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: inline-block;
+}
+
+.btn-free:hover { background: #6a8e6e; }
+
+/* COACHING CTA */
+.coaching {
+  background: var(--forest);
+  padding: 40px 36px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.coaching h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300;
+  color: var(--cream); margin-bottom: 10px;
+  line-height: 1;
+}
+
+.coaching h2 em { font-style: italic; color: var(--taupe); }
+
+.coaching p {
+  font-size: 13.5px; color: rgba(250,247,242,0.55);
+  line-height: 1.7; max-width: 320px;
+  margin: 0 auto 24px;
+}
+
+.coaching-btn {
+  background: var(--taupe); color: var(--forest);
+  border: none; padding: 14px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  cursor: pointer; display: inline-block;
+  text-decoration: none; transition: all 0.2s;
+}
+
+.coaching-btn:hover { background: var(--dark-taupe); color: white; }
+
+/* FOOTER */
+.footer {
+  background: var(--forest);
+  padding: 20px 36px;
+  text-align: center;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(250,247,242,0.2);
+  border-top: 1px solid rgba(196,168,130,0.08);
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <span class="header-eyebrow">Christin Fisher, CPT</span>
+  <h1>Feminine<br><em>Strength Co.</em></h1>
+  <div class="header-rule"></div>
+  <p class="header-sub">Strength training and hormone health for women 35–55 who are done starting over.</p>
+</div>
+
+<div class="social-bar">
+  <a href="https://www.instagram.com/christin_fisher" target="_blank" class="social-link">Instagram</a>
+  <a href="https://www.tiktok.com/@restliftrepeat" target="_blank" class="social-link">TikTok</a>
+</div>
+
+<!-- STORE -->
+<div class="store">
+  <span class="store-label">Digital Products</span>
+
+  <!-- HELP ME — FREE -->
+  <div class="product">
+    <div class="product-badge free">Free</div>
+    <div class="product-body">
+      <div class="product-type">Free Guide · Instant delivery</div>
+      <div class="product-name">Help Me.</div>
+      <div class="product-desc">You feel off — energy, weight, mood — and nobody can tell you why. This free guide breaks down exactly what's happening in your body after 35, so you can stop guessing and start understanding.</div>
+      <div class="product-footer">
+        <div class="product-price">Free</div>
+        <a href="#" class="btn-free">Download free</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRONG NOT SORRY PDF -->
+  <div class="product featured">
+    <div class="product-badge">Most popular</div>
+    <div class="product-body">
+      <div class="product-type">PDF Guide · Instant download</div>
+      <div class="product-name">Strong, Not Sorry</div>
+      <div class="product-desc">A 4-week strength training guide for women 35–55. Hybrid home and gym tracks, three experience levels, coaching cues, and a progression system. Real programming, no apologies. Yours forever.</div>
+      <div class="product-footer">
+        <div class="product-price">$27 <span class="period">one-time</span></div>
+        <a href="https://buy.stripe.com/3cIbJ3fqY68d2TE9l3cEw0o" target="_blank" class="btn-buy">Buy now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAT LOSS FIX -->
+  <div class="product">
+    <div class="product-badge">New</div>
+    <div class="product-body">
+      <div class="product-type">PDF + App · Instant access</div>
+      <div class="product-name">Fat Loss Fix + Meal Generator</div>
+      <div class="product-desc">Hormone-smart nutrition for women 35–55, plus an interactive meal generator that builds personalized 7-day plans around your protein target, preferences, and energy. No diet rules. Just real food.</div>
+      <div class="product-footer">
+        <div class="product-price">$27 <span class="period">one-time</span></div>
+        <a href="https://buy.stripe.com/8x228t2Ec1RX9i268RcEw0l" target="_blank" class="btn-buy">Buy now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPASS -->
+  <div class="product">
+    <div class="product-badge gold">App</div>
+    <div class="product-body">
+      <div class="product-type">App · Monthly subscription</div>
+      <div class="product-name">Compass</div>
+      <div class="product-desc">Your hormone health companion. Daily check-ins, cycle-phase guidance, breathwork, symptom tracking, and recovery support — built for women navigating perimenopause, menopause, and midlife. 7-day free trial.</div>
+      <div class="product-footer">
+        <div class="product-price">$14.99 <span class="period">/month</span></div>
+        <a href="https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k" target="_blank" class="btn-buy">Start free trial</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRONG NOT SORRY APP -->
+  <div class="product">
+    <div class="product-badge gold">App</div>
+    <div class="product-body">
+      <div class="product-type">App · Monthly subscription</div>
+      <div class="product-name">Strong, Not Sorry — App</div>
+      <div class="product-desc">Progressive strength training that meets you where you are. Hybrid home and gym tracks, three experience levels, daily energy check-in, workout logging with rest timers. New programming monthly. 7-day free trial.</div>
+      <div class="product-footer">
+        <div class="product-price">$19.99 <span class="period">/month</span></div>
+        <a href="https://buy.stripe.com/fZu5kFfqY2W1dyi2WFcEw0m" target="_blank" class="btn-buy">Start free trial</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUNDLE -->
+  <div class="product featured">
+    <div class="product-badge gold">Best value</div>
+    <div class="product-body">
+      <div class="product-type">Both apps · Monthly subscription</div>
+      <div class="product-name">Compass + Strong, Not Sorry Bundle</div>
+      <div class="product-desc">The complete system. Train with intention, track your hormones, fuel your body, and recover like it matters — all in one subscription. Save $5/month versus subscribing separately. 7-day free trial.</div>
+      <div class="product-footer">
+        <div class="product-price">$29.99 <span class="period">/month</span></div>
+        <a href="https://buy.stripe.com/cNi3cx6UsgMR3XIdBjcEw0n" target="_blank" class="btn-buy">Start free trial</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COACHING CTA -->
+<div class="coaching">
+  <h2>Ready for <em>1:1 coaching?</em></h2>
+  <p>I work with women 35–55 who are done guessing and ready for a program built specifically for their body, their life, and where they are right now.</p>
+  <a href="https://www.instagram.com/christin_fisher" target="_blank" class="coaching-btn">DM STRONG on Instagram</a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Feminine Strength Co. &nbsp;·&nbsp; Christin Fisher, CPT &nbsp;·&nbsp; South Jersey
+</div>
+
+</body>
+</html>
