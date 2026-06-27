@@ -43,8 +43,8 @@ body { background:var(--cream); font-family:'DM Sans',sans-serif; font-weight:30
 .proof-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--cream); margin-bottom:6px; line-height:1.2; }
 .proof-sub { font-size:13px; color:rgba(250,247,242,0.5); margin-bottom:28px; line-height:1.6; }
 .proof-card { background:rgba(255,255,255,0.05); border:1px solid rgba(196,168,130,0.2); border-radius:8px; padding:20px; margin-bottom:14px; }
-.proof-card-header { display:flex; gap:16px; align-items:flex-start; margin-bottom:14px; }
-.proof-img { width:130px; height:180px; border-radius:8px; object-fit:cover; object-position:top; flex-shrink:0; border:2px solid rgba(196,168,130,0.3); }
+.proof-card-header { display:flex; flex-direction:column; gap:12px; margin-bottom:14px; }
+.proof-img { width:100%; height:220px; border-radius:8px; object-fit:cover; object-position:center top; border:2px solid rgba(196,168,130,0.3); }
 .proof-name { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--taupe); margin-bottom:4px; }
 .proof-tag { font-size:10px; color:rgba(250,247,242,0.4); letter-spacing:0.08em; text-transform:uppercase; }
 .proof-body { font-size:13px; color:rgba(250,247,242,0.75); line-height:1.75; }
@@ -67,7 +67,7 @@ body { background:var(--cream); font-family:'DM Sans',sans-serif; font-weight:30
 .card-group { margin-bottom:40px; }
 
 /* PRODUCT ICON */
-.product-icon { width:100%; border-radius:8px 8px 0 0; display:block; object-fit:cover; max-height:200px; }
+.product-icon { width:100%; border-radius:8px 8px 0 0; display:block; object-fit:contain; max-height:160px; background:var(--alt); padding:12px; }
 
 /* CARDS */
 .card { background:white; border:1px solid var(--grid); border-radius:8px; margin-bottom:12px; overflow:hidden; transition:box-shadow 0.2s; }
@@ -150,7 +150,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
     <!-- Client A -->
     <div class="proof-card">
       <div class="proof-card-header">
-        <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/liz.webp" alt="Client A" class="proof-img" style="object-position:right top;">
+        <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/liz.webp" alt="Client A" class="proof-img" style="object-position:center 20%;">
         <div>
           <div class="proof-name">Client A</div>
           <div class="proof-tag">Multi-year client · Still going</div>
@@ -261,7 +261,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 
     <!-- Strong Not Sorry PDF -->
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%281%29.webp" alt="Strong Not Sorry" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview1.webp" alt="Strong Not Sorry" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">Strong Not Sorry:<br>The Training Program</div>
@@ -328,7 +328,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 
     <!-- Built for This -->
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%283%29.webp" alt="Built for This" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview3.webp" alt="Built for This" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">Built for This:<br>The Complete Roadmap</div>
@@ -368,7 +368,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 
     <!-- Grow -->
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%282%29.webp" alt="Grow" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview2.webp" alt="Grow" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">Grow:<br>8-Week Glute Program</div>
@@ -412,7 +412,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
     </div>
 
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%284%29.webp" alt="Meal Generator" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview4.webp" alt="Meal Generator" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">Meal Generator +<br>Nutrition + Fat Loss Guide</div>
@@ -461,7 +461,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 
     <!-- Compass -->
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%285%29.webp" alt="Compass App" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview5.webp" alt="Compass App" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">Compass App</div>
@@ -498,7 +498,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 
     <!-- Strong Not Sorry App -->
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%286%29.webp" alt="Strong Not Sorry App" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview6.webp" alt="Strong Not Sorry App" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">Strong Not Sorry App</div>
@@ -522,7 +522,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 
     <!-- Bundle -->
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%287%29.webp" alt="The Bundle" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview7.webp" alt="The Bundle" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">The Bundle</div>
@@ -560,7 +560,7 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
     </div>
 
     <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview%288%29.webp" alt="1-1 Coaching" class="product-icon">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview8.webp" alt="1-1 Coaching" class="product-icon">
       <div class="card-body">
         <div class="card-header">
           <div class="card-name">Elite 1-1 &<br>Online Coaching</div>
@@ -639,3 +639,5 @@ function togglePreview(btn) {
 </script>
 </body>
 </html>
+
+        
