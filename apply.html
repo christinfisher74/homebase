@@ -281,7 +281,7 @@ function handleSubmit(e) {
     entries[key] = value;
   }
   // Send to Formspree (free form service) — replace with your endpoint
-  fetch('fetch('https://formspree.io/f/maqgoadp', {
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(entries)
@@ -298,4 +298,3 @@ function handleSubmit(e) {
 </script>
 </body>
 </html>
-
