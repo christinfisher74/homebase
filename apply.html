@@ -115,7 +115,7 @@ body { background: var(--cream); font-family: 'DM Sans', sans-serif; font-weight
     <p style="color:var(--taupe);margin-top:12px;font-style:italic;">— Christin</p>
   </div>
 
-  <form id="applicationForm" onsubmit="handleSubmit(event)">
+  <form id="applicationForm" action="https://formspree.io/f/maqgoadp" method="POST">
 
     <!-- BASIC INFO -->
     <div class="form-section">
@@ -254,6 +254,7 @@ body { background: var(--cream); font-family: 'DM Sans', sans-serif; font-weight
     </div>
 
     <button type="submit" class="submit-btn">Submit My Application →</button>
+  <input type="hidden" name="_next" value="https://christinfisher74.github.io/homebase/apply.html?success=true">
 
   </form>
 
