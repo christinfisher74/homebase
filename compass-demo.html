@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Compass — 7-Day Free Trial — Feminine Strength Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1E3329; --taupe: #C4A882; --olive: #7A9E7E;
+  --cream: #FAF7F2; --alt: #EDE8E0; --mid: #5A5A4A;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { background:var(--forest); font-family:'DM Sans',sans-serif; font-weight:300; color:var(--cream); min-height:100vh; }
+
+/* SCREENS */
+.screen { display:none; min-height:100vh; flex-direction:column; }
+.screen.active { display:flex; }
+
+/* ── WELCOME SCREEN ── */
+#welcomeScreen {
+  background:var(--forest);
+  align-items:center; justify-content:center;
+  padding:40px 28px; text-align:center;
+}
+.welcome-logo { font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:300; color:var(--taupe); line-height:1; margin-bottom:6px; }
+.welcome-tag { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--olive); margin-bottom:32px; display:block; }
+.welcome-h { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--cream); margin-bottom:10px; line-height:1.2; }
+.welcome-h em { font-style:italic; color:var(--taupe); }
+.welcome-sub { font-size:13px; color:rgba(250,247,242,0.6); line-height:1.75; margin-bottom:32px; max-width:340px; }
+.trial-badge { display:inline-block; background:var(--taupe); color:white; font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:6px 18px; border-radius:20px; margin-bottom:28px; }
+.field { margin-bottom:14px; text-align:left; }
+.field label { display:block; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--olive); margin-bottom:6px; }
+.field input { width:100%; padding:12px 14px; background:rgba(255,255,255,0.08); border:1px solid rgba(196,168,130,0.3); border-radius:8px; color:var(--cream); font-family:'DM Sans',sans-serif; font-size:14px; }
+.field input::placeholder { color:rgba(250,247,242,0.35); }
+.field input:focus { outline:none; border-color:var(--taupe); }
+.btn-start { width:100%; padding:14px; background:var(--taupe); color:white; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; margin-top:6px; }
+.welcome-note { font-size:11px; color:rgba(250,247,242,0.35); margin-top:16px; line-height:1.6; }
+
+/* ── TRACK SCREEN ── */
+#trackScreen {
+  background:var(--forest);
+  padding:40px 24px; align-items:center; justify-content:center;
+}
+.track-inner { max-width:400px; width:100%; }
+.track-h { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--cream); margin-bottom:6px; line-height:1.2; }
+.track-sub { font-size:13px; color:rgba(250,247,242,0.55); margin-bottom:28px; line-height:1.65; }
+.track-card {
+  background:rgba(255,255,255,0.05); border:1px solid rgba(196,168,130,0.2);
+  border-radius:12px; padding:18px 20px; margin-bottom:12px; cursor:pointer;
+  transition:all 0.2s;
+}
+.track-card:hover, .track-card:active { background:rgba(196,168,130,0.12); border-color:var(--taupe); }
+.track-card-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--taupe); margin-bottom:4px; }
+.track-card-desc { font-size:12px; color:rgba(250,247,242,0.55); line-height:1.6; }
+
+/* ── MAIN APP ── */
+#appScreen { background:var(--cream); color:var(--forest); }
+.app-header { background:var(--forest); padding:16px 20px 12px; display:flex; justify-content:space-between; align-items:center; }
+.app-header-left { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--taupe); font-weight:300; }
+.trial-indicator { font-size:10px; color:var(--olive); letter-spacing:0.1em; text-transform:uppercase; }
+.app-content { flex:1; overflow-y:auto; padding:20px; }
+
+/* TABS */
+.tab-bar { background:var(--forest); display:flex; padding:0 4px 8px; gap:2px; }
+.tab { flex:1; padding:8px 4px 6px; text-align:center; cursor:pointer; border-radius:6px; transition:background 0.2s; }
+.tab.active { background:rgba(196,168,130,0.15); }
+.tab-icon { font-size:18px; display:block; margin-bottom:2px; }
+.tab-label { font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(250,247,242,0.5); }
+.tab.active .tab-label { color:var(--taupe); }
+
+/* TAB PANELS */
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+
+/* TODAY TAB */
+.greeting { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--forest); margin-bottom:4px; line-height:1.2; }
+.greeting em { font-style:italic; color:var(--taupe); }
+.phase-badge { display:inline-block; background:var(--forest); color:var(--taupe); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
+
+.section-card { background:white; border-radius:10px; padding:16px; margin-bottom:12px; border:1px solid rgba(196,168,130,0.15); }
+.section-card-title { font-size:10px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--taupe); margin-bottom:10px; }
+.today-item { display:flex; gap:10px; align-items:flex-start; padding:8px 0; border-bottom:1px solid rgba(196,168,130,0.1); }
+.today-item:last-child { border-bottom:none; padding-bottom:0; }
+.today-item-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+.today-item-text { font-size:13px; color:var(--mid); line-height:1.55; }
+.today-item-text strong { display:block; font-weight:500; color:var(--forest); margin-bottom:2px; font-size:13px; }
+
+.sos-btn { width:100%; padding:13px; background:var(--forest); color:var(--cream); border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; margin-top:4px; }
+
+/* LEARN TAB */
+.article-card { background:white; border-radius:10px; margin-bottom:12px; overflow:hidden; border:1px solid rgba(196,168,130,0.15); }
+.article-header { padding:14px 16px; cursor:pointer; }
+.article-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--forest); margin-bottom:4px; line-height:1.2; }
+.article-tag { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--taupe); }
+.article-body { display:none; padding:0 16px 16px; font-size:13px; color:var(--mid); line-height:1.75; }
+.article-body.open { display:block; }
+.article-body p { margin-bottom:10px; }
+.article-body p:last-child { margin-bottom:0; }
+
+/* LOG TAB */
+.log-section { margin-bottom:16px; }
+.log-label { font-size:10px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--taupe); margin-bottom:8px; display:block; }
+.symptom-grid { display:flex; flex-wrap:wrap; gap:6px; }
+.symptom-btn { background:white; border:1px solid rgba(196,168,130,0.3); border-radius:20px; padding:6px 12px; font-size:12px; color:var(--mid); cursor:pointer; transition:all 0.2s; }
+.symptom-btn.selected { background:var(--forest); color:var(--cream); border-color:var(--forest); }
+.energy-row { display:flex; gap:8px; }
+.energy-btn { flex:1; padding:10px; text-align:center; background:white; border:1px solid rgba(196,168,130,0.3); border-radius:8px; cursor:pointer; font-size:12px; color:var(--mid); transition:all 0.2s; }
+.energy-btn.selected { background:var(--forest); color:var(--cream); border-color:var(--forest); }
+.log-notes { width:100%; padding:12px; border:1px solid rgba(196,168,130,0.3); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--forest); background:white; resize:none; min-height:80px; }
+.log-notes:focus { outline:none; border-color:var(--taupe); }
+.save-log-btn { width:100%; padding:12px; background:var(--olive); color:white; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; margin-top:8px; }
+
+/* NOURISH TAB */
+.nourish-card { background:white; border-radius:10px; padding:16px; margin-bottom:12px; border:1px solid rgba(196,168,130,0.15); }
+.nourish-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--forest); margin-bottom:6px; }
+.nourish-body { font-size:13px; color:var(--mid); line-height:1.7; }
+.food-list { list-style:none; margin-top:8px; }
+.food-list li { font-size:13px; color:var(--mid); padding:4px 0; display:flex; gap:8px; border-bottom:1px solid rgba(196,168,130,0.1); }
+.food-list li:last-child { border-bottom:none; }
+.food-list li::before { content:'→'; color:var(--taupe); flex-shrink:0; }
+
+/* PAYWALL */
+#paywallScreen {
+  background:var(--forest);
+  align-items:center; justify-content:center;
+  padding:40px 28px; text-align:center;
+}
+.paywall-icon { font-size:48px; margin-bottom:16px; }
+.paywall-h { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; color:var(--cream); margin-bottom:10px; line-height:1.2; }
+.paywall-h em { font-style:italic; color:var(--taupe); }
+.paywall-sub { font-size:13px; color:rgba(250,247,242,0.65); line-height:1.75; margin-bottom:28px; max-width:340px; }
+.paywall-price { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; color:var(--taupe); margin-bottom:4px; }
+.paywall-price-sub { font-size:12px; color:rgba(250,247,242,0.45); margin-bottom:28px; display:block; }
+.paywall-btn { display:block; width:100%; padding:14px; background:var(--taupe); color:white; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; text-decoration:none; margin-bottom:12px; }
+.paywall-other { font-size:12px; color:rgba(250,247,242,0.45); margin-bottom:16px; }
+.paywall-store-btn { display:block; width:100%; padding:12px; background:transparent; color:rgba(250,247,242,0.6); border:1px solid rgba(196,168,130,0.3); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; }
+.paywall-includes { text-align:left; margin:20px 0; }
+.paywall-includes li { font-size:12px; color:rgba(250,247,242,0.65); padding:4px 0; display:flex; gap:8px; list-style:none; }
+.paywall-includes li::before { content:'✓'; color:var(--olive); flex-shrink:0; }
+
+/* SOS MODAL */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:100; align-items:flex-end; justify-content:center; }
+.modal-overlay.open { display:flex; }
+.modal-sheet { background:var(--forest); border-radius:16px 16px 0 0; padding:28px 24px; width:100%; max-width:560px; max-height:80vh; overflow-y:auto; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--taupe); margin-bottom:14px; }
+.modal-close { float:right; background:none; border:none; color:rgba(250,247,242,0.5); font-size:20px; cursor:pointer; }
+.sos-item { padding:12px 0; border-bottom:1px solid rgba(196,168,130,0.15); }
+.sos-item:last-child { border-bottom:none; }
+.sos-item-title { font-weight:500; font-size:14px; color:var(--cream); margin-bottom:4px; }
+.sos-item-body { font-size:13px; color:rgba(250,247,242,0.65); line-height:1.65; }
+</style>
+</head>
+<body>
+
+<!-- WELCOME SCREEN -->
+<div class="screen active" id="welcomeScreen">
+  <div class="welcome-logo">C</div>
+  <span class="welcome-tag">Compass · Feminine Strength Co.</span>
+  <p class="welcome-h">Your hormone health<br><em>companion.</em></p>
+  <p class="welcome-sub">Understand what's actually happening in your body — and what to do about it. Plain language. Real guidance. No clinical BS.</p>
+  <span class="trial-badge">7-Day Free Trial</span>
+
+  <div class="field">
+    <label>Your First Name</label>
+    <input type="text" id="trialName" placeholder="What should I call you?">
+  </div>
+  <div class="field">
+    <label>Your Email</label>
+    <input type="email" id="trialEmail" placeholder="your@email.com">
+  </div>
+  <button class="btn-start" onclick="startTrial()">Start My Free Trial →</button>
+  <p class="welcome-note">7 days free. No credit card required.<br>After 7 days it's $14.99/mo — cancel anytime.</p>
+</div>
+
+<!-- TRACK SELECTION -->
+<div class="screen" id="trackScreen">
+  <div class="track-inner">
+    <p class="track-h">Where are you<br>in your journey?</p>
+    <p class="track-sub">This shapes your entire experience. You can change it anytime.</p>
+
+    <div class="track-card" onclick="selectTrack('peri')">
+      <div class="track-card-title">🔥 Perimenopause</div>
+      <div class="track-card-desc">Irregular cycles, hot flashes, mood shifts, sleep changes — your body is in transition and you want to understand it.</div>
+    </div>
+    <div class="track-card" onclick="selectTrack('regular')">
+      <div class="track-card-title">🌿 Regular Cycle</div>
+      <div class="track-card-desc">You have a monthly cycle and want to work with it — not against it. Track phases, understand your patterns.</div>
+    </div>
+    <div class="track-card" onclick="selectTrack('menopause')">
+      <div class="track-card-title">🌙 Menopause</div>
+      <div class="track-card-desc">Post-period, new chapter. Understand what's happening now and how to feel strong through it.</div>
+    </div>
+    <div class="track-card" onclick="selectTrack('endo')">
+      <div class="track-card-title">💜 Endometriosis</div>
+      <div class="track-card-desc">Living with endo. Understanding your flares, your cycle, your body — and what actually helps.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="screen" id="appScreen">
+  <div class="app-header">
+    <span class="app-header-left">Compass</span>
+    <span class="trial-indicator" id="trialDaysLeft">7 days left</span>
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchTab('today')">
+      <span class="tab-icon">☀️</span>
+      <span class="tab-label">Today</span>
+    </div>
+    <div class="tab" onclick="switchTab('learn')">
+      <span class="tab-icon">📖</span>
+      <span class="tab-label">Learn</span>
+    </div>
+    <div class="tab" onclick="switchTab('log')">
+      <span class="tab-icon">📋</span>
+      <span class="tab-label">Log</span>
+    </div>
+    <div class="tab" onclick="switchTab('nourish')">
+      <span class="tab-icon">🥗</span>
+      <span class="tab-label">Nourish</span>
+    </div>
+  </div>
+
+  <div class="app-content">
+
+    <!-- TODAY -->
+    <div class="tab-panel active" id="panel-today">
+      <p class="greeting" id="todayGreeting">Good morning,<br><em>let's check in.</em></p>
+      <span class="phase-badge" id="phaseBadge">Loading your phase...</span>
+
+      <div class="section-card">
+        <div class="section-card-title">Today's Focus</div>
+        <div id="todayFocus"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-title">What Your Body Might Need</div>
+        <div id="todayNeeds"></div>
+      </div>
+
+      <button class="sos-btn" onclick="openSOS()">🆘 I Need Help Right Now</button>
+    </div>
+
+    <!-- LEARN -->
+    <div class="tab-panel" id="panel-learn">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--forest);margin-bottom:14px;">Your Library</p>
+      <div id="learnContent"></div>
+    </div>
+
+    <!-- LOG -->
+    <div class="tab-panel" id="panel-log">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--forest);margin-bottom:14px;">Today's Check-In</p>
+
+      <div class="log-section">
+        <span class="log-label">Energy Level</span>
+        <div class="energy-row">
+          <div class="energy-btn" onclick="selectEnergy(this,'low')">🪫 Low</div>
+          <div class="energy-btn" onclick="selectEnergy(this,'medium')">⚡ Medium</div>
+          <div class="energy-btn" onclick="selectEnergy(this,'high')">🔋 High</div>
+        </div>
+      </div>
+
+      <div class="log-section">
+        <span class="log-label">Symptoms Today</span>
+        <div class="symptom-grid" id="symptomGrid"></div>
+      </div>
+
+      <div class="log-section">
+        <span class="log-label">Notes</span>
+        <textarea class="log-notes" id="logNotes" placeholder="How are you really feeling today? No filter needed..."></textarea>
+      </div>
+
+      <button class="save-log-btn" onclick="saveLog()">Save Today's Check-In ✓</button>
+      <div id="logSaved" style="display:none;text-align:center;padding:12px;font-size:13px;color:var(--olive);margin-top:8px;">Saved. ♥</div>
+    </div>
+
+    <!-- NOURISH -->
+    <div class="tab-panel" id="panel-nourish">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--forest);margin-bottom:14px;">Nourish</p>
+      <div id="nourishContent"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAYWALL SCREEN -->
+<div class="screen" id="paywallScreen">
+  <div class="paywall-icon">🔒</div>
+  <p class="paywall-h">Your 7-day trial<br><em>has ended.</em></p>
+  <p class="paywall-sub">You've experienced what Compass can do. Ready to keep going? Subscribe and keep full access — cancel anytime.</p>
+
+  <div class="paywall-price">$14.99</div>
+  <span class="paywall-price-sub">per month · cancel anytime</span>
+
+  <ul class="paywall-includes">
+    <li>Full access to all 4 hormone tracks</li>
+    <li>Daily check-ins, logging, and symptom tracking</li>
+    <li>Complete learn library — updated content</li>
+    <li>Nourish guide — phase-specific food support</li>
+    <li>Free hormone intro guide on signup</li>
+    <li>7-day free trial for new subscribers</li>
+  </ul>
+
+  <a href="https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k" class="paywall-btn">Subscribe — $14.99/mo →</a>
+  <p class="paywall-other">Or explore everything else at Feminine Strength Co.</p>
+  <a href="https://christinfisher74.github.io/homebase/" class="paywall-store-btn">Visit the Store →</a>
+</div>
+
+<!-- SOS MODAL -->
+<div class="modal-overlay" id="sosModal">
+  <div class="modal-sheet">
+    <button class="modal-close" onclick="closeSOS()">✕</button>
+    <p class="modal-title">I've got you. Right now.</p>
+    <div id="sosContent"></div>
+  </div>
+</div>
+
+<script>
+// ── STATE
+let userName = '';
+let userTrack = '';
+const TRIAL_DAYS = 7;
+const STRIPE_COMPASS = 'https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k';
+
+// ── TRIAL CHECK
+function getTrialData() {
+  try {
+    const d = localStorage.getItem('compass_demo_trial');
+    return d ? JSON.parse(d) : null;
+  } catch(e) { return null; }
+}
+
+function setTrialData(data) {
+  try { localStorage.setItem('compass_demo_trial', JSON.stringify(data)); } catch(e) {}
+}
+
+function getDaysLeft() {
+  const d = getTrialData();
+  if (!d) return TRIAL_DAYS;
+  const start = new Date(d.startDate);
+  const now = new Date();
+  const elapsed = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+  return Math.max(0, TRIAL_DAYS - elapsed);
+}
+
+// ── SCREENS
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ── START TRIAL
+function startTrial() {
+  const name = document.getElementById('trialName').value.trim();
+  const email = document.getElementById('trialEmail').value.trim();
+  if (!name) { alert('Please enter your name!'); return; }
+
+  userName = name;
+
+  // Save to formspree for lead capture
+  const data = new FormData();
+  data.append('name', name);
+  data.append('email', email);
+  data.append('source', 'Compass 7-Day Demo Trial');
+  try {
+    fetch('https://formspree.io/f/maqgoadp', { method:'POST', body:data, headers:{'Accept':'application/json'} });
+  } catch(e) {}
+
+  // Check if already started trial
+  const existing = getTrialData();
+  if (!existing) {
+    setTrialData({ startDate: new Date().toISOString(), name, email });
+  } else {
+    userName = existing.name || name;
+  }
+
+  const daysLeft = getDaysLeft();
+  if (daysLeft <= 0) {
+    showScreen('paywallScreen');
+    return;
+  }
+
+  showScreen('trackScreen');
+}
+
+// ── SELECT TRACK
+function selectTrack(track) {
+  userTrack = track;
+  try { localStorage.setItem('compass_demo_track', track); } catch(e) {}
+  initApp();
+  showScreen('appScreen');
+}
+
+// ── TABS
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ── INIT APP
+function initApp() {
+  const daysLeft = getDaysLeft();
+  document.getElementById('trialDaysLeft').textContent = daysLeft + ' day' + (daysLeft !== 1 ? 's' : '') + ' left';
+
+  const hr = new Date().getHours();
+  const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('todayGreeting').innerHTML = `${greet},<br><em>${userName || 'gorgeous'}.</em>`;
+
+  renderToday();
+  renderLearn();
+  renderSymptoms();
+  renderNourish();
+}
+
+// ── CONTENT BY TRACK
+const content = {
+  peri: {
+    phase: 'Perimenopause Track',
+    focus: [
+      { icon:'💪', title:'Strength First', body:'Lifting heavy protects your bone density and muscle mass during perimenopause. Even 20 minutes matters today.' },
+      { icon:'😴', title:'Sleep is Non-Negotiable', body:'If sleep was rough last night, lower your expectations for your workout. Moving your body still counts — but rest is recovery.' },
+      { icon:'🧘', title:'Regulate Before You React', body:'Cortisol is already elevated in perimenopause. A 5-minute walk outside does more than you think right now.' },
+    ],
+    needs: [
+      { icon:'🥩', title:'Protein — More Than You Think', body:'0.8–1g per pound of goal weight. Every meal. Your muscle depends on it more now than it ever did.' },
+      { icon:'💧', title:'Hydrate Before Coffee', body:'16oz of water before anything else. Hot flashes are worse when you\'re dehydrated.' },
+      { icon:'🌿', title:'Magnesium Tonight', body:'300–400mg magnesium glycinate before bed. Sleep, muscle recovery, mood — it helps all three.' },
+    ],
+    articles: [
+      { title:'What Is Actually Happening to You', tag:'Perimenopause 101', body:'Perimenopause is not a disease. It is not a malfunction. It is a hormonal transition that starts, on average, in your early 40s and can last anywhere from 4 to 10 years.\n\nHere is what is actually happening: your ovaries are producing less estrogen and progesterone. Not zero. Less. And that fluctuation — not the drop, but the unpredictability of it — is what causes most of your symptoms.\n\nHot flashes, irregular periods, sleep disruption, mood changes, brain fog, joint pain, weight changes. These are not you getting old. These are hormonal fluctuations your body is adapting to. The more you understand what is happening, the less it controls you.' },
+      { title:'Why Your Sleep Is a Disaster', tag:'Sleep + Hormones', body:'Progesterone is your calming, sleep-promoting hormone. As it drops in perimenopause, your sleep architecture changes. You sleep lighter, wake more easily, and spend less time in deep restorative sleep.\n\nHot flashes are also a major disruptor — they can wake you multiple times a night even if you don\'t remember them.\n\nWhat actually helps: keeping your room cold (65–68°F is ideal), magnesium glycinate before bed, limiting alcohol (it fragments sleep badly), and establishing a wind-down routine that starts 60 minutes before bed. Your nervous system needs to be told it is safe to rest.' },
+      { title:'The Weight Thing Nobody Talks About', tag:'Body + Metabolism', body:'You are not imagining it. Body composition changes in perimenopause are real and they are driven by hormones — specifically the estrogen decline shifting fat storage from hips and thighs to the abdomen.\n\nBut here is what actually matters: muscle mass. Women lose muscle mass accelerating in perimenopause, and muscle is your metabolism. The more muscle you have, the more calories you burn at rest, the better your blood sugar regulation, the stronger your bones.\n\nLess cardio. More lifting. Higher protein. That is the prescription — not a 1200 calorie diet.' },
+      { title:'Cortisol and You', tag:'Stress + Hormones', body:'Cortisol is your stress hormone. In perimenopause, your resilience to stress decreases because estrogen has a buffering effect on the cortisol response — and as estrogen drops, that buffer goes with it.\n\nThis means small stressors hit harder. Your nervous system takes longer to calm down. You might feel disproportionately anxious or overwhelmed by things that would not have affected you before.\n\nThis is not weakness. This is biology. And the interventions are real: consistent sleep, protein at every meal, strength training, walking, and protecting your nervous system from unnecessary input.' },
+    ],
+    symptoms: ['Hot Flashes','Night Sweats','Brain Fog','Mood Swings','Fatigue','Poor Sleep','Joint Pain','Anxiety','Irregular Period','Low Libido','Headaches','Heart Palpitations'],
+    nourish: [
+      { title:'Your Protein Target', body:'In perimenopause your body becomes less efficient at using protein to build and maintain muscle. You need more — not less.\n\nTarget: 0.8–1g per pound of goal body weight daily.\nSpread across 3–4 meals. 30–40g per meal is the target.\nProtein at breakfast is especially important — it sets your blood sugar and energy for the entire day.' },
+      { title:'The Estrogen Support Foods', body:'These foods support estrogen metabolism and clearance — helping your body process the hormonal fluctuations more efficiently.', foods:['Flaxseeds — lignans support estrogen balance','Cruciferous vegetables — broccoli, cauliflower, Brussels sprouts','Berries — antioxidants reduce inflammation','Fatty fish — omega-3s support brain and mood','Fermented foods — gut health directly impacts hormone clearance','Leafy greens — magnesium, folate, iron'] },
+      { title:'What to Limit', body:'These don\'t need to be eliminated — but they directly worsen perimenopause symptoms when consumed in excess.', foods:['Alcohol — worsens hot flashes, fragments sleep significantly','Caffeine after 2pm — disrupts sleep architecture','Ultra-processed foods — drive inflammation and blood sugar swings','Sugar — spikes cortisol, worsens mood and energy crashes'] },
+      { title:'Anti-Inflammatory Eating', body:'Perimenopause is an inflammatory state. Estrogen has anti-inflammatory properties — as it declines, inflammation increases. Eating to reduce inflammation is one of the most powerful things you can do.\n\nFocus: colorful vegetables, fatty fish, olive oil, nuts, berries. Limit: refined carbs, vegetable oils, processed foods, excess sugar.' },
+    ],
+    sos: [
+      { title:'Hot Flash Right Now', body:'Cold water on your wrists and back of neck immediately. If you can, put your feet in cold water. Breathe slowly — paced breathing (4 counts in, 6 counts out) reduces intensity and duration. Keep a small fan at your desk. This will pass.' },
+      { title:'Can\'t Think Straight — Brain Fog', body:'You are not losing your mind. Estrogen supports neurotransmitter function — when it fluctuates, so does your cognitive clarity. Stand up, go outside, move your body for 5 minutes. Hydrate. Eat protein if you haven\'t. The fog lifts.' },
+      { title:'Emotional and Can\'t Explain Why', body:'Progesterone has a calming, anti-anxiety effect. When it drops, everything feels bigger. This is not weakness and it is not permanent. You are allowed to feel this. Put your hand on your chest, breathe slowly, and say: this is hormonal, this will pass, I am okay.' },
+      { title:'Exhausted But Can\'t Sleep', body:'This is the cruel paradox of perimenopause. Your body is tired but your nervous system won\'t turn off. Keep your room cold. Get off your phone. Magnesium glycinate tonight. Try a body scan meditation — even 10 minutes helps. Tomorrow is a new day.' },
+    ]
+  },
+  regular: {
+    phase: 'Regular Cycle Track',
+    focus: [
+      { icon:'🌿', title:'Know Your Phase', body:'Your cycle is in four phases — menstrual, follicular, ovulation, luteal. Each one has different energy, different needs, different strengths. Working with your cycle instead of against it changes everything.' },
+      { icon:'💪', title:'Match Your Training to Your Cycle', body:'Follicular and ovulatory phases = high energy, great time for heavy lifting and intensity. Luteal and menstrual phases = lower energy, prioritize consistency over performance.' },
+      { icon:'🧘', title:'Track Your Patterns', body:'The more you log, the more you understand your own cycle. Two months of consistent tracking will show you patterns you never noticed before.' },
+    ],
+    needs: [
+      { icon:'🥩', title:'Protein Every Meal', body:'Your protein and your fiber. Every single meal. This is the foundation regardless of where you are in your cycle.' },
+      { icon:'🩸', title:'Iron During Your Period', body:'During menstruation, prioritize iron-rich foods — red meat, spinach, lentils. Pair with vitamin C for absorption.' },
+      { icon:'🌙', title:'Carbs in the Luteal Phase', body:'In the week before your period, your body naturally craves more carbs. This is not a failure. Healthy complex carbs support serotonin production when progesterone is dropping.' },
+    ],
+    articles: [
+      { title:'The Four Phases of Your Cycle', tag:'Cycle Basics', body:'Your menstrual cycle is not just your period. It is four distinct phases, each driven by different hormones, each with different effects on your energy, mood, focus, and body.\n\nMenstrual (Day 1–5): Estrogen and progesterone are low. Energy is lower. Rest is productive — not lazy.\n\nFollicular (Day 6–13): Estrogen is rising. Energy, focus, and motivation increase. This is your high-performance window.\n\nOvulation (Day 14): Estrogen peaks, testosterone surges. Peak energy, strength, and social drive.\n\nLuteal (Day 15–28): Progesterone rises then drops. Energy decreases. Cravings increase. PMS symptoms appear as hormones drop before your period.\n\nUnderstanding these phases means you stop fighting your body and start working with it.' },
+      { title:'Why You Feel Different Every Week', tag:'Hormones + Mood', body:'You are not inconsistent. You are not crazy. You are cycling.\n\nEstrogen supports serotonin (your feel-good neurotransmitter). When estrogen is high in your follicular and ovulatory phases, mood is typically better, motivation is higher, social energy is up.\n\nWhen progesterone drops in the late luteal phase, serotonin drops with it. This is why PMS affects mood — it is neurochemical, not weakness.\n\nTracking your cycle helps you predict these shifts and plan around them — scheduling demanding tasks in the follicular phase, protecting rest in the luteal.' },
+      { title:'Training With Your Cycle', tag:'Movement + Cycle', body:'Your strength and energy fluctuate across your cycle — and that is completely normal.\n\nFollicular phase: Go hard. PR attempts, heavy lifting, high intensity. Your estrogen is rising and your body is primed for performance.\n\nOvulation: Peak performance window. Take advantage of it.\n\nLuteal phase: Keep training but lower the intensity. Your body temperature is slightly elevated, recovery is slower. Consistency matters more than performance here.\n\nMenstrual phase: Move — but gently. Walking, yoga, light lifting. Your body is doing significant internal work. Honor that.' },
+      { title:'PMS Is Not Just In Your Head', tag:'PMS + Hormones', body:'PMS is real. It is not dramatic. It is not weakness. It is a physiological response to the drop in progesterone and estrogen in the week before your period.\n\nCommon symptoms: mood changes, bloating, breast tenderness, fatigue, food cravings, headaches, anxiety.\n\nWhat actually helps: magnesium glycinate (reduces cramping and mood symptoms), consistent sleep, reducing alcohol and caffeine in the luteal phase, complex carbs to support serotonin, and regular movement.\n\nIf PMS is severely impacting your life, that warrants a conversation with your doctor — severe PMS or PMDD is a medical condition, not something you just live with.' },
+    ],
+    symptoms: ['Cramping','Bloating','Fatigue','Mood Swings','Headache','Breast Tenderness','Cravings','Acne','Brain Fog','Low Energy','Anxiety','Insomnia'],
+    nourish: [
+      { title:'Eating With Your Cycle', body:'Your nutritional needs shift across your cycle — and eating accordingly makes a significant difference in how you feel.\n\nMenstrual: Iron-rich foods, anti-inflammatory focus, gentle nourishment.\nFollicular: Fresh foods, lighter meals, your body is energized.\nOvulation: Raw foods, antioxidants, zinc-rich foods support ovulation.\nLuteal: Complex carbs, magnesium, tryptophan-rich foods for serotonin.' },
+      { title:'Period Week Foods', body:'During menstruation, prioritize these:', foods:['Red meat or dark turkey — iron replenishment','Spinach + vitamin C — maximizes iron absorption','Ginger tea — reduces cramping naturally','Dark chocolate (70%+) — magnesium for cramps','Salmon — omega-3s reduce inflammation','Bone broth — minerals, easy to digest'] },
+      { title:'Luteal Phase Nutrition', body:'The week before your period, your body needs:', foods:['Sweet potato and oats — complex carbs support serotonin','Turkey and eggs — tryptophan converts to serotonin','Pumpkin seeds — zinc and magnesium','Avocado — healthy fats support hormone production','Leafy greens — folate and magnesium','Chamomile tea — calming, reduces PMS anxiety'] },
+    ],
+    sos: [
+      { title:'Bad Cramps Right Now', body:'Heat on your lower abdomen immediately. Ginger tea if you have it. Gentle movement — walking or light yoga — actually helps more than lying still. Ibuprofen works best when taken at the first sign, not after they peak. Magnesium glycinate tonight.' },
+      { title:'PMS Mood Crash', body:'You are not overreacting. Your serotonin literally just dropped because progesterone fell. Eat something with complex carbs and protein. Go outside. Move your body gently. This is chemical, not character. It will lift when your period starts.' },
+      { title:'Extreme Fatigue This Week', body:'If it is your menstrual phase, this is expected — your body is doing real work. Reduce your workout intensity, increase protein and iron, get more sleep. You are not lazy. You are bleeding. Rest is not failure.' },
+    ]
+  },
+  menopause: {
+    phase: 'Menopause Track',
+    focus: [
+      { icon:'💪', title:'Strength is Your Medicine', body:'After menopause, estrogen is consistently low. Strength training is the most powerful intervention for bone density, metabolism, mood, and body composition. Non-negotiable.' },
+      { icon:'🦴', title:'Bone Health Matters Now', body:'Estrogen protects bone density. Without it, bone loss accelerates. Weight-bearing exercise and adequate calcium and vitamin D are essential.' },
+      { icon:'❤️', title:'Heart Health Focus', body:'Estrogen has a protective effect on cardiovascular health. Post-menopause, prioritizing heart-healthy habits — movement, sleep, reducing stress — matters more than ever.' },
+    ],
+    needs: [
+      { icon:'🥩', title:'Protein — Non-Negotiable', body:'Muscle mass declines faster post-menopause. 1g per pound of goal body weight daily. Every meal. No exceptions.' },
+      { icon:'☀️', title:'Vitamin D + Calcium', body:'Bone density protection. 1200mg calcium daily from food and supplements. 2000IU Vitamin D3. Ask your doctor about your current levels.' },
+      { icon:'💧', title:'Hydration', body:'Estrogen helps maintain skin and mucosal hydration. Post-menopause, drink more water than you think you need. Minimum 64oz daily.' },
+    ],
+    articles: [
+      { title:'Life After Periods — What Menopause Actually Is', tag:'Menopause Basics', body:'Menopause is defined as 12 consecutive months without a period. It is not a disease. It is a natural hormonal transition that typically occurs between 45 and 55.\n\nPost-menopause, estrogen and progesterone remain at consistently low levels — unlike perimenopause where they fluctuate. This consistency actually brings relief from many perimenopausal symptoms like hot flashes and irregular periods.\n\nWhat changes post-menopause: bone density, cardiovascular risk, skin and vaginal health, metabolism, and sleep patterns. All of these are manageable with the right lifestyle interventions.' },
+      { title:'Bone Density — What You Need to Know', tag:'Bone Health', body:'Estrogen is critical for bone density maintenance. Post-menopause, bone loss accelerates — women can lose 20% of bone density in the 5-7 years following menopause.\n\nWhat protects your bones: weight-bearing exercise (strength training, walking), adequate calcium (1200mg daily from food and supplements), vitamin D3 (2000IU daily, get levels tested), and adequate protein.\n\nWhat harms your bones: smoking, excessive alcohol, low protein intake, sedentary lifestyle, and inadequate calcium and vitamin D.\n\nA DEXA scan (bone density scan) is recommended for all women post-menopause. Talk to your doctor if you haven\'t had one.' },
+      { title:'Your Metabolism After Menopause', tag:'Body + Metabolism', body:'Post-menopause metabolism changes are real — but they are not inevitable or irreversible.\n\nWhat happens: muscle mass declines (sarcopenia), which slows resting metabolic rate. Fat distribution shifts toward the abdomen. Insulin sensitivity decreases.\n\nWhat works: strength training (builds and maintains muscle mass), high protein intake (0.8-1g per lb of goal weight), resistance training at least 3x weekly, adequate sleep (poor sleep worsens insulin resistance), and managing stress (cortisol drives abdominal fat storage).\n\nThis is not about eating less. It is about eating right and lifting.' },
+    ],
+    symptoms: ['Hot Flashes','Night Sweats','Sleep Issues','Joint Pain','Brain Fog','Vaginal Dryness','Mood Changes','Fatigue','Weight Changes','Heart Palpitations','Headaches','Low Libido'],
+    nourish: [
+      { title:'Post-Menopause Nutrition', body:'Your nutritional needs shift significantly post-menopause. The focus moves to bone protection, cardiovascular health, and maintaining muscle mass.' },
+      { title:'Priority Foods', body:'Make these the foundation of your eating:', foods:['Fatty fish (salmon, sardines) — omega-3s, vitamin D, protein','Dairy or fortified alternatives — calcium','Leafy greens — calcium, magnesium, vitamin K2 for bone','Lean protein at every meal — muscle maintenance','Berries and colorful vegetables — antioxidants, anti-inflammatory','Olive oil — cardiovascular health'] },
+      { title:'What to Limit', body:'Post-menopause these have outsized negative effects:', foods:['Alcohol — increases breast cancer risk, worsens bone loss','Sodium — increases calcium excretion from bones','Ultra-processed foods — inflammation, weight gain','Excess caffeine — interferes with calcium absorption'] },
+    ],
+    sos: [
+      { title:'Hot Flash Right Now', body:'Cold water on wrists and back of neck. Paced breathing — 4 counts in, 6 counts out. Post-menopause hot flashes are typically less frequent than perimenopause but can still occur. Keep a fan nearby. This passes.' },
+      { title:'Joint Pain Today', body:'Estrogen has anti-inflammatory properties — post-menopause joint pain is common. Gentle movement is better than rest. Omega-3s, anti-inflammatory foods, and adequate vitamin D all help. Talk to your doctor if it is severe.' },
+      { title:'Mood Is Low', body:'Serotonin regulation is supported by estrogen. Post-menopause mood changes are real and valid. Move your body today even for 10 minutes. Eat protein. Get outside. These interventions are not small — they are neurochemical.' },
+    ]
+  },
+  endo: {
+    phase: 'Endometriosis Track',
+    focus: [
+      { icon:'💜', title:'Manage Your Flares', body:'Endo is an inflammatory condition. Everything today focuses on reducing inflammation — what you eat, how you move, how much you rest.' },
+      { icon:'🧘', title:'Gentle Movement on Hard Days', body:'On flare days, gentle movement is often better than rest for pain management. Walking, yoga, and heat therapy. Never push through severe pain.' },
+      { icon:'📊', title:'Track Your Patterns', body:'Endo symptoms often follow cyclical patterns. The more you log, the more patterns emerge — and the better you can prepare.' },
+    ],
+    needs: [
+      { icon:'🌿', title:'Anti-Inflammatory Focus', body:'Endo is driven by inflammation. An anti-inflammatory diet is one of the most powerful tools you have. Omega-3s, colorful vegetables, limited processed foods.' },
+      { icon:'🩸', title:'Iron Support', body:'Heavy bleeding is common with endo. Iron-rich foods and possibly supplementation are important. Get your iron levels checked regularly.' },
+      { icon:'💊', title:'Magnesium', body:'Magnesium reduces cramping and supports sleep. 300–400mg glycinate form nightly. One of the most evidence-backed supplements for endo.' },
+    ],
+    articles: [
+      { title:'What Endometriosis Actually Is', tag:'Endo Basics', body:'Endometriosis is a condition where tissue similar to the uterine lining grows outside the uterus — on ovaries, fallopian tubes, and other organs. It is driven by estrogen and characterized by inflammation.\n\nIt affects approximately 1 in 10 women — yet the average time to diagnosis is 7-10 years. You are not being dramatic. Your pain is real. The dismissal you may have experienced from the medical system is a systemic failure, not a reflection of your experience.\n\nThere is no cure, but there is significant management. Diet, lifestyle, medical treatment, and understanding your own patterns make an enormous difference in quality of life.' },
+      { title:'Pain Management — What Actually Works', tag:'Pain + Management', body:'Pain management for endometriosis is highly individual, but these interventions have consistent evidence behind them:\n\nHeat therapy: heating pads on the lower abdomen and lower back provide significant relief. Keep one accessible.\n\nAnti-inflammatory diet: reducing foods that drive inflammation (processed foods, alcohol, red meat in excess, dairy for some women) reduces overall pain burden.\n\nGentle movement: light exercise on painful days — walking, yoga — has been shown to reduce pain better than complete rest in most cases.\n\nMagnesium glycinate: reduces cramping, supports sleep, anti-inflammatory.\n\nNSAIDs (ibuprofen, naproxen): most effective when taken at the first sign of pain, not after it peaks.\n\nTracking: understanding your personal flare patterns lets you prepare.' },
+      { title:'Endo and Your Mental Health', tag:'Mental Health', body:'Living with a chronic pain condition is exhausting — physically and emotionally. Endo carries real mental health burden: anxiety, depression, and grief over missed experiences are common and valid.\n\nYou are not weak for struggling. Chronic pain changes your brain chemistry, your sleep, your social life, your relationship with your body.\n\nWhat helps: connecting with others who understand (endo communities are powerful), therapy with someone who understands chronic illness, not minimizing your own experience, and radical honesty about what you can and cannot do on any given day.\n\nYou deserve support.' },
+    ],
+    symptoms: ['Pelvic Pain','Heavy Bleeding','Bloating','Fatigue','Painful Periods','Pain During Sex','Back Pain','Nausea','Brain Fog','Bowel Issues','Anxiety','Insomnia'],
+    nourish: [
+      { title:'Anti-Inflammatory Eating for Endo', body:'Diet will not cure endometriosis, but an anti-inflammatory approach consistently reduces symptom burden for many women with endo. This is not about restriction — it is about support.' },
+      { title:'Foods That Help', body:'Prioritize these:', foods:['Fatty fish — omega-3s are the most evidence-backed anti-inflammatory food','Dark leafy greens — magnesium, iron, folate','Berries — antioxidants reduce oxidative stress','Olive oil — oleocanthal has ibuprofen-like anti-inflammatory effect','Ginger and turmeric — natural anti-inflammatory compounds','Seeds (flax, chia, hemp) — omega-3s, lignans support estrogen balance'] },
+      { title:'Foods That May Worsen Symptoms', body:'Many women with endo find these worsen symptoms — track your own response:', foods:['Alcohol — drives inflammation, worsens pain','Gluten — some women with endo find improvement with reduction','Dairy — inflammatory for some women with endo','Red meat in excess — arachidonic acid drives inflammation','Caffeine — worsens anxiety and can worsen pelvic pain','Ultra-processed foods — systemic inflammation'] },
+    ],
+    sos: [
+      { title:'Flare Right Now', body:'Heat immediately — heating pad on lower abdomen and lower back simultaneously if possible. Take ibuprofen now if you can. Get horizontal. This is not weakness, this is triage. Your body is in pain and you are allowed to stop.' },
+      { title:'Severe Pain — When to Seek Help', body:'Go to urgent care or the ER if: pain is so severe you cannot function, you have fever with pelvic pain, you suspect a cyst has ruptured, or pain is dramatically different from your usual endo pain. You know your body. Trust it.' },
+      { title:'Exhausted From Chronic Pain', body:'Chronic pain is exhausting in a way that people who do not experience it do not understand. You are not lazy. You are managing a serious medical condition. Rest today is not giving up. It is survival. Tomorrow is another day.' },
+    ]
+  }
+};
+
+function renderToday() {
+  const c = content[userTrack];
+  if (!c) return;
+
+  document.getElementById('phaseBadge').textContent = c.phase;
+
+  // Today Focus
+  let focusHtml = '';
+  c.focus.forEach(f => {
+    focusHtml += `<div class="today-item"><div class="today-item-icon">${f.icon}</div><div class="today-item-text"><strong>${f.title}</strong>${f.body}</div></div>`;
+  });
+  document.getElementById('todayFocus').innerHTML = focusHtml;
+
+  // Today Needs
+  let needsHtml = '';
+  c.needs.forEach(n => {
+    needsHtml += `<div class="today-item"><div class="today-item-icon">${n.icon}</div><div class="today-item-text"><strong>${n.title}</strong>${n.body}</div></div>`;
+  });
+  document.getElementById('todayNeeds').innerHTML = needsHtml;
+}
+
+function renderLearn() {
+  const c = content[userTrack];
+  if (!c) return;
+  let html = '';
+  c.articles.forEach((a, i) => {
+    html += `
+      <div class="article-card">
+        <div class="article-header" onclick="toggleArticle(${i})">
+          <div class="article-title">${a.title}</div>
+          <div class="article-tag">${a.tag}</div>
+        </div>
+        <div class="article-body" id="article-${i}">
+          ${a.body.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+        </div>
+      </div>`;
+  });
+  document.getElementById('learnContent').innerHTML = html;
+}
+
+function toggleArticle(i) {
+  const body = document.getElementById('article-' + i);
+  body.classList.toggle('open');
+}
+
+function renderSymptoms() {
+  const c = content[userTrack];
+  if (!c) return;
+  let html = '';
+  c.symptoms.forEach(s => {
+    html += `<div class="symptom-btn" onclick="toggleSymptom(this)">${s}</div>`;
+  });
+  document.getElementById('symptomGrid').innerHTML = html;
+}
+
+function toggleSymptom(el) { el.classList.toggle('selected'); }
+function selectEnergy(el, val) {
+  document.querySelectorAll('.energy-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function saveLog() {
+  document.getElementById('logSaved').style.display = 'block';
+  setTimeout(() => { document.getElementById('logSaved').style.display = 'none'; }, 3000);
+}
+
+function renderNourish() {
+  const c = content[userTrack];
+  if (!c) return;
+  let html = '';
+  c.nourish.forEach(n => {
+    html += `<div class="nourish-card"><div class="nourish-title">${n.title}</div><div class="nourish-body">${n.body.replace(/\n\n/g,'<br><br>')}`;
+    if (n.foods) {
+      html += '<ul class="food-list">';
+      n.foods.forEach(f => { html += `<li>${f}</li>`; });
+      html += '</ul>';
+    }
+    html += '</div></div>';
+  });
+  document.getElementById('nourishContent').innerHTML = html;
+}
+
+function openSOS() {
+  const c = content[userTrack];
+  if (!c) return;
+  let html = '';
+  c.sos.forEach(s => {
+    html += `<div class="sos-item"><div class="sos-item-title">${s.title}</div><div class="sos-item-body">${s.body}</div></div>`;
+  });
+  document.getElementById('sosContent').innerHTML = html;
+  document.getElementById('sosModal').classList.add('open');
+}
+
+function closeSOS() { document.getElementById('sosModal').classList.remove('open'); }
+
+// ── ON LOAD
+window.addEventListener('load', function() {
+  const trial = getTrialData();
+  if (trial) {
+    userName = trial.name || '';
+    const daysLeft = getDaysLeft();
+    if (daysLeft <= 0) {
+      showScreen('paywallScreen');
+      return;
+    }
+    // Returning user — go straight to track or app
+    const savedTrack = localStorage.getItem('compass_demo_track');
+    if (savedTrack && content[savedTrack]) {
+      userTrack = savedTrack;
+      initApp();
+      showScreen('appScreen');
+    } else {
+      showScreen('trackScreen');
+    }
+  }
+  // Otherwise stay on welcome screen
+});
+</script>
+</body>
+</html>
