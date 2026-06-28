@@ -139,6 +139,21 @@ body { background:var(--forest); font-family:'DM Sans',sans-serif; font-weight:3
 .paywall-includes li { font-size:12px; color:rgba(250,247,242,0.65); padding:4px 0; display:flex; gap:8px; list-style:none; }
 .paywall-includes li::before { content:'✓'; color:var(--olive); flex-shrink:0; }
 
+/* MOVE TIMERS */
+.move-card { background:white; border-radius:10px; padding:16px; margin-bottom:12px; border:1px solid rgba(196,168,130,0.15); }
+.move-card-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--forest); margin-bottom:4px; }
+.move-card-desc { font-size:12px; color:var(--mid); line-height:1.6; margin-bottom:12px; }
+.move-card-why { font-size:11px; color:var(--taupe); font-style:italic; margin-bottom:12px; display:block; }
+.timer-display { text-align:center; margin:12px 0; }
+.timer-circle { width:100px; height:100px; border-radius:50%; background:var(--forest); margin:0 auto 8px; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.timer-time { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--taupe); line-height:1; }
+.timer-label { font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,247,242,0.5); }
+.timer-controls { display:flex; gap:8px; }
+.timer-btn { flex:1; padding:10px; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; }
+.timer-start { background:var(--forest); color:var(--cream); }
+.timer-reset { background:var(--alt); color:var(--mid); }
+.timer-done { background:var(--olive); color:white; display:none; padding:10px; border-radius:8px; text-align:center; font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; margin-top:8px; }
+
 /* SOS MODAL */
 .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:100; align-items:flex-end; justify-content:center; }
 .modal-overlay.open { display:flex; }
@@ -221,6 +236,10 @@ body { background:var(--forest); font-family:'DM Sans',sans-serif; font-weight:3
     <div class="tab" onclick="switchTab('nourish')">
       <span class="tab-icon">🥗</span>
       <span class="tab-label">Nourish</span>
+    </div>
+    <div class="tab" onclick="switchTab('move')">
+      <span class="tab-icon">⏱️</span>
+      <span class="tab-label">Move</span>
     </div>
   </div>
 
@@ -415,6 +434,7 @@ function initApp() {
   renderLearn();
   renderSymptoms();
   renderNourish();
+  renderMove();
 }
 
 // ── CONTENT BY TRACK
@@ -635,6 +655,198 @@ function openSOS() {
 }
 
 function closeSOS() { document.getElementById('sosModal').classList.remove('open'); }
+
+// ── MOVE CONTENT
+const moveContent = {
+  peri: [
+    {
+      title: 'Diaphragmatic Breathing',
+      desc: 'Lie on your back with one hand on your chest, one on your belly. Breathe in slowly through your nose for 4 counts — belly rises, chest stays still. Breathe out for 6 counts. Repeat.',
+      why: 'Cortisol is elevated in perimenopause. This breathing pattern directly activates your parasympathetic nervous system — your calm-down system. 5 minutes changes your entire nervous state.',
+      duration: 300,
+      label: '5 Minutes'
+    },
+    {
+      title: 'Legs Up the Wall',
+      desc: 'Sit sideways next to a wall, then swing your legs up so they rest flat against the wall. Your hips can be a few inches from the wall. Arms relaxed at your sides. Close your eyes.',
+      why: 'This pose reverses blood flow from the lower body, reduces cortisol, and calms the nervous system. Perfect after a long day, a hot flash, or when you just need everything to stop.',
+      duration: 600,
+      label: '10 Minutes'
+    },
+    {
+      title: 'Supine Twist — Right Side',
+      desc: 'Lie on your back. Draw your right knee to your chest, then let it fall across your body to the left. Extend your right arm out. Look right. Keep both shoulders grounded.',
+      why: 'Hip and low back tightness is common in perimenopause. This gentle twist releases the hip flexors, decompresses the lower spine, and promotes digestion.',
+      duration: 120,
+      label: '2 Minutes'
+    },
+    {
+      title: 'Supine Twist — Left Side',
+      desc: 'Same as above on the other side. Draw left knee to chest, let it fall right. Extend left arm. Look left. Breathe into the stretch.',
+      why: 'Complete the twist on both sides for balanced hip and spinal release.',
+      duration: 120,
+      label: '2 Minutes'
+    }
+  ],
+  regular: [
+    {
+      title: 'Cat-Cow Flow',
+      desc: 'On hands and knees, wrists under shoulders, knees under hips. Inhale — drop belly, lift chest and tailbone (Cow). Exhale — round spine, tuck chin and tailbone (Cat). Move slowly and breathe.',
+      why: 'During your period, this gentle spinal movement increases blood flow to the uterus, reduces cramping, and releases tension in the lower back. In your follicular phase it energizes the spine.',
+      duration: 180,
+      label: '3 Minutes'
+    },
+    {
+      title: 'Legs Up the Wall',
+      desc: 'Sit sideways next to a wall, swing legs up. Rest heels against the wall, hips a few inches away. Arms relaxed. Close your eyes and breathe slowly.',
+      why: 'Especially powerful during menstruation — reduces pelvic pressure, eases cramping, calms the nervous system. Use it whenever your period has you wiped out.',
+      duration: 300,
+      label: '5 Minutes'
+    },
+    {
+      title: 'Deep Hip Opener — Right',
+      desc: 'From standing or on the floor, take a wide stance or low lunge. Sink into the right hip, letting it open. Keep your chest lifted. Breathe into the outer hip.',
+      why: 'In your follicular and ovulatory phases your body is primed for movement. This hip opener supports pelvic mobility, reduces tightness from sitting, and feels incredible when your energy is up.',
+      duration: 120,
+      label: '2 Minutes'
+    },
+    {
+      title: 'Deep Hip Opener — Left',
+      desc: 'Same on the left side. Sink into the left hip. Breathe. Let gravity do the work.',
+      why: 'Balance both hips for full pelvic release.',
+      duration: 120,
+      label: '2 Minutes'
+    }
+  ],
+  menopause: [
+    {
+      title: 'Diaphragmatic Breathing',
+      desc: 'Lie on your back. One hand on chest, one on belly. Inhale through nose for 4 counts — belly rises. Exhale for 6 counts. Focus entirely on the breath.',
+      why: 'Post-menopause nervous system regulation is critical. This breathing pattern lowers cortisol, reduces hot flash frequency, and promotes the calm that your body needs more of now.',
+      duration: 300,
+      label: '5 Minutes'
+    },
+    {
+      title: 'Hip Flexor Stretch — Right',
+      desc: 'Step your right foot forward into a lunge. Lower your left knee to the floor. Shift your hips forward gently until you feel a stretch in the front of the left hip. Keep your chest tall.',
+      why: 'Joint health becomes critical post-menopause. Estrogen has a lubricating effect on joints — as it declines, hip flexor tightness increases. This stretch maintains hip mobility and reduces pain.',
+      duration: 120,
+      label: '2 Minutes'
+    },
+    {
+      title: 'Hip Flexor Stretch — Left',
+      desc: 'Same on the left side. Right knee down, left foot forward. Hips shift forward. Breathe into the front of the right hip.',
+      why: 'Both sides equally — hip mobility is one of the most important things to protect post-menopause.',
+      duration: 120,
+      label: '2 Minutes'
+    },
+    {
+      title: 'Legs Up the Wall',
+      desc: 'Legs up the wall, hips a few inches from the wall, arms relaxed. Close your eyes. Breathe slowly and let your body completely rest.',
+      why: 'Improves circulation, reduces leg swelling, calms the nervous system, and supports lymphatic drainage. Post-menopause this is one of the most restorative things you can do for your body.',
+      duration: 600,
+      label: '10 Minutes'
+    }
+  ],
+  endo: [
+    {
+      title: 'Pelvic Peace Routine',
+      desc: 'Lie on your back with knees bent, feet flat. Place a heating pad on your lower abdomen. Take slow deep breaths — inhale 4 counts, exhale 6 counts. On each exhale, consciously release tension in your pelvis, jaw, and shoulders. You are allowed to rest.',
+      why: 'During a flare, your pelvic floor is often in protective tension — which worsens pain. This combination of heat, breath, and conscious release breaks that tension cycle. This is not passive. This is active pain management.',
+      duration: 480,
+      label: '8 Minutes'
+    },
+    {
+      title: 'Diaphragmatic Breathing',
+      desc: 'One hand on chest, one on belly. Inhale through nose — belly rises, chest stays still. Exhale slowly — twice as long as the inhale. Focus on the exhale completely.',
+      why: 'Chronic pain activates the sympathetic nervous system — fight or flight. This breathing pattern directly activates the parasympathetic system — rest and digest. For endo, this is pain management, not just relaxation.',
+      duration: 300,
+      label: '5 Minutes'
+    },
+    {
+      title: 'Supine Twist — Right Side',
+      desc: 'Lie on your back. Draw right knee to chest gently — only as far as feels okay. Let it fall left slowly. Extend right arm. Breathe. If there is pain, reduce the range. This is gentle.',
+      why: 'The supine twist gently mobilizes the pelvic region and releases tension in the lower back and hip — areas heavily affected during endo flares. Go slowly. Your body tells you how far.',
+      duration: 120,
+      label: '2 Minutes'
+    },
+    {
+      title: 'Supine Twist — Left Side',
+      desc: 'Left knee to chest, fall right. Extend left arm. Breathe into the stretch. Release any tension you are holding in your jaw, shoulders, or pelvis.',
+      why: 'Complete both sides gently. This is pelvic release, not performance.',
+      duration: 120,
+      label: '2 Minutes'
+    }
+  ]
+};
+
+function renderMove() {
+  const c = moveContent[userTrack];
+  if (!c) return;
+  let html = '';
+  c.forEach((m, i) => {
+    html += `
+      <div class="move-card">
+        <div class="move-card-title">${m.title}</div>
+        <span class="move-card-why">Why this works for you: ${m.why}</span>
+        <div class="move-card-desc">${m.desc}</div>
+        <div class="timer-display">
+          <div class="timer-circle">
+            <span class="timer-time" id="timer-display-${i}">${formatTime(m.duration)}</span>
+            <span class="timer-label">${m.label}</span>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="timer-btn timer-start" id="timer-btn-${i}" onclick="toggleTimer(${i}, ${m.duration})">Start</button>
+          <button class="timer-btn timer-reset" onclick="resetTimer(${i}, ${m.duration})">Reset</button>
+        </div>
+        <div class="timer-done" id="timer-done-${i}">✓ Complete — well done. ♥</div>
+      </div>`;
+  });
+  document.getElementById('moveContent').innerHTML = html;
+}
+
+const timers = {};
+
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function toggleTimer(id, total) {
+  if (timers[id] && timers[id].running) {
+    clearInterval(timers[id].interval);
+    timers[id].running = false;
+    document.getElementById('timer-btn-' + id).textContent = 'Resume';
+  } else {
+    if (!timers[id]) timers[id] = { remaining: total, running: false };
+    timers[id].running = true;
+    document.getElementById('timer-btn-' + id).textContent = 'Pause';
+    timers[id].interval = setInterval(() => {
+      timers[id].remaining--;
+      document.getElementById('timer-display-' + id).textContent = formatTime(timers[id].remaining);
+      if (timers[id].remaining <= 0) {
+        clearInterval(timers[id].interval);
+        timers[id].running = false;
+        document.getElementById('timer-btn-' + id).textContent = 'Done';
+        document.getElementById('timer-btn-' + id).disabled = true;
+        document.getElementById('timer-done-' + id).style.display = 'block';
+      }
+    }, 1000);
+  }
+}
+
+function resetTimer(id, total) {
+  if (timers[id]) {
+    clearInterval(timers[id].interval);
+    timers[id] = { remaining: total, running: false };
+  }
+  document.getElementById('timer-display-' + id).textContent = formatTime(total);
+  document.getElementById('timer-btn-' + id).textContent = 'Start';
+  document.getElementById('timer-btn-' + id).disabled = false;
+  document.getElementById('timer-done-' + id).style.display = 'none';
+}
 
 // ── ON LOAD
 window.addEventListener('load', function() {
