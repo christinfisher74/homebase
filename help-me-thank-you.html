@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Guide Is Ready — Christin Fisher</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+  :root {
+    --cream: #FBF4EA;
+    --cream2: #F4E9D8;
+    --rust: #C1603F;
+    --rust-d: #9C4A30;
+    --deep: #2C241E;
+    --sage: #8C9A78;
+    --sage-d: #6B7859;
+    --gold: #C79A4B;
+    --blush: #F0D6C3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--deep);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%;
+    z-index: 0;
+  }
+  .blob-1 {
+    width: 340px; height: 340px;
+    background: var(--blush);
+    top: -120px; right: -100px;
+  }
+  .blob-2 {
+    width: 260px; height: 260px;
+    background: var(--sage);
+    opacity: 0.3;
+    bottom: -100px; left: -90px;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(199,154,75,0.25);
+    border-radius: 24px;
+    padding: 56px 44px;
+  }
+
+  .icon-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .icon-row svg { width: 38px; height: 38px; }
+
+  .eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rust-d);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 40px);
+    color: var(--rust);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  p.lead {
+    font-size: 15.5px;
+    color: var(--deep);
+    max-width: 420px;
+    margin: 0 auto 30px;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--rust);
+    color: var(--cream);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15.5px;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .download-btn:hover {
+    background: var(--rust-d);
+    transform: translateY(-1px);
+  }
+  .download-btn svg { width: 18px; height: 18px; }
+
+  .hint {
+    margin-top: 18px;
+    font-size: 12.5px;
+    color: var(--sage-d);
+    font-style: italic;
+  }
+
+  .divider {
+    width: 70px;
+    height: 1.5px;
+    background: var(--gold);
+    margin: 36px auto;
+  }
+
+  .next-step {
+    font-size: 14px;
+    color: var(--deep);
+  }
+  .next-step a {
+    color: var(--rust-d);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--gold);
+  }
+
+  .signoff {
+    margin-top: 30px;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    color: var(--deep);
+  }
+  .signoff strong {
+    display: block;
+    font-weight: 700;
+    color: var(--rust);
+    margin-top: 4px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 40px 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .download-btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="card">
+    <div class="icon-row" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><rect x="30" y="42" width="8" height="4" rx="2" fill="#2C241E"/><rect x="30" y="42" width="8" height="4" rx="2" fill="#2C241E"/><line x1="34" y1="20" x2="34" y2="55" stroke="#2C241E" stroke-width="6" stroke-linecap="round"/><rect x="15" y="35" width="12" height="30" rx="6" fill="#2C241E"/><rect x="55" y="35" width="12" height="30" rx="6" fill="#2C241E"/></svg>
+      <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="#C1603F"/><circle cx="50" cy="50" r="20" fill="#FBF4EA"/><circle cx="50" cy="50" r="20" fill="none" stroke="#C79A4B" stroke-width="2"/></svg>
+      <svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="26" ry="34" fill="#8C9A78"/><circle cx="50" cy="47" r="15" fill="#FBF4EA"/><circle cx="53" cy="45" r="9" fill="#9C4A30"/></svg>
+    </div>
+
+    <div class="eyebrow">You're in</div>
+    <h1>Your guide is ready.</h1>
+    <p class="lead">
+      Help Me — why your body feels different after 35, and how to actually
+      fuel it — is one click away. Check your email too; it's headed
+      your way for safekeeping.
+    </p>
+
+    <a class="download-btn" href="PDF_LINK_HERE" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Your Guide
+    </a>
+
+    <p class="hint">PDF opens in a new tab — save it or print it, whatever works for you.</p>
+
+    <div class="divider"></div>
+
+    <p class="next-step">
+      Want the full plan next?
+      <a href="https://femininestrengthco.com">Strong, Not Sorry &mdash; $27 &rarr;</a>
+    </p>
+
+    <p class="signoff">
+      You're not starting over. You're finally starting with the right information.
+      <strong>— Christin</strong>
+    </p>
+  </div>
+</body>
+</html>
