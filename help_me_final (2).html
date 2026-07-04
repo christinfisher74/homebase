@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help Me. — Free Guide — Christin Fisher</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+  :root {
+    --cream: #FBF4EA;
+    --cream2: #F4E9D8;
+    --rust: #C1603F;
+    --rust-d: #9C4A30;
+    --deep: #2C241E;
+    --sage: #8C9A78;
+    --sage-d: #6B7859;
+    --gold: #C79A4B;
+    --blush: #F0D6C3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--deep);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%;
+    z-index: 0;
+  }
+  .blob-1 { width: 360px; height: 360px; background: var(--blush); top: -130px; right: -110px; }
+  .blob-2 { width: 280px; height: 280px; background: var(--sage); opacity: 0.3; bottom: -110px; left: -100px; }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    background: rgba(255,255,255,0.4);
+    border: 1px solid rgba(199,154,75,0.25);
+    border-radius: 24px;
+    padding: 56px 44px;
+  }
+
+  .icon-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 22px; }
+  .icon-row svg { width: 36px; height: 36px; }
+
+  .eyebrow {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rust-d);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: clamp(30px, 5.5vw, 44px);
+    color: var(--rust);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  p.lead {
+    font-size: 15.5px;
+    color: var(--deep);
+    max-width: 460px;
+    margin: 0 auto 30px;
+  }
+
+  .whats-inside {
+    text-align: left;
+    background: var(--cream2);
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin: 0 auto 32px;
+    max-width: 460px;
+  }
+  .whats-inside p {
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--rust-d);
+    margin-bottom: 12px;
+  }
+  .whats-inside ul { list-style: none; }
+  .whats-inside li {
+    font-size: 14px;
+    color: var(--deep);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .whats-inside li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--sage);
+  }
+
+  /* ============================================================
+     MAILERLITE EMBED GOES HERE
+     Paste the embed code from your MailerLite form's "Embed" tab:
+     Form: "Help Me Freebie - Embedded Form"
+     Dashboard: https://dashboard.mailerlite.com/forms/192104883867878526/overview
+     Before pasting, set the form's success action to redirect to:
+     https://femininestrengthco.com/help-me-thank-you.html
+     ============================================================ */
+  .ml-embed-wrap {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .ml-embed-wrap input[type="email"] {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--gold);
+    background: #fff;
+    color: var(--deep);
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .ml-embed-wrap button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15.5px;
+    background: var(--rust);
+    color: var(--cream);
+    border: none;
+    padding: 15px 28px;
+    border-radius: 12px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .ml-embed-wrap button:hover { background: var(--rust-d); }
+
+  .privacy-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--sage-d);
+    font-style: italic;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 40px 22px; }
+  }
+</style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="card">
+    <div class="icon-row" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><rect x="15" y="35" width="12" height="30" rx="6" fill="#2C241E"/><rect x="55" y="35" width="12" height="30" rx="6" fill="#2C241E"/><line x1="34" y1="20" x2="34" y2="55" stroke="#2C241E" stroke-width="6" stroke-linecap="round"/></svg>
+      <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="#C1603F"/><circle cx="50" cy="50" r="20" fill="#FBF4EA"/><circle cx="50" cy="50" r="20" fill="none" stroke="#C79A4B" stroke-width="2"/></svg>
+      <svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="26" ry="34" fill="#8C9A78"/><circle cx="50" cy="47" r="15" fill="#FBF4EA"/><circle cx="53" cy="45" r="9" fill="#9C4A30"/></svg>
+    </div>
+
+    <div class="eyebrow">A Free Guide</div>
+    <h1>Help Me.</h1>
+    <p class="lead">
+      Why your body feels different after 35 — and how to actually fuel it.
+      Drop your email below and it's yours in seconds.
+    </p>
+
+    <div class="whats-inside">
+      <p>What's inside</p>
+      <ul>
+        <li>Why perimenopause starts earlier than anyone tells you</li>
+        <li>The 3 shifts that actually change things</li>
+        <li>A hand-portion guide, sample meal day, and protein + fiber breakdown</li>
+        <li>Fillable pages — check off, type in, make it yours</li>
+      </ul>
+    </div>
+
+    <div class="ml-embed-wrap">
+      <!-- PASTE MAILERLITE EMBED CODE HERE -->
+      <form>
+        <input type="email" placeholder="Your best email" required>
+        <button type="submit">Get It Free →</button>
+      </form>
+      <!-- END MAILERLITE EMBED -->
+    </div>
+
+    <p class="privacy-note">No spam. Unsubscribe anytime. Just the good stuff.</p>
+  </div>
+</body>
+</html>
