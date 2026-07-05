@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Portal — Feminine Strength Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1E3329; --taupe:#C4A882; --olive:#7A9E7E; --cream:#FAF7F2;
+    --ink:#22352c; --soft:#8a9a90; --line:#e4ddd0; --danger:#a85d4a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--cream); color:var(--ink); font-family:'DM Sans',sans-serif; font-size:15px; line-height:1.5;}
+  .wrap{max-width:820px; margin:0 auto; padding:20px 16px 80px;}
+
+  header{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:6px;}
+  header h1{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; color:var(--green);}
+  .brandline{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--taupe); margin-bottom:26px;}
+
+  /* today panel */
+  .today{background:var(--green); color:var(--cream); border-radius:14px; padding:18px 18px 14px; margin-bottom:28px;}
+  .today h2{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; color:var(--taupe); margin-bottom:8px;}
+  .today .item{display:flex; gap:8px; align-items:baseline; padding:6px 0; border-top:1px solid rgba(250,247,242,.12); font-size:14px;}
+  .today .item:first-of-type{border-top:none;}
+  .today .who{font-weight:700; color:var(--cream);}
+  .today .overdue{color:#e8b7a4; font-weight:700;}
+  .today .clear{color:rgba(250,247,242,.75); font-style:italic;}
+
+  /* client cards */
+  .cards{display:flex; flex-direction:column; gap:14px;}
+  .card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 18px; cursor:pointer; transition:border-color .15s;}
+  .card:hover{border-color:var(--olive);}
+  .card .row1{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+  .card .name{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:22px; color:var(--green);}
+  .badge{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--cream); background:var(--olive); border-radius:20px; padding:3px 11px; white-space:nowrap;}
+  .badge.onb{background:var(--taupe);}
+  .badge.done{background:var(--green);}
+  .card .meta{font-size:12.5px; color:var(--soft); margin-top:2px;}
+  .card .trend{font-size:13px; color:var(--green); margin-top:8px;}
+  .card .trend b{color:var(--olive);}
+
+  /* the arc */
+  .arc{display:flex; gap:5px; margin-top:12px;}
+  .seg{flex:1; text-align:center;}
+  .seg .bar{height:7px; border-radius:4px; background:var(--line);}
+  .seg.donept .bar{background:var(--olive);}
+  .seg.current .bar{background:var(--taupe);}
+  .seg .lab{font-size:9px; letter-spacing:.05em; text-transform:uppercase; color:var(--soft); margin-top:4px;}
+  .seg.current .lab{color:var(--green); font-weight:700;}
+
+  /* buttons */
+  .btn{font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; border:none; border-radius:10px; padding:10px 18px; cursor:pointer;}
+  .btn.primary{background:var(--green); color:var(--cream);}
+  .btn.ghost{background:transparent; color:var(--green); border:1px solid var(--taupe);}
+  .btn.small{padding:6px 12px; font-size:13px;}
+  .topbtns{display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap;}
+
+  /* detail view */
+  .detail{display:none;}
+  .back{background:none; border:none; color:var(--olive); font-size:14px; font-weight:700; cursor:pointer; padding:0; margin-bottom:14px;}
+  .dname{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:32px; color:var(--green);}
+  .dmeta{font-size:13px; color:var(--soft); margin-bottom:16px;}
+  .theme{background:#fff; border-left:4px solid var(--taupe); border-radius:0 10px 10px 0; padding:12px 14px; margin:16px 0; font-size:14px;}
+  .theme .t1{font-weight:700; color:var(--green);}
+  .theme .t2{font-style:italic; color:var(--soft); font-size:13px; margin-top:2px;}
+
+  .section{margin-top:22px;}
+  .section h3{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:20px; color:var(--green); margin-bottom:8px;}
+  .check{display:flex; align-items:flex-start; gap:10px; padding:9px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
+  .check input{margin-top:3px; accent-color:var(--olive); width:17px; height:17px; flex-shrink:0;}
+  .check.checked span{color:var(--soft); text-decoration:line-through;}
+  .check .due{margin-left:auto; font-size:11px; color:var(--taupe); white-space:nowrap; font-weight:700;}
+  .check .due.over{color:var(--danger);}
+
+  /* measurements */
+  table{width:100%; border-collapse:collapse; font-size:13.5px; margin-top:6px;}
+  th{text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); padding:6px 4px; border-bottom:1px solid var(--taupe);}
+  td{padding:7px 4px; border-bottom:1px solid var(--line);}
+  td .del{color:var(--danger); cursor:pointer; font-weight:700; background:none; border:none; font-size:13px;}
+  .mform{display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr auto; gap:6px; margin-top:10px;}
+  .mform input{border:1px solid var(--line); border-radius:8px; padding:8px; font-family:'DM Sans'; font-size:13.5px; width:100%; background:#fff;}
+  .change{font-size:14px; margin-top:10px; color:var(--green);}
+  .change b{color:var(--olive);}
+  svg.spark{width:100%; height:70px; margin-top:8px;}
+
+  textarea{width:100%; border:1px solid var(--line); border-radius:10px; padding:10px; font-family:'DM Sans'; font-size:14px; min-height:70px; background:#fff; resize:vertical;}
+
+  /* modal */
+  .overlay{display:none; position:fixed; inset:0; background:rgba(30,51,41,.45); z-index:10; align-items:flex-start; justify-content:center; padding:40px 16px;}
+  .modal{background:var(--cream); border-radius:16px; padding:22px; width:100%; max-width:420px;}
+  .modal h3{font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--green); margin-bottom:14px;}
+  .modal label{display:block; font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--soft); margin:12px 0 4px;}
+  .modal input, .modal select{width:100%; border:1px solid var(--line); border-radius:8px; padding:10px; font-family:'DM Sans'; font-size:14px; background:#fff;}
+  .modal .actions{display:flex; gap:8px; margin-top:20px; justify-content:flex-end;}
+
+  .empty{text-align:center; padding:50px 20px; color:var(--soft);}
+  .orow{display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin-bottom:8px;}
+  .orow .oname{font-weight:700; color:var(--green); flex:1;}
+  .orow .odate{font-size:11px; color:var(--soft); white-space:nowrap;}
+  .pill{font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; border:none; border-radius:20px; padding:5px 12px; cursor:pointer; white-space:nowrap;}
+  .pill.s0{background:var(--line); color:var(--ink);}
+  .pill.s1{background:var(--taupe); color:var(--cream);}
+  .pill.s2{background:var(--olive); color:var(--cream);}
+  .pill.s3{background:var(--green); color:var(--cream);}
+  .pill.s4{background:#efe9de; color:var(--soft);}
+  .orow .del{color:var(--danger); cursor:pointer; font-weight:700; background:none; border:none; font-size:15px;}
+  .empty .big{font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--green); margin-bottom:6px;}
+  .danger-link{background:none;border:none;color:var(--danger);font-size:12px;cursor:pointer;margin-top:26px;}
+  footer{margin-top:44px; text-align:center; font-size:11px; color:var(--taupe); letter-spacing:.1em;}
+  @media(max-width:520px){ .mform{grid-template-columns:1fr 1fr; } .mform input[type=date]{grid-column:span 2;} .mform button{grid-column:span 2;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ ROSTER VIEW ============ -->
+  <div id="rosterView">
+    <header><h1>Client Portal</h1></header>
+    <div class="brandline">Feminine Strength Co. — the system remembers so you don't have to</div>
+
+    <div class="topbtns">
+      <button class="btn primary" onclick="openAdd()">+ New client</button>
+      <button class="btn ghost small" onclick="exportData()">Back up</button>
+      <button class="btn ghost small" onclick="document.getElementById('importFile').click()">Restore</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+    </div>
+
+    <div class="today">
+      <h2>Today</h2>
+      <div id="todayList"></div>
+    </div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="section" style="margin-top:34px;">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--green);margin-bottom:2px;">Outreach</h3>
+      <div style="font-size:12.5px;color:var(--soft);margin-bottom:10px;">Who you're reactivating. One message at a time... no pitch, just "you crossed my mind."</div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <input id="oName" placeholder="Wendy" style="flex:1;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:'DM Sans';font-size:14px;background:#fff;" onkeydown="if(event.key==='Enter')addOutreach()">
+        <button class="btn primary small" onclick="addOutreach()">Add</button>
+      </div>
+      <div id="outreachList"></div>
+    </div>
+
+    <footer>STABILITY OVER INTENSITY</footer>
+  </div>
+
+  <!-- ============ DETAIL VIEW ============ -->
+  <div id="detailView" class="detail"></div>
+
+  <!-- ============ ADD CLIENT MODAL ============ -->
+  <div class="overlay" id="addOverlay">
+    <div class="modal">
+      <h3>New client</h3>
+      <label>Name</label>
+      <input id="fName" placeholder="Mary">
+      <label>Start date (Session One)</label>
+      <input id="fStart" type="date">
+      <label>Package</label>
+      <select id="fPkg">
+        <option>Starter — 1x/week</option>
+        <option>Consistency — 2x/week</option>
+        <option>Foundation Program</option>
+        <option>Transformation — 3 mo</option>
+        <option>Elite — 6 mo</option>
+        <option>App Access</option>
+      </select>
+      <label>Her goal, in her words</label>
+      <input id="fGoal" placeholder="lose the 40, feel like herself again">
+      <div class="actions">
+        <button class="btn ghost" onclick="closeAdd()">Cancel</button>
+        <button class="btn primary" onclick="addClient()">Add client</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const KEY='fsc_portal_v1';
+const MONTHS=[
+  {n:1,name:'Foundation',focus:'Teach the patterns. Protein and fiber only. Over-communicate.',feel:'"I can do this."'},
+  {n:2,name:'Consistency',focus:'Same lifts, first progressions. Point at the receipts.',feel:'"It\'s working."'},
+  {n:3,name:'Load',focus:'Progressive overload. Midpoint reassessment — repeat every baseline.',feel:'"I\'m stronger than I\'ve been in years."'},
+  {n:4,name:'Build',focus:'Volume block. Boredom danger zone — change one accessory, never the arc.',feel:'"This is just who I am now."'},
+  {n:5,name:'Strength',focus:'Heaviest block. Chase PRs. Plant the renewal seed.',feel:'"I didn\'t know I could do that."'},
+  {n:6,name:'Proof',focus:'Full reassessment. Side-by-side recap. Renewal conversation.',feel:'"I\'m just getting started."'}
+];
+const ONBOARDING=[
+  'Application / questionnaire received',
+  'Consult call done — she said her "why" out loud',
+  'Payment confirmed (Stripe)',
+  'Intake + health history reviewed twice, flags noted',
+  'Client file created — goals in her words, photo folder, notes',
+  'Trainerize or in-person folder set up',
+  'Month 1 template pre-filled',
+  'Night-before welcome text sent',
+  'Session One done — screen, measurements, photos, benchmarks',
+  'First workout sheet delivered within 48 hours'
+];
+function monthTasks(m){
+  const t=[
+    {id:'goal',label:'Monthly goal set with her — programming built around it',due:'first session'},
+    {id:'sheet',label:'Workout sheet delivered',due:'by the 1st'},
+    {id:'checkin',label:'Mid-month check-in text (about her, not training)',due:'mid-month'},
+    {id:'measure',label:'Measurements logged',due:'this month'},
+    {id:'recap',label:'Monthly recap PDF delivered',due:'last week'}
+  ];
+  if(m===3) t.push({id:'reassess',label:'Midpoint reassessment — repeat day-one baselines + photos',due:'this month'});
+  if(m===6){
+    t.push({id:'reassess',label:'Final reassessment — everything vs day one',due:'this month'});
+    t.push({id:'renewal',label:'Renewal conversation — "what do you want to chase next?"',due:'last session'});
+  }
+  return t;
+}
+
+let state=load();
+function load(){ try{return JSON.parse(localStorage.getItem(KEY))||{clients:[]};}catch(e){return {clients:[]};} }
+function save(){ localStorage.setItem(KEY,JSON.stringify(state)); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+/* ================= DATE LOGIC ================= */
+function programMonth(c){
+  const s=new Date(c.startDate+'T00:00:00'); const now=new Date();
+  if(now<s) return 0;
+  let m=(now.getFullYear()-s.getFullYear())*12+(now.getMonth()-s.getMonth());
+  if(now.getDate()>=s.getDate()) m+=1;
+  return Math.min(Math.max(m,1),7); // 7 = past six months
+}
+function dayInProgramMonth(c){
+  const s=new Date(c.startDate+'T00:00:00'); const now=new Date();
+  let d=now.getDate()-s.getDate();
+  if(d<0) d+=30;
+  return d+1; // day 1..30 of the current program month
+}
+function onboardingDone(c){ return ONBOARDING.every((_,i)=>c.onboarding[i]); }
+
+/* ================= TODAY VIEW ================= */
+function buildToday(){
+  const items=[];
+  state.clients.forEach(c=>{
+    const pm=programMonth(c);
+    if(!onboardingDone(c)){
+      const next=ONBOARDING.findIndex((_,i)=>!c.onboarding[i]);
+      items.push({who:c.name,text:'Onboarding — next: '+ONBOARDING[next].toLowerCase(),over:false});
+      return;
+    }
+    if(pm<1||pm>6) return;
+    const day=dayInProgramMonth(c);
+    const done=c.months[pm]||{};
+    monthTasks(pm).forEach(t=>{
+      if(done[t.id]) return;
+      let over=false, show=false;
+      if(t.id==='goal'){show=true; over=day>7;}
+      if(t.id==='sheet'){show=true; over=day>3;}
+      if(t.id==='checkin'){show=day>=10; over=day>18;}
+      if(t.id==='measure'){show=day>=20; over=day>27;}
+      if(t.id==='recap'){show=day>=20; over=day>27;}
+      if(t.id==='reassess'){show=day>=10; over=day>25;}
+      if(t.id==='renewal'){show=day>=15; over=day>27;}
+      if(show) items.push({who:c.name,text:t.label+' — month '+pm,over});
+    });
+  });
+  (state.outreach||[]).forEach(o=>{
+    const d=daysSince(o.date);
+    if(o.status===0) items.push({who:o.name,text:'send the "you crossed my mind" text',over:d>2});
+    if(o.status===1&&d>=7) items.push({who:o.name,text:'messaged '+d+' days ago — light follow-up',over:false});
+    if(o.status===2) items.push({who:o.name,text:'she replied — keep the conversation going',over:d>2});
+  });
+  const el=document.getElementById('todayList');
+  if(!state.clients.length&&!items.length){ el.innerHTML='<div class="item clear">Add your first client and this becomes your morning checklist.</div>'; return; }
+  if(!items.length){ el.innerHTML='<div class="item clear">Everything\'s handled. Go sell something.</div>'; return; }
+  items.sort((a,b)=>(b.over?1:0)-(a.over?1:0));
+  el.innerHTML=items.map(i=>'<div class="item"><span class="who">'+esc(i.who)+'</span><span>'+esc(i.text)+'</span>'+(i.over?'<span class="overdue">overdue</span>':'')+'</div>').join('');
+}
+
+/* ================= ROSTER ================= */
+function buildCards(){
+  const el=document.getElementById('cards');
+  if(!state.clients.length){
+    el.innerHTML='<div class="empty"><div class="big">No clients yet</div>Add one and the six-month system takes it from there.</div>';
+    return;
+  }
+  el.innerHTML=state.clients.map(c=>{
+    const pm=programMonth(c);
+    const onb=!onboardingDone(c);
+    let badge, cls='';
+    if(onb){badge='Onboarding'; cls='onb';}
+    else if(pm>6){badge='Month 6 complete'; cls='done';}
+    else badge='Month '+pm+' — '+MONTHS[pm-1].name;
+    const arc=MONTHS.map(m=>{
+      let s='';
+      if(!onb){ if(pm>m.n||(pm===m.n&&monthComplete(c,m.n))) s='donept'; else if(pm===m.n) s='current'; }
+      return '<div class="seg '+s+'"><div class="bar"></div><div class="lab">'+m.name.slice(0,5)+'</div></div>';
+    }).join('');
+    return '<div class="card" onclick="openDetail(\''+c.id+'\')">'
+      +'<div class="row1"><span class="name">'+esc(c.name)+'</span><span class="badge '+cls+'">'+badge+'</span></div>'
+      +'<div class="meta">'+esc(c.pkg)+' · started '+fmtDate(c.startDate)+(c.goal?' · "'+esc(c.goal)+'"':'')+'</div>'
+      +((pm>=1&&pm<=6&&(c.months[pm]||{}).goalText)?'<div class="meta" style="color:var(--olive);font-weight:700;margin-top:4px;">This month: '+esc(c.months[pm].goalText)+'</div>':'')
+      +'<div class="arc">'+arc+'</div>'
+      +trendLine(c)
+      +'</div>';
+  }).join('');
+}
+function monthComplete(c,m){ const d=c.months[m]||{}; return monthTasks(m).every(t=>d[t.id]); }
+function trendLine(c){
+  const ms=c.measurements||[];
+  if(ms.length<2) return '';
+  const first=ms[0], last=ms[ms.length-1];
+  const parts=[];
+  if(first.waist&&last.waist){const d=(last.waist-first.waist).toFixed(1); parts.push('<b>'+(d<=0?'':'+')+d+'"</b> waist');}
+  if(first.weight&&last.weight){const d=(last.weight-first.weight).toFixed(1); parts.push('<b>'+(d<=0?'':'+')+d+' lb</b>');}
+  if(first.hips&&last.hips){const d=(last.hips-first.hips).toFixed(1); parts.push('<b>'+(d<=0?'':'+')+d+'"</b> hips');}
+  return parts.length?'<div class="trend">Since day one: '+parts.join(' · ')+'</div>':'';
+}
+
+/* ================= DETAIL ================= */
+let openId=null;
+function openDetail(id){
+  openId=id;
+  const c=state.clients.find(x=>x.id===id); if(!c) return;
+  const pm=programMonth(c);
+  const onb=!onboardingDone(c);
+  let html='<button class="back" onclick="closeDetail()">&larr; All clients</button>'
+    +'<div class="dname">'+esc(c.name)+'</div>'
+    +'<div class="dmeta">'+esc(c.pkg)+' · started '+fmtDate(c.startDate)+(c.goal?' · goal: "'+esc(c.goal)+'"':'')+'</div>';
+
+  if(onb){
+    html+='<div class="theme"><div class="t1">Onboarding</div><div class="t2">First impressions are won in the prep.</div></div>'
+      +'<div class="section"><h3>Get her started</h3>'
+      +ONBOARDING.map((t,i)=>checkRow('onb',i,t,!!c.onboarding[i],null)).join('')+'</div>';
+  } else if(pm>=1&&pm<=6){
+    const info=MONTHS[pm-1];
+    html+='<div class="theme"><div class="t1">Month '+pm+' — '+info.name+'</div><div>'+info.focus+'</div><div class="t2">By the end of this month she should feel: '+info.feel+'</div></div>'
+      +'<div class="section"><h3>This month we\'re chasing</h3>'
+      +'<input id="mGoal" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:\'DM Sans\';font-size:14px;background:#fff;" placeholder="one goal, her words... first hip thrust at bodyweight, 10k steps, jeans that button" value="'+esc((c.months[pm]||{}).goalText||'')+'" onblur="saveMonthGoal('+pm+')"></div>'
+      +'<div class="section"><h3>This month\'s non-negotiables</h3>'
+      +monthTasks(pm).map(t=>{
+        const done=(c.months[pm]||{})[t.id];
+        return checkRow('mon',pm+':'+t.id,t.label,!!done,t.due);
+      }).join('')+'</div>';
+    // previous months quick view
+    if(pm>1){
+      html+='<div class="section"><h3>Past months</h3>';
+      for(let m=1;m<pm;m++){
+        const ok=monthComplete(c,m);
+        html+='<div class="check" style="cursor:default"><span>'+(ok?'&#10003;':'&#9888;')+' Month '+m+' — '+MONTHS[m-1].name+(ok?'':' <b style="color:var(--danger)">(incomplete — tap to fix)</b>')+'</span></div>';
+        if(!ok){
+          html+=monthTasks(m).map(t=>{
+            const done=(c.months[m]||{})[t.id];
+            return done?'':checkRow('mon',m+':'+t.id,'Month '+m+': '+t.label,false,null);
+          }).join('');
+        }
+      }
+      html+='</div>';
+    }
+  } else if(pm>6){
+    html+='<div class="theme"><div class="t1">Six months complete</div><div>She gave you six months. Time for the what\'s-next conversation... continue monthly, move to the app, new goal block.</div></div>';
+  } else {
+    html+='<div class="theme"><div class="t1">Starts '+fmtDate(c.startDate)+'</div><div>Finish onboarding before day one.</div></div>';
+  }
+
+  /* measurements */
+  const ms=c.measurements||[];
+  html+='<div class="section"><h3>Fat loss tracker</h3>';
+  if(ms.length>=2) html+=spark(ms);
+  if(ms.length>=2){
+    const t=trendLine(c);
+    html+=t.replace('class="trend"','class="change"');
+  }
+  html+='<table><tr><th>Date</th><th>Weight</th><th>Waist</th><th>Hips</th><th></th></tr>'
+    +ms.map((m,i)=>'<tr><td>'+fmtDate(m.date)+'</td><td>'+(m.weight||'—')+'</td><td>'+(m.waist||'—')+'</td><td>'+(m.hips||'—')+'</td><td><button class="del" onclick="delMeasure('+i+')">&times;</button></td></tr>').join('')
+    +'</table>'
+    +'<div class="mform">'
+    +'<input type="date" id="mDate" value="'+today()+'">'
+    +'<input type="number" step="0.1" id="mWeight" placeholder="weight (opt.)">'
+    +'<input type="number" step="0.1" id="mWaist" placeholder="waist">'
+    +'<input type="number" step="0.1" id="mHips" placeholder="hips">'
+    +'<button class="btn primary small" onclick="addMeasure()">Log</button>'
+    +'</div></div>';
+
+  /* notes */
+  html+='<div class="section"><h3>Notes</h3><textarea id="cNotes" onblur="saveNotes()" placeholder="PRs, life stuff, what she said her why was...">'+esc(c.notes||'')+'</textarea></div>';
+
+  html+='<button class="danger-link" onclick="removeClient()">Remove '+esc(c.name)+' from portal</button>';
+
+  document.getElementById('detailView').innerHTML=html;
+  document.getElementById('rosterView').style.display='none';
+  document.getElementById('detailView').style.display='block';
+  window.scrollTo(0,0);
+}
+function checkRow(kind,key,label,checked,due){
+  return '<label class="check'+(checked?' checked':'')+'">'
+    +'<input type="checkbox" '+(checked?'checked':'')+' onchange="toggle(\''+kind+'\',\''+key+'\',this.checked)">'
+    +'<span>'+esc(label)+'</span>'
+    +(due?'<span class="due">'+due+'</span>':'')
+    +'</label>';
+}
+function toggle(kind,key,val){
+  const c=state.clients.find(x=>x.id===openId); if(!c) return;
+  if(kind==='onb'){ c.onboarding[key]=val; }
+  else{ const [m,id]=key.split(':'); c.months[m]=c.months[m]||{}; c.months[m][id]=val; }
+  save(); openDetail(openId);
+}
+function saveMonthGoal(m){
+  const c=state.clients.find(x=>x.id===openId); if(!c) return;
+  c.months[m]=c.months[m]||{};
+  c.months[m].goalText=document.getElementById('mGoal').value.trim();
+  save();
+}
+function saveNotes(){
+  const c=state.clients.find(x=>x.id===openId); if(!c) return;
+  c.notes=document.getElementById('cNotes').value; save();
+}
+function addMeasure(){
+  const c=state.clients.find(x=>x.id===openId); if(!c) return;
+  const m={date:document.getElementById('mDate').value,
+    weight:parseFloat(document.getElementById('mWeight').value)||null,
+    waist:parseFloat(document.getElementById('mWaist').value)||null,
+    hips:parseFloat(document.getElementById('mHips').value)||null};
+  if(!m.date||(!m.weight&&!m.waist&&!m.hips)) return;
+  c.measurements=c.measurements||[]; c.measurements.push(m);
+  c.measurements.sort((a,b)=>a.date<b.date?-1:1);
+  save(); openDetail(openId);
+}
+function delMeasure(i){
+  const c=state.clients.find(x=>x.id===openId); if(!c) return;
+  c.measurements.splice(i,1); save(); openDetail(openId);
+}
+function removeClient(){
+  const c=state.clients.find(x=>x.id===openId); if(!c) return;
+  if(!confirm('Remove '+c.name+'? This deletes her checklists and measurements.')) return;
+  state.clients=state.clients.filter(x=>x.id!==openId); save(); closeDetail();
+}
+function closeDetail(){
+  openId=null;
+  document.getElementById('detailView').style.display='none';
+  document.getElementById('rosterView').style.display='block';
+  render();
+}
+function spark(ms){
+  const vals=ms.map(m=>m.waist||m.weight).filter(v=>v!=null);
+  if(vals.length<2) return '';
+  const min=Math.min(...vals), max=Math.max(...vals), pad=(max-min)||1;
+  const W=300,H=60;
+  const pts=vals.map((v,i)=>{
+    const x=(i/(vals.length-1))*(W-10)+5;
+    const y=H-8-((v-min)/pad)*(H-16);
+    return x.toFixed(1)+','+y.toFixed(1);
+  });
+  return '<svg class="spark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'
+    +'<polyline points="'+pts.join(' ')+'" fill="none" stroke="#7A9E7E" stroke-width="2.5" stroke-linecap="round"/>'
+    +pts.map(p=>'<circle cx="'+p.split(',')[0]+'" cy="'+p.split(',')[1]+'" r="3" fill="#1E3329"/>').join('')
+    +'</svg>';
+}
+
+/* ================= ADD / EXPORT ================= */
+function openAdd(){ document.getElementById('addOverlay').style.display='flex'; document.getElementById('fStart').value=today(); }
+function closeAdd(){ document.getElementById('addOverlay').style.display='none'; }
+function addClient(){
+  const name=document.getElementById('fName').value.trim();
+  const start=document.getElementById('fStart').value;
+  if(!name||!start) return;
+  state.clients.push({id:uid(), name, startDate:start,
+    pkg:document.getElementById('fPkg').value,
+    goal:document.getElementById('fGoal').value.trim(),
+    onboarding:{}, months:{}, measurements:[], notes:''});
+  save(); closeAdd();
+  document.getElementById('fName').value=''; document.getElementById('fGoal').value='';
+  render();
+}
+function exportData(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='fsc-portal-backup-'+today()+'.json';
+  a.click();
+}
+function importData(e){
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ const d=JSON.parse(r.result); if(d.clients){ state=d; save(); render(); } }catch(err){ alert('That file didn\'t look right.'); } };
+  r.readAsText(f);
+}
+
+/* ================= OUTREACH ================= */
+const OSTATUS=['To message','Messaged','Replied','Booked','Not now'];
+function daysSince(dstr){ return Math.floor((new Date()-new Date(dstr+'T00:00:00'))/86400000); }
+function addOutreach(){
+  const el=document.getElementById('oName');
+  const name=el.value.trim(); if(!name) return;
+  state.outreach=state.outreach||[];
+  state.outreach.push({id:uid(), name, status:0, date:today()});
+  el.value=''; save(); render();
+}
+function cycleOutreach(id){
+  const o=(state.outreach||[]).find(x=>x.id===id); if(!o) return;
+  o.status=(o.status+1)%OSTATUS.length; o.date=today();
+  save(); render();
+}
+function delOutreach(id){
+  state.outreach=(state.outreach||[]).filter(x=>x.id!==id);
+  save(); render();
+}
+function buildOutreach(){
+  const el=document.getElementById('outreachList');
+  const list=state.outreach||[];
+  if(!list.length){ el.innerHTML='<div style="font-size:13px;color:var(--soft);font-style:italic;padding:4px;">Nobody on the list yet. You know who goes here first.</div>'; return; }
+  const order=[0,1,2,3,4];
+  const sorted=[...list].sort((a,b)=>order.indexOf(a.status)-order.indexOf(b.status));
+  el.innerHTML=sorted.map(o=>{
+    const d=daysSince(o.date);
+    const when=d===0?'today':d+'d ago';
+    return '<div class="orow">'
+      +'<span class="oname">'+esc(o.name)+'</span>'
+      +'<span class="odate">'+OSTATUS[o.status].toLowerCase()+' '+when+'</span>'
+      +'<button class="pill s'+o.status+'" onclick="cycleOutreach(\''+o.id+'\')">'+OSTATUS[o.status]+'</button>'
+      +'<button class="del" onclick="delOutreach(\''+o.id+'\')">&times;</button>'
+      +'</div>';
+  }).join('');
+}
+
+/* ================= UTIL ================= */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function today(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function fmtDate(s){ const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }
+function render(){ buildToday(); buildCards(); buildOutreach(); }
+render();
+</script>
+</body>
+</html>
