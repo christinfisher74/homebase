@@ -85,6 +85,40 @@ body { background:var(--cream); font-family:'DM Sans',sans-serif; font-weight:30
 .save-badge { display:inline-block; background:var(--taupe); color:white; font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:12px; }
 .new-badge { display:inline-block; background:var(--olive); color:white; font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:12px; margin-left:6px; }
 
+/* CATEGORY CHOOSER */
+.chooser-intro { text-align:center; margin-bottom:22px; }
+.chooser-eyebrow { font-size:9px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--olive); display:block; margin-bottom:8px; }
+.chooser-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; font-weight:300; color:var(--forest); padding-left:3px; }
+.chooser { display:flex; gap:10px; margin-bottom:32px; }
+.choice { flex:1; background:white; border:1.5px solid var(--grid); border-radius:10px; padding:18px 8px; text-align:center; cursor:pointer; transition:all 0.2s; }
+.choice:hover { border-color:var(--olive); }
+.choice.active { background:var(--forest); border-color:var(--forest); }
+.choice-mark { font-size:20px; color:var(--taupe); display:block; margin-bottom:8px; }
+.choice-label { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--forest); display:block; }
+.choice.active .choice-label { color:var(--cream); }
+.choice-sub { font-size:8.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--mid); margin-top:3px; display:block; }
+.choice.active .choice-sub { color:rgba(250,247,242,0.6); }
+
+.group-panel { display:none; }
+.group-panel.active { display:block; }
+.group-heading { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:20px; color:var(--forest); margin-bottom:4px; padding-left:2px; }
+.group-sub { font-size:12px; color:var(--mid); margin-bottom:18px; }
+
+/* MINI CARDS (expandable) */
+.mini-card { background:white; border:1px solid var(--grid); border-radius:8px; margin-bottom:10px; overflow:hidden; }
+.mini-card-top { display:flex; align-items:center; gap:14px; padding:14px; cursor:pointer; }
+.mini-icon { width:46px; height:46px; border-radius:11px; background:linear-gradient(135deg, var(--forest), var(--olive)); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:var(--taupe); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; }
+.mini-info { flex:1; min-width:0; }
+.mini-name { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--forest); line-height:1.25; }
+.mini-punch { font-size:11px; color:var(--olive); font-style:italic; margin-top:3px; line-height:1.4; padding-left:2px; }
+.mini-price { font-size:12px; color:var(--mid); margin-top:5px; }
+.mini-addon { font-size:10px; color:var(--taupe); margin-top:5px; font-weight:500; }
+.mini-arrow { font-size:13px; color:var(--mid); transition:transform 0.25s; flex-shrink:0; }
+.mini-card.open .mini-arrow { transform:rotate(180deg); }
+.mini-detail { display:none; padding:0 16px 18px; }
+.mini-card.open .mini-detail { display:block; }
+.mini-detail .btn { margin-top:10px; }
+
 /* BUTTONS */
 .btn { display:block; width:100%; padding:13px 20px; border-radius:6px; font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; text-align:center; text-decoration:none; cursor:pointer; border:none; margin-top:14px; transition:opacity 0.2s; }
 .btn:hover { opacity:0.88; }
@@ -222,66 +256,48 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 <!-- PRODUCTS -->
 <div class="main">
 
-  <!-- FREE GUIDES -->
-  <div class="card-group">
-    <div class="group-label">
-      <div class="group-dot dot-olive"></div>
-      <div>
-        <div class="group-label-text">Free Guides</div>
-        <div class="group-label-sub">No purchase. Storefront_Copy_Updates.md</div>
-      </div>
-    </div>
 
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview.webp" alt="Help Me" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Help Me.</div>
-          <div class="card-price" style="color:var(--olive);font-size:14px;">Free</div>
-        </div>
-        <p class="card-desc">Not sure where to start? This is where you start. No overwhelm, no sales pitch. Just the first step.</p>
-        <a href="help_me_final.html" class="btn btn-olive">Get It Free →</a>
-      </div>
-    </div>
+  <div class="chooser-intro">
+    <span class="chooser-eyebrow">Feminine Strength Co.</span>
+    <div class="chooser-title">What are you looking for?</div>
+  </div>
 
-    <div class="card">
-      <div class="card-accent accent-olive"></div>
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">What's Actually Happening:<br>A Hormone Intro</div>
-          <div class="card-price" style="color:var(--olive);font-size:14px;">Free</div>
-        </div>
-        <p class="card-desc">Free when you sign up for the Compass App. Perimenopause explained plainly — no clinical language, no diagnosing, just the stuff that finally makes it make sense.</p>
-        <a href="https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k" class="btn btn-olive">Get It Free with Compass →</a>
-      </div>
+  <div class="chooser">
+    <div class="choice active" data-group="pdfs" onclick="showGroup('pdfs')">
+      <span class="choice-mark">&#10087;</span>
+      <span class="choice-label">PDFs</span>
+      <span class="choice-sub">Guides &amp; Programs</span>
+    </div>
+    <div class="choice" data-group="apps" onclick="showGroup('apps')">
+      <span class="choice-mark">&#9670;</span>
+      <span class="choice-label">Apps</span>
+      <span class="choice-sub">Ongoing Access</span>
+    </div>
+    <div class="choice" data-group="training" onclick="showGroup('training')">
+      <span class="choice-mark">&#10087;</span>
+      <span class="choice-label">Training</span>
+      <span class="choice-sub">Work With Christin</span>
     </div>
   </div>
 
-  <hr class="divider">
+  <!-- PDFs -->
+  <div class="group-panel active" id="panel-pdfs">
+    <div class="group-heading">PDF Guides &amp; Programs</div>
+    <div class="group-sub">One-time purchase. Download instantly. Yours to keep.</div>
 
-  <!-- DIGITAL GUIDES -->
-  <div class="card-group">
-    <div class="group-label">
-      <div class="group-dot dot-taupe"></div>
-      <div>
-        <div class="group-label-text">Digital Guides</div>
-        <div class="group-label-sub">One-time purchase. Download instantly. Yours to keep.</div>
-      </div>
-    </div>
-
-    <!-- Strong Not Sorry PDF -->
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview1.webp" alt="Strong Not Sorry" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Strong Not Sorry:<br>The Training Program</div>
-          <div class="card-price">$27</div>
+    <!-- Strong Not Sorry -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Strong Not Sorry: The Training Program</div>
+          <div class="mini-punch">8 weeks. Real weight. Zero apologies.</div>
+          <div class="mini-price">$27</div>
         </div>
-        <p class="card-desc">The 8-week, 4-day strength program for women 35+. Training only. No nutrition, no meal plan. Just the program, the cues, and the progression system that actually works.</p>
-        <a href="https://buy.stripe.com/00w14p6UsgMR65QgNvcEw0t" class="btn btn-forest">Get the Program — $27</a>
+        <div class="mini-arrow">&#9662;</div>
       </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
+      <div class="mini-detail">
+        <p class="card-desc">The 8-week, 4-day strength program for women 35+. Training only. No nutrition, no meal plan. Just the program, the cues, and the progression system that actually works.</p>
         <div class="preview-section">
           <div class="preview-section-title">What's in it</div>
           <ul class="preview-list">
@@ -299,22 +315,24 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
           <div class="preview-quote">"I'm asking you to put down the 5s and 8s and 10s... and work your way down the weight rack toward the 20s, the 25s, the 30s. That's the goal. That's what actually changes your body."</div>
         </div>
         <p class="preview-note">Nutrition not included. Want training + nutrition together? See Built for This below.</p>
+        <a href="https://buy.stripe.com/00w14p6UsgMR65QgNvcEw0t" class="btn btn-forest">Get the Program — $27</a>
       </div>
     </div>
 
     <!-- The Standard -->
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview9.webp" alt="The Standard" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">The Standard:<br>Nutrition + Fat Loss Guide</div>
-          <div class="card-price">$27</div>
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">The Standard: Nutrition + Fat Loss Guide</div>
+          <div class="mini-punch">Your numbers, your food, no guesswork.</div>
+          <div class="mini-price">$27</div>
+          <div class="mini-addon">+ Add the Meal Generator App — bundle for $47</div>
         </div>
-        <p class="card-desc">Your numbers. Your food. Your framework. No banned foods, no earning the right to eat, no restriction plans that don't stick.</p>
-        <a href="https://buy.stripe.com/4gMcN71A8gMRbqa68RcEw0r" class="btn btn-forest">Get the Guide — $27</a>
+        <div class="mini-arrow">&#9662;</div>
       </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
+      <div class="mini-detail">
+        <p class="card-desc">Your numbers. Your food. Your framework. No banned foods, no earning the right to eat, no restriction plans that don't stick.</p>
         <div class="preview-section">
           <div class="preview-section-title">What's in it</div>
           <ul class="preview-list">
@@ -332,24 +350,34 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
           <div class="preview-section-title">From inside the guide</div>
           <div class="preview-quote">"Fat loss doesn't stall because you're not trying hard enough. It stalls because the plan asks for perfection instead of consistency. This plan asks for consistency."</div>
         </div>
+        <div class="preview-section">
+          <div class="preview-section-title">Want the Meal Generator App too?</div>
+          <ul class="preview-list">
+            <li>Build meals based on your protein target and what you have on hand</li>
+            <li>Real food — not diet culture meals</li>
+            <li>Bundle this guide + the app together for $47 instead of buying separately</li>
+          </ul>
+        </div>
         <p class="preview-note">Training not included. Want nutrition + training together? See Built for This below.</p>
+        <a href="https://buy.stripe.com/4gMcN71A8gMRbqa68RcEw0r" class="btn btn-forest">Get the Guide — $27</a>
+        <a href="https://buy.stripe.com/aFa4gB3Ig405cue54NcEw0s" class="btn btn-taupe">Get the Guide + Meal Generator — $47</a>
       </div>
     </div>
 
     <!-- Built for This -->
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview3.webp" alt="Built for This" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Built for This:<br>The Complete Roadmap</div>
-          <div class="card-price">$47</div>
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Built for This: The Complete Roadmap</div>
+          <div class="mini-punch">Training + nutrition. Everything, start to finish.</div>
+          <div class="mini-price">$47</div>
         </div>
-        <div class="save-badge">Save $7 — Both guides combined</div>
-        <p class="card-desc">The Training Program + The Nutrition + Fat Loss Guide in one complete document. Everything, start to finish, nothing missing.</p>
-        <a href="https://buy.stripe.com/5kQ6oJemU4059i21SBcEw0v" class="btn btn-forest">Get the Roadmap — $47</a>
+        <div class="mini-arrow">&#9662;</div>
       </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
+      <div class="mini-detail">
+        <div class="save-badge">Save $7 — both guides combined</div>
+        <p class="card-desc">The Training Program + The Nutrition + Fat Loss Guide in one complete document. Everything, start to finish, nothing missing.</p>
         <div class="preview-section">
           <div class="preview-section-title">Everything in Strong Not Sorry +</div>
           <ul class="preview-list">
@@ -373,23 +401,24 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
             <li>Built for This — $47. You save $7.</li>
           </ul>
         </div>
+        <a href="https://buy.stripe.com/5kQ6oJemU4059i21SBcEw0v" class="btn btn-forest">Get the Roadmap — $47</a>
       </div>
     </div>
 
     <!-- Grow -->
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview2.webp" alt="Grow" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Grow:<br>8-Week Glute Program</div>
-          <div class="card-price">$37</div>
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Grow: 8-Week Glute Program</div>
+          <div class="mini-punch">Build. Shape. Strengthen. Home or gym.</div>
+          <div class="mini-price">$37</div>
         </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
         <div class="new-badge">Just Launched</div>
         <p class="card-desc">Four versions in one — Beginner + Intermediate, Home + Gym. Hip thrusts, progressive overload, and the nutrition basics for muscle growth. 3 days a week. Real results.</p>
-        <a href="https://buy.stripe.com/28E7sNdiQ9kpdyi8gZcEw0p" class="btn btn-forest">Get the Program — $37</a>
-      </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
         <div class="preview-section">
           <div class="preview-section-title">What's in it</div>
           <ul class="preview-list">
@@ -405,83 +434,29 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
           <div class="preview-section-title">From inside the program</div>
           <div class="preview-quote">"You cannot grow what you do not feed and you cannot build what you do not challenge. Both apply here."</div>
         </div>
+        <a href="https://buy.stripe.com/28E7sNdiQ9kpdyi8gZcEw0p" class="btn btn-forest">Get the Program — $37</a>
       </div>
     </div>
   </div>
 
-  <hr class="divider">
-
-  <!-- MEAL GENERATOR -->
-  <div class="card-group">
-    <div class="group-label">
-      <div class="group-dot dot-forest"></div>
-      <div>
-        <div class="group-label-text">App + Guide Bundle</div>
-        <div class="group-label-sub">One-time purchase. PDF + app access together.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview4.webp" alt="Meal Generator" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Meal Generator +<br>Nutrition + Fat Loss Guide</div>
-          <div class="card-price">$47</div>
-        </div>
-        <p class="card-desc">The Standard nutrition guide PDF plus the Meal Generator app — build meals around your goals, your protein targets, and what's actually in your fridge.</p>
-        <a href="https://buy.stripe.com/aFa4gB3Ig405cue54NcEw0s" class="btn btn-forest">Get the Bundle — $47</a>
-      </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
-        <div class="preview-section">
-          <div class="preview-section-title">The Nutrition + Fat Loss Guide PDF</div>
-          <ul class="preview-list">
-            <li>Your calorie starting point + protein targets by goal weight</li>
-            <li>The plate method, meal timing, estrogen food list, NEAT</li>
-            <li>7-day meal rotation, recipes, grocery list, bistro boxes</li>
-          </ul>
-        </div>
-        <div class="preview-section">
-          <div class="preview-section-title">The Meal Generator App</div>
-          <ul class="preview-list">
-            <li>Build meals based on your protein target and what you have on hand</li>
-            <li>Real food — not diet culture meals</li>
-            <li>Works alongside The Standard nutrition framework</li>
-          </ul>
-        </div>
-        <div class="preview-section">
-          <div class="preview-section-title">Why they go together</div>
-          <div class="preview-quote">"The guide tells you how to eat. The app makes it actually happen on a Tuesday when you don't know what to make."</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- APPS -->
-  <div class="card-group">
-    <div class="group-label">
-      <div class="group-dot dot-olive"></div>
-      <div>
-        <div class="group-label-text">Monthly Apps</div>
-        <div class="group-label-sub">Subscription. Cancel anytime.</div>
-      </div>
-    </div>
+  <!-- Apps -->
+  <div class="group-panel" id="panel-apps">
+    <div class="group-heading">Apps &amp; Subscriptions</div>
+    <div class="group-sub">Ongoing access, updated content, in your pocket. Cancel anytime.</div>
 
     <!-- Compass -->
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview5.webp" alt="Compass App" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Compass App</div>
-          <div class="card-price">$14.99<span class="per">/mo</span></div>
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#9670;</div>
+        <div class="mini-info">
+          <div class="mini-name">Compass App</div>
+          <div class="mini-punch">Your cycle, decoded. Track it, don't guess it.</div>
+          <div class="mini-price">$14.99/mo</div>
         </div>
-        <p class="card-desc">Your hormone health companion. Understand what's actually happening in your body during perimenopause — and what to do about it. Free hormone intro guide on signup.</p>
-        <a href="https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k" class="btn btn-olive">Start Free Trial — 7 Days</a>
+        <div class="mini-arrow">&#9662;</div>
       </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
+      <div class="mini-detail">
+        <p class="card-desc">Your hormone health companion. Understand what's actually happening in your body during perimenopause — and what to do about it. Free hormone intro guide on signup.</p>
         <div class="preview-section">
           <div class="preview-section-title">Free on signup</div>
           <ul class="preview-list">
@@ -502,23 +477,24 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
           <div class="preview-section-title">From the hormone guide</div>
           <div class="preview-quote">"Perimenopause is, by definition, a phase of hormonal fluctuation. Your hormones are not going to balance. Stop chasing balance — start learning your patterns."</div>
         </div>
-        <p class="preview-note">This app does not include the Meal Generator or Nutrition Guide. Those are separate products above.</p>
+        <p class="preview-note">This app does not include the Meal Generator or Nutrition Guide. Those are separate products under PDFs.</p>
+        <a href="https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k" class="btn btn-olive">Start Free Trial — 7 Days</a>
       </div>
     </div>
 
     <!-- Strong Not Sorry App -->
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview6.webp" alt="Strong Not Sorry App" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Strong Not Sorry App</div>
-          <div class="card-price">$19.99<span class="per">/mo</span></div>
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#9670;</div>
+        <div class="mini-info">
+          <div class="mini-name">Strong Not Sorry App</div>
+          <div class="mini-punch">The whole program, in your pocket.</div>
+          <div class="mini-price">$19.99/mo</div>
         </div>
-        <p class="card-desc">The interactive 8-week training program. Log your lifts, track your progression, and follow the program week by week inside the app.</p>
-        <a href="https://buy.stripe.com/fZu5kFfqY2W1dyi2WFcEw0m" class="btn btn-olive">Start Free Trial — 3 Days</a>
+        <div class="mini-arrow">&#9662;</div>
       </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
+      <div class="mini-detail">
+        <p class="card-desc">The interactive 8-week training program. Log your lifts, track your progression, and follow the program week by week inside the app.</p>
         <div class="preview-section">
           <div class="preview-section-title">PDF vs App — what's the difference?</div>
           <ul class="preview-list">
@@ -527,23 +503,24 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
             <li>Same program. Different experience. Choose what works for how you train.</li>
           </ul>
         </div>
+        <a href="https://buy.stripe.com/fZu5kFfqY2W1dyi2WFcEw0m" class="btn btn-olive">Start Free Trial — 3 Days</a>
       </div>
     </div>
 
     <!-- Bundle -->
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview7.webp" alt="The Bundle" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">The Bundle</div>
-          <div class="card-price">$29.99<span class="per">/mo</span></div>
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#9670;</div>
+        <div class="mini-info">
+          <div class="mini-name">The Bundle</div>
+          <div class="mini-punch">Both apps. One price. No math required.</div>
+          <div class="mini-price">$29.99/mo</div>
         </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
         <div class="save-badge">Compass + Strong Not Sorry App</div>
         <p class="card-desc">Both apps together. Train hard and understand your hormones — everything in one subscription.</p>
-        <a href="https://buy.stripe.com/cNi3cx6UsgMR3XIdBjcEw0n" class="btn btn-forest">Get the Bundle — $29.99/mo</a>
-      </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
         <div class="preview-section">
           <div class="preview-section-title">What's included</div>
           <ul class="preview-list">
@@ -552,28 +529,31 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
             <li>Both for $29.99/mo — less than buying separately ($34.98/mo)</li>
           </ul>
         </div>
-        <p class="preview-note">Does not include the Meal Generator or Nutrition Guide. Available as a separate one-time purchase above.</p>
+        <p class="preview-note">Does not include the Meal Generator or Nutrition Guide. Available as a separate one-time purchase under PDFs.</p>
+        <a href="https://buy.stripe.com/cNi3cx6UsgMR3XIdBjcEw0n" class="btn btn-forest">Get the Bundle — $29.99/mo</a>
       </div>
     </div>
   </div>
 
-  <hr class="divider">
-
+  <!-- Training -->
+  <div class="group-panel" id="panel-training">
+    <div class="group-heading">Work With Christin</div>
+    <div class="group-sub">Custom coaching and 1-1 support.</div>
 
     <!-- Built for You -->
-    <div class="card">
-      <div class="card-accent" style="background:linear-gradient(to right, var(--taupe), var(--olive));"></div>
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Built for You:<br>Your Custom App</div>
-          <div class="card-price">$200</div>
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Built for You: Your Custom App</div>
+          <div class="mini-punch">Your program, your app, nobody else's.</div>
+          <div class="mini-price">$200</div>
         </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
         <div class="save-badge">One-time · Yours forever</div>
         <p class="card-desc">A fully custom app built around your goals, your body, and your life. We do a 30-minute call, Christin builds your app — workouts, nutrition, hormone health, habits, sleep, logging, everything — and it's yours to keep forever.</p>
-        <a href="built-for-you.html" class="btn btn-forest">Learn More + Get Started — $200</a>
-      </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's inside <span class="arrow">▾</span></button>
-      <div class="preview-panel">
         <div class="preview-section">
           <div class="preview-section-title">How it works</div>
           <ul class="preview-list">
@@ -602,31 +582,23 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
             <li>Built by Christin personally after a real conversation with you</li>
           </ul>
         </div>
+        <a href="built-for-you.html" class="btn btn-forest">Learn More + Get Started — $200</a>
       </div>
     </div>
 
-  <!-- 1-1 COACHING -->
-  <div class="card-group">
-    <div class="group-label">
-      <div class="group-dot dot-forest"></div>
-      <div>
-        <div class="group-label-text">1-1 Coaching</div>
-        <div class="group-label-sub">Limited spots. Application required.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/preview8.webp" alt="1-1 Coaching" class="product-icon">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-name">Elite 1-1 &<br>Online Coaching</div>
-          <div class="card-price" style="font-size:14px;color:var(--taupe);">Apply</div>
+    <!-- 1-1 Coaching -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Elite 1-1 &amp; Online Coaching</div>
+          <div class="mini-punch">Just you, me, and a plan built for your body.</div>
+          <div class="mini-price">Apply</div>
         </div>
-        <p class="card-desc">Fully customized programming built around your body, your life, and your goals. In-person South Jersey or online. Direct communication with Christin. This isn't a template — it's yours.</p>
-        <a href="coaching.html" class="btn btn-taupe">Learn More + Apply →</a>
+        <div class="mini-arrow">&#9662;</div>
       </div>
-      <button class="preview-toggle" onclick="togglePreview(this)">See what's included <span class="arrow">▾</span></button>
-      <div class="preview-panel">
+      <div class="mini-detail">
+        <p class="card-desc">Fully customized programming built around your body, your life, and your goals. In-person South Jersey or online. Direct communication with Christin. This isn't a template — it's yours.</p>
         <div class="preview-section">
           <div class="preview-section-title">What you get</div>
           <ul class="preview-list">
@@ -654,11 +626,13 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
             <li>If it's a yes — we get to work</li>
           </ul>
         </div>
+        <a href="coaching.html" class="btn btn-taupe">Learn More + Apply →</a>
       </div>
     </div>
   </div>
 
   <hr class="divider">
+
 
   <!-- ABOUT -->
   <div style="text-align:center; padding:8px 0 40px;">
@@ -681,15 +655,17 @@ hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
 </div>
 
 <script>
-function togglePreview(btn) {
-  const panel = btn.nextElementSibling;
-  const isOpen = panel.classList.contains('open');
-  document.querySelectorAll('.preview-panel.open').forEach(p => p.classList.remove('open'));
-  document.querySelectorAll('.preview-toggle.open').forEach(b => b.classList.remove('open'));
+function showGroup(name) {
+  document.querySelectorAll('.choice').forEach(c => c.classList.toggle('active', c.dataset.group === name));
+  document.querySelectorAll('.group-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
+}
+function toggleMini(topEl) {
+  const card = topEl.closest('.mini-card');
+  const isOpen = card.classList.contains('open');
+  card.closest('.group-panel').querySelectorAll('.mini-card.open').forEach(c => c.classList.remove('open'));
   if (!isOpen) {
-    panel.classList.add('open');
-    btn.classList.add('open');
-    btn.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    card.classList.add('open');
+    card.scrollIntoView({ behavior:'smooth', block:'nearest' });
   }
 }
 </script>
@@ -704,3 +680,4 @@ function togglePreview(btn) {
 <!-- End MailerLite Universal -->
 </body>
 </html>
+
