@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compass — Your Hormone Health Companion | Feminine Strength Co.</title>
+<meta name="description" content="Compass helps you understand what's actually happening in your body — through your cycle, perimenopause, menopause, or endometriosis. One app, whatever your chapter.">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { color-scheme: light only; }
+html { color-scheme: light only; }
+:root {
+  --forest: #1E3329; --taupe: #C4A882; --olive: #7A9E7E;
+  --cream: #FAF7F2; --alt: #EDE8E0; --mid: #5A5A4A; --grid: rgba(196,168,130,0.2);
+  --rust: #B4693F;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--cream); font-family:'DM Sans',sans-serif; font-weight:300; color:var(--forest); line-height:1.6; }
+.wrap { max-width:640px; margin:0 auto; padding:0 24px; }
+a { text-decoration:none; }
+
+/* HEADER */
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; background:var(--cream); position:sticky; top:0; z-index:10; border-bottom:1px solid var(--grid); }
+.logo { display:flex; align-items:center; gap:8px; font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--forest); }
+.logo-mark { width:26px; height:26px; }
+.btn { display:inline-block; padding:11px 22px; border-radius:30px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; }
+.btn-forest { background:var(--forest); color:var(--cream); }
+.btn-forest:hover { background:#152720; }
+.btn-outline { background:transparent; color:var(--forest); border:1px solid var(--grid); }
+
+/* HERO */
+.hero { background:var(--forest); padding:56px 24px 64px; position:relative; overflow:hidden; }
+.hero::before {
+  content:'C'; position:absolute; font-family:'Cormorant Garamond',serif; font-size:340px; font-weight:600;
+  color:rgba(196,168,130,0.045); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; white-space:nowrap;
+}
+.hero-inner { max-width:560px; margin:0 auto; position:relative; z-index:1; }
+.eyebrow-pill { display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(196,168,130,0.35); color:var(--taupe); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; padding:7px 16px; border-radius:20px; margin-bottom:26px; }
+.eyebrow-pill .dot { width:6px; height:6px; border-radius:50%; background:var(--olive); }
+h1 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(32px,8vw,50px); line-height:1.08; color:var(--cream); margin-bottom:8px; }
+h1 em { font-style:italic; color:var(--taupe); }
+.hero-sub { font-size:15px; color:rgba(250,247,242,0.68); line-height:1.75; margin:20px 0 28px; max-width:480px; }
+.cta-row { display:flex; align-items:center; gap:22px; flex-wrap:wrap; margin-bottom:26px; }
+.cta-link { color:var(--cream); font-size:14px; font-weight:500; display:inline-flex; align-items:center; gap:6px; }
+.trust-row { display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:rgba(250,247,242,0.55); }
+.trust-row span { display:flex; align-items:center; gap:6px; }
+
+/* PHONE MOCKUP */
+.phone-wrap { display:flex; justify-content:center; margin-top:48px; }
+.phone { width:280px; background:#000; border-radius:36px; padding:10px; box-shadow:0 30px 60px rgba(0,0,0,0.4); }
+.phone-screen { background:var(--cream); border-radius:28px; overflow:hidden; padding-bottom:14px; }
+.phone-status { display:flex; justify-content:space-between; padding:14px 20px 6px; font-size:11px; color:var(--forest); font-weight:500; }
+.phone-content { padding:6px 18px 18px; }
+.phone-greeting { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--forest); margin-bottom:4px; }
+.phone-date { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--mid); margin-bottom:10px; }
+.phase-strip { display:flex; gap:3px; margin-bottom:14px; }
+.phase-strip div { height:5px; border-radius:3px; flex:1; }
+.phone-card { background:#fff; border-radius:12px; padding:12px 14px; margin-bottom:8px; }
+.phone-card-title { font-size:12.5px; font-weight:700; color:var(--forest); margin-bottom:2px; }
+.phone-card-sub { font-size:10.5px; color:var(--mid); }
+.sym-row { display:flex; gap:6px; margin-top:10px; }
+.sym-pill { flex:1; background:#fff; border-radius:10px; padding:8px 4px; text-align:center; font-size:9px; color:var(--mid); }
+.sym-pill .dot2 { width:14px; height:14px; border-radius:50%; border:1.5px solid var(--olive); margin:0 auto 3px; }
+.sym-pill.on .dot2 { background:var(--olive); }
+.sos-row { display:flex; justify-content:flex-end; margin-top:10px; }
+.sos-fab { width:34px; height:34px; border-radius:50%; background:var(--rust); display:flex; align-items:center; justify-content:center; color:#fff; font-size:9px; font-weight:700; box-shadow:0 4px 10px rgba(0,0,0,0.25); }
+.phone-inner-wrap { position:relative; }
+
+/* SECTIONS */
+section.block { padding:56px 24px; }
+.section-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--olive); text-align:center; margin-bottom:18px; }
+h2.serif-head { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(26px,6vw,36px); text-align:center; line-height:1.15; color:var(--forest); margin-bottom:20px; }
+h2.serif-head em { font-style:italic; color:var(--rust); }
+.center-copy { text-align:center; font-size:14.5px; color:var(--mid); max-width:460px; margin:0 auto 32px; line-height:1.8; }
+
+.pill-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; }
+.pill { border:1px solid var(--grid); border-radius:24px; padding:10px 18px; font-size:13px; font-weight:500; color:var(--forest); display:flex; align-items:center; gap:8px; }
+
+.feature-grid { display:grid; gap:16px; }
+.feature-card { background:#fff; border:1px solid var(--grid); border-radius:16px; padding:26px 24px; }
+.feature-icon { width:44px; height:44px; border-radius:12px; background:var(--alt); display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.feature-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; color:var(--forest); margin-bottom:8px; }
+.feature-desc { font-size:13.5px; color:var(--mid); line-height:1.7; }
+
+.quote-card { background:#fff; border-radius:16px; padding:24px 26px; margin-bottom:14px; border-left:3px solid var(--taupe); }
+.quote-text { font-size:16px; color:var(--forest); font-weight:500; margin-bottom:4px; }
+.quote-sub { font-size:12px; color:var(--mid); }
+
+.built-for-band { background:var(--alt); padding:40px 24px; text-align:center; }
+.built-for-band .label { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--olive); display:block; margin-bottom:14px; }
+.built-for-band .tags { font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--forest); line-height:1.9; }
+.built-for-band .tags b { font-weight:600; }
+
+.quiz-teaser { background:var(--forest); padding:60px 24px; text-align:center; position:relative; overflow:hidden; }
+.quiz-teaser::before {
+  content:''; position:absolute; top:-40%; right:-20%; width:70%; height:180%;
+  background:radial-gradient(circle, rgba(196,168,130,0.08) 0%, transparent 70%);
+}
+.quiz-teaser-inner { position:relative; z-index:1; max-width:440px; margin:0 auto; }
+.quiz-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--olive); margin-bottom:16px; }
+.quiz-title { font-family:'Cormorant Garamond',serif; font-weight:300; font-style:italic; font-size:clamp(28px,7vw,38px); line-height:1.15; color:var(--cream); margin-bottom:18px; }
+.quiz-body { font-size:14.5px; color:rgba(250,247,242,0.65); line-height:1.8; margin-bottom:26px; }
+.quiz-cta { display:inline-flex; align-items:center; gap:10px; background:var(--taupe); color:var(--forest); border-radius:30px; padding:15px 28px; font-size:14.5px; font-weight:600; }
+.quiz-meta { display:flex; gap:18px; justify-content:center; margin-top:20px; font-size:12px; color:rgba(250,247,242,0.5); flex-wrap:wrap; }
+
+.substack-band { background:var(--taupe); padding:50px 24px; text-align:center; }
+.substack-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--forest); margin-bottom:14px; }
+.substack-title { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(24px,6vw,30px); color:var(--forest); margin-bottom:14px; }
+.substack-body { font-size:14px; color:#3a3226; max-width:420px; margin:0 auto 22px; line-height:1.8; }
+.substack-cta { display:inline-flex; align-items:center; gap:8px; background:var(--forest); color:var(--cream); border-radius:30px; padding:13px 26px; font-size:13.5px; font-weight:500; }
+
+.final-cta { background:var(--forest); padding:64px 24px; text-align:center; }
+.final-cta h2 { color:var(--cream); }
+.final-cta h2 em { color:var(--taupe); }
+.final-cta p { color:rgba(250,247,242,0.65); font-size:14px; max-width:420px; margin:16px auto 30px; }
+.price-line { color:var(--taupe); font-size:13px; margin-top:16px; }
+
+.footer { padding:32px 24px; text-align:center; font-size:12px; color:var(--mid); border-top:1px solid var(--grid); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <svg class="logo-mark" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#1E3329" stroke-width="2"/><path d="M20 10 L24 20 L20 30 L16 20 Z" fill="#7A9E7E"/></svg>
+    Compass
+  </div>
+  <a href="#trial" class="btn btn-forest">Start Free Trial</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow-pill"><span class="dot"></span> For women whose bodies are changing</div>
+    <h1>Everything your body's telling you — <em>finally explained.</em></h1>
+    <p class="hero-sub">Compass is your hormone health companion for wherever you are — regular cycle, perimenopause, menopause, or endometriosis. No clinical jargon. No fertility-app pretending to understand you. Just what's actually happening, and what to do about it today.</p>
+    <div class="cta-row">
+      <a href="#trial" class="btn btn-forest">Start Free Trial — 7 Days</a>
+      <a href="#how" class="cta-link">See how it works →</a>
+    </div>
+    <div class="trust-row">
+      <span>🔒 Private by design</span>
+      <span>💚 We never sell your data</span>
+      <span>✕ Cancel anytime</span>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-status"><span>9:41</span><span>●●●●</span></div>
+          <div class="phone-inner-wrap">
+          <div class="phone-content">
+            <div class="phone-date">TUESDAY · DAY 19</div>
+            <div class="phone-greeting">Good morning</div>
+            <div class="phase-strip">
+              <div style="background:#7A9E7E;"></div>
+              <div style="background:#7A9E7E;"></div>
+              <div style="background:#B4693F;opacity:0.35;"></div>
+              <div style="background:#B4693F;opacity:0.35;"></div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-title">Luteal Phase · Day 19</div>
+              <div class="phone-card-sub">Energy dipping is normal here. Protein + rest over pushing through.</div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-title">Today's Move</div>
+              <div class="phone-card-sub">Legs Up the Wall · 10 min</div>
+            </div>
+            <div class="sym-row">
+              <div class="sym-pill on"><div class="dot2"></div>Bloating</div>
+              <div class="sym-pill"><div class="dot2"></div>Mood</div>
+              <div class="sym-pill on"><div class="dot2"></div>Fatigue</div>
+            </div>
+            <div class="sos-row">
+              <div class="sos-fab">SOS</div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ONE APP WHATEVER YOUR CHAPTER -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="section-eyebrow">One App, Whatever Your Chapter</div>
+    <h2 class="serif-head">You don't need a fertility app<br><em>pretending to help with perimenopause.</em></h2>
+    <p class="center-copy">Compass meets you in the track that's actually yours — and changes with you as your body does. Switch tracks anytime. Nothing about your experience is one-size-fits-all, so nothing here is either.</p>
+    <div class="pill-row">
+      <div class="pill">🌙 Regular Cycle</div>
+      <div class="pill">🔥 Perimenopause</div>
+      <div class="pill">🍂 Menopause</div>
+      <div class="pill">⚡ Endometriosis</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block" style="background:var(--alt);">
+  <div class="wrap">
+    <div class="section-eyebrow">What's Inside</div>
+    <h2 class="serif-head">Built around your <em>actual day</em>, not a symptom spreadsheet.</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <div class="feature-title">Phase-Specific Guidance</div>
+        <div class="feature-desc">Every day tells you what's normal for where you are in your cycle or your chapter — and what actually helps, not generic wellness advice.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✓</div>
+        <div class="feature-title">Symptom Tracking That Means Something</div>
+        <div class="feature-desc">Log what you're feeling in seconds. Over time, Compass shows you the pattern — the kind of data you can bring to a doctor and say "look, something is changing."</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧘</div>
+        <div class="feature-title">Movement Built for Your Phase</div>
+        <div class="feature-desc">Guided timers for exactly what your body needs right now — from restorative stretches to strength-focused sessions when your energy's actually there.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <div class="feature-title">Monthly Spotlight Library</div>
+        <div class="feature-desc">Real articles on real questions — written in plain language, not clinical speak, across all four tracks.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🆘</div>
+        <div class="feature-title">The SOS Button</div>
+        <div class="feature-desc">For the moment it's all too much. One tap for grounding, not a lecture.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Tell Your Partner, Without the Conversation</div>
+        <div class="feature-desc">One tap sends a message that actually explains what today's like for you — sweet or sarcastic, your call.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-eyebrow">The Mental Load, Named</div>
+    <h2 class="serif-head">The thoughts you've been <em>carrying alone.</em></h2>
+    <div class="quote-card">
+      <div class="quote-text">"Wait — is this normal, or is this perimenopause?"</div>
+      <div class="quote-sub">Answered in the Today view, before you have to ask.</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">"I don't have the energy to explain this to my partner again."</div>
+      <div class="quote-sub">Notify Partner does it for you — in your voice.</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">"My old period app has nothing for what's happening to me now."</div>
+      <div class="quote-sub">Switch tracks the moment your body does.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT FOR -->
+<div class="built-for-band">
+  <span class="label">Built For Women Navigating</span>
+  <div class="tags"><b>Perimenopause</b> · <b>Menopause</b> · <b>Endometriosis</b> · <b>Regular Cycle Tracking</b></div>
+</div>
+
+<!-- QUIZ TEASER -->
+<div class="quiz-teaser">
+  <div class="quiz-teaser-inner">
+    <div class="quiz-eyebrow">A 60-Second Quiz</div>
+    <div class="quiz-title">What are you actually carrying?</div>
+    <p class="quiz-body">The brain fog you can't explain. The symptom you keep meaning to look up. Four questions to find out which track is actually yours — and where to start.</p>
+    <a href="compass-quiz.html" class="quiz-cta">Begin the quiz →</a>
+    <div class="quiz-meta">
+      <span>⏱ 60 seconds</span>
+      <span>📝 4 prompts</span>
+      <span>🔒 Private</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUBSTACK -->
+<div class="substack-band">
+  <div class="substack-eyebrow">The Newsletter</div>
+  <div class="substack-title">Real by Christin Fisher</div>
+  <p class="substack-body">A weekly letter for women who don't recognize themselves anymore — raw, honest, no wellness-industry gloss. Free, straight to your inbox.</p>
+  <a href="https://femininestrength.substack.com" class="substack-cta">Read Real →</a>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta" id="trial">
+  <div class="wrap">
+    <div class="section-eyebrow" style="color:var(--taupe);">Ready When You Are</div>
+    <h2 class="serif-head">Help me get through my day —<br><em>whether that's ten things or one.</em></h2>
+    <p>Start with 7 days free. See how it feels to have an app that finally makes sense of what your body's doing.</p>
+    <a href="https://christinfisher74.github.io/compass" class="btn btn-forest">Start Free Trial — 7 Days</a>
+    <div class="price-line">$14.99/month after trial · Cancel anytime</div>
+  </div>
+</div>
+
+<div class="footer">
+  Compass by Feminine Strength Co. · Christin Fisher · @christin_fisher
+</div>
+
+</body>
+</html>
