@@ -347,6 +347,23 @@ body { background:var(--forest); font-family:'DM Sans',sans-serif; font-weight:3
 // ── STATE
 let userName = '';
 let userTrack = '';
+
+// ── VIP / GUEST ACCESS (?vip=1 or ?vip=endo etc. — no trial clock, no email capture)
+const _params = new URLSearchParams(location.search);
+const VIP = _params.get('vip');
+const isVIP = VIP !== null;
+
+// Your cell for VIP feedback texts — fill this in (digits only, e.g. '18565551234')
+const FEEDBACK_PHONE = '';
+
+function addFeedbackButton() {
+  if (!isVIP || !FEEDBACK_PHONE) return;
+  const b = document.createElement('a');
+  b.href = 'sms:' + FEEDBACK_PHONE + '?&body=' + encodeURIComponent('Hey Christin — checking in from Compass. ');
+  b.textContent = '💬 Text Christin';
+  b.style.cssText = 'position:fixed;bottom:88px;right:16px;z-index:900;background:var(--forest);color:var(--taupe);font-size:13px;padding:12px 18px;border-radius:30px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.35);';
+  document.body.appendChild(b);
+}
 const TRIAL_DAYS = 7;
 const STRIPE_COMPASS = 'https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k';
 
@@ -363,6 +380,7 @@ function setTrialData(data) {
 }
 
 function getDaysLeft() {
+  if (isVIP) return TRIAL_DAYS;
   const d = getTrialData();
   if (!d) return TRIAL_DAYS;
   const start = new Date(d.startDate);
@@ -430,7 +448,7 @@ function switchTab(tab) {
 // ── INIT APP
 function initApp() {
   const daysLeft = getDaysLeft();
-  document.getElementById('trialDaysLeft').textContent = daysLeft + ' day' + (daysLeft !== 1 ? 's' : '') + ' left';
+  document.getElementById('trialDaysLeft').textContent = isVIP ? 'Guest access ♥' : (daysLeft + ' day' + (daysLeft !== 1 ? 's' : '') + ' left');
 
   const hr = new Date().getHours();
   const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
@@ -856,6 +874,17 @@ function resetTimer(id, total) {
 
 // ── ON LOAD
 window.addEventListener('load', function() {
+  // VIP guest link — skip trial + email capture completely
+  if (isVIP) {
+    userName = _params.get('name') || '';
+    addFeedbackButton();
+    if (VIP && content[VIP]) {
+      selectTrack(VIP); // e.g. ?vip=endo drops straight into the endo track
+    } else {
+      showScreen('trackScreen');
+    }
+    return;
+  }
   const trial = getTrialData();
   if (trial) {
     userName = trial.name || '';
@@ -879,3 +908,4 @@ window.addEventListener('load', function() {
 </script>
 </body>
 </html>
+
