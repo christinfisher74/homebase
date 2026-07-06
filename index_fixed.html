@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feminine Strength Co. — Christin Fisher</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1E3329; --taupe: #C4A882; --olive: #7A9E7E;
+  --cream: #FAF7F2; --alt: #EDE8E0; --mid: #5A5A4A; --grid: rgba(196,168,130,0.2);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--cream); font-family:'DM Sans',sans-serif; font-weight:300; color:var(--forest); }
+
+/* HEADER */
+.header { background:var(--forest); padding:40px 24px 48px; position:relative; overflow:hidden; }
+.header::before {
+  content:'FSC'; position:absolute;
+  font-family:'Cormorant Garamond',serif; font-size:280px; font-weight:600;
+  color:rgba(196,168,130,0.04); top:50%; left:50%;
+  transform:translate(-50%,-50%); pointer-events:none; white-space:nowrap;
+}
+.header-inner { max-width:560px; margin:0 auto; }
+.eyebrow { font-size:10px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--olive); margin-bottom:20px; display:block; }
+.hero-layout { display:flex; gap:20px; align-items:center; width:100%; margin-bottom:16px; }
+.hero-photo { width:160px; height:200px; border-radius:10px; object-fit:cover; object-position:top; border:3px solid var(--taupe); flex-shrink:0; }
+.hero-text h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,7vw,46px); font-weight:300; line-height:1.05; color:var(--cream); margin-bottom:12px; }
+.hero-text h1 em { font-style:italic; color:var(--taupe); }
+.hero-sub { font-size:13px; color:rgba(250,247,242,0.65); line-height:1.7; margin-bottom:14px; }
+.hero-tag { display:inline-block; border:1px solid rgba(196,168,130,0.3); color:var(--taupe); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; padding:5px 14px; border-radius:20px; }
+
+/* FREEBIE */
+.freebie-banner { background:var(--olive); padding:18px 24px; text-align:center; }
+.freebie-banner strong { font-weight:500; display:block; font-size:15px; color:var(--cream); margin-bottom:3px; }
+.freebie-banner p { font-size:13px; color:rgba(250,247,242,0.85); line-height:1.5; }
+.freebie-btn { display:inline-block; margin-top:10px; background:var(--cream); color:var(--forest); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:10px 24px; border-radius:4px; text-decoration:none; }
+
+/* SOCIAL PROOF */
+.proof-section { background:var(--forest); padding:40px 24px; }
+.proof-inner { max-width:560px; margin:0 auto; }
+.proof-label { font-size:9px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--taupe); margin-bottom:6px; display:block; }
+.proof-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--cream); margin-bottom:6px; line-height:1.2; }
+.proof-sub { font-size:13px; color:rgba(250,247,242,0.5); margin-bottom:28px; line-height:1.6; }
+.proof-card { background:rgba(255,255,255,0.05); border:1px solid rgba(196,168,130,0.2); border-radius:8px; padding:20px; margin-bottom:14px; }
+.proof-card-header { display:flex; flex-direction:column; gap:12px; margin-bottom:14px; }
+.proof-img { width:100%; height:auto; max-height:400px; border-radius:8px; object-fit:contain; background:rgba(0,0,0,0.1); border:2px solid rgba(196,168,130,0.3); }
+.proof-name { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--taupe); margin-bottom:4px; }
+.proof-tag { font-size:10px; color:rgba(250,247,242,0.4); letter-spacing:0.08em; text-transform:uppercase; }
+.proof-body { font-size:13px; color:rgba(250,247,242,0.75); line-height:1.75; }
+.proof-quote { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--cream); line-height:1.65; border-left:2px solid var(--taupe); padding-left:14px; margin-top:10px; }
+.christin-quote { background:rgba(196,168,130,0.08); border:1px solid rgba(196,168,130,0.2); border-radius:8px; padding:20px; margin-top:8px; }
+.christin-quote p { font-family:'Cormorant Garamond',serif; font-size:16px; font-style:italic; color:var(--cream); line-height:1.75; }
+.christin-quote span { display:block; margin-top:10px; font-size:11px; color:var(--taupe); letter-spacing:0.1em; text-transform:uppercase; }
+
+/* MAIN */
+.main { padding:36px 20px; max-width:560px; margin:0 auto; }
+
+/* GROUP */
+.group-label { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--grid); }
+.group-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.dot-taupe { background:var(--taupe); }
+.dot-olive { background:var(--olive); }
+.dot-forest { background:var(--forest); }
+.group-label-text { font-size:9px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--taupe); }
+.group-label-sub { font-size:12px; color:var(--mid); margin-top:2px; }
+.card-group { margin-bottom:40px; }
+
+/* PRODUCT ICON */
+.product-icon { width:100%; border-radius:8px 8px 0 0; display:block; object-fit:contain; max-height:160px; background:var(--alt); padding:12px; }
+
+/* CARDS */
+.card { background:white; border:1px solid var(--grid); border-radius:8px; margin-bottom:12px; overflow:hidden; transition:box-shadow 0.2s; }
+.card:hover { box-shadow:0 4px 20px rgba(30,51,41,0.08); }
+.card-accent { height:3px; }
+.accent-taupe { background:var(--taupe); }
+.accent-olive { background:var(--olive); }
+.accent-forest { background:var(--forest); }
+.card-body { padding:20px; }
+.card-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:8px; }
+.card-name { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:400; line-height:1.2; }
+.card-price { font-size:18px; font-weight:500; white-space:nowrap; flex-shrink:0; }
+.card-price .per { font-size:12px; font-weight:300; }
+.card-desc { font-size:13px; color:var(--mid); line-height:1.65; margin-bottom:14px; }
+.save-badge { display:inline-block; background:var(--taupe); color:white; font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:12px; }
+.new-badge { display:inline-block; background:var(--olive); color:white; font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:12px; margin-left:6px; }
+
+/* CATEGORY CHOOSER */
+.chooser-intro { text-align:center; margin-bottom:22px; }
+.chooser-eyebrow { font-size:9px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--olive); display:block; margin-bottom:8px; }
+.chooser-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; font-weight:300; color:var(--forest); padding-left:3px; }
+.chooser { display:flex; gap:10px; margin-bottom:32px; }
+.choice { flex:1; background:white; border:1.5px solid var(--grid); border-radius:10px; padding:18px 8px; text-align:center; cursor:pointer; transition:all 0.2s; }
+.choice:hover { border-color:var(--olive); }
+.choice.active { background:var(--forest); border-color:var(--forest); }
+.choice-mark { font-size:20px; color:var(--taupe); display:block; margin-bottom:8px; }
+.choice-label { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--forest); display:block; }
+.choice.active .choice-label { color:var(--cream); }
+.choice-sub { font-size:8.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--mid); margin-top:3px; display:block; }
+.choice.active .choice-sub { color:rgba(250,247,242,0.6); }
+
+.group-panel { display:none; }
+.group-panel.active { display:block; }
+.group-heading { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:20px; color:var(--forest); margin-bottom:4px; padding-left:2px; }
+.group-sub { font-size:12px; color:var(--mid); margin-bottom:18px; }
+
+/* MINI CARDS (expandable) */
+.mini-card { background:white; border:1px solid var(--grid); border-radius:8px; margin-bottom:10px; overflow:hidden; }
+.mini-card-top { display:flex; align-items:center; gap:14px; padding:14px; cursor:pointer; }
+.mini-icon { width:46px; height:46px; border-radius:11px; background:linear-gradient(135deg, var(--forest), var(--olive)); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:var(--taupe); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; }
+.mini-info { flex:1; min-width:0; }
+.mini-name { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--forest); line-height:1.25; }
+.mini-punch { font-size:11px; color:var(--olive); font-style:italic; margin-top:3px; line-height:1.4; padding-left:2px; }
+.mini-price { font-size:12px; color:var(--mid); margin-top:5px; }
+.mini-addon { font-size:10px; color:var(--taupe); margin-top:5px; font-weight:500; }
+.mini-arrow { font-size:13px; color:var(--mid); transition:transform 0.25s; flex-shrink:0; }
+.mini-card.open .mini-arrow { transform:rotate(180deg); }
+.mini-detail { display:none; padding:0 16px 18px; }
+.mini-card.open .mini-detail { display:block; }
+.mini-detail .btn { margin-top:10px; }
+
+/* BUTTONS */
+.btn { display:block; width:100%; padding:13px 20px; border-radius:6px; font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; text-align:center; text-decoration:none; cursor:pointer; border:none; margin-top:14px; transition:opacity 0.2s; }
+.btn:hover { opacity:0.88; }
+.btn-forest { background:var(--forest); color:var(--cream); }
+.btn-olive { background:var(--olive); color:var(--cream); }
+.btn-taupe { background:var(--taupe); color:white; }
+
+/* EXPANDABLE */
+.preview-toggle { width:100%; background:none; border:none; border-top:1px solid var(--grid); padding:12px 20px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--mid); }
+.preview-toggle .arrow { font-size:14px; transition:transform 0.25s; display:inline-block; }
+.preview-toggle.open .arrow { transform:rotate(180deg); }
+.preview-panel { display:none; background:var(--alt); border-top:1px solid var(--grid); padding:20px; }
+.preview-panel.open { display:block; }
+.preview-section { margin-bottom:16px; }
+.preview-section:last-child { margin-bottom:0; }
+.preview-section-title { font-size:9px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--taupe); margin-bottom:8px; }
+.preview-list { list-style:none; }
+.preview-list li { font-size:12px; color:var(--mid); line-height:1.6; padding:3px 0; display:flex; gap:8px; }
+.preview-list li::before { content:'→'; color:var(--taupe); flex-shrink:0; }
+.preview-quote { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--forest); line-height:1.6; border-left:2px solid var(--taupe); padding-left:14px; margin:10px 0; }
+.preview-note { font-size:11px; color:var(--mid); line-height:1.6; font-style:italic; }
+
+hr.divider { border:none; border-top:1px solid var(--grid); margin:8px 0 32px; }
+
+/* FOOTER */
+.footer { background:var(--forest); padding:36px 24px; text-align:center; }
+.footer-sig { font-family:'Cormorant Garamond',serif; font-size:22px; font-style:italic; color:var(--cream); margin-bottom:12px; display:block; }
+.footer p { font-size:12px; color:rgba(250,247,242,0.45); line-height:1.7; }
+.footer a { color:var(--taupe); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <span class="eyebrow">Feminine Strength Co.</span>
+    <div class="hero-layout">
+      <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/me.webp" alt="Christin Fisher" class="hero-photo">
+      <div class="hero-text">
+        <h1>Tired of starting over...<br>or don't even know<br>where to begin?<br><em>You're in the right place.</em></h1>
+      </div>
+    </div>
+    <p class="hero-sub">I started in my mid 40s. Three babies. Let myself go more times than I can count. I'm done with that — and I built everything here so you can be done with it too.</p>
+    <span class="hero-tag">Christin Fisher · @christin_fisher</span>
+  </div>
+</div>
+
+<!-- FREEBIE -->
+<div class="freebie-banner">
+  <strong>Free Download — Help Me.</strong>
+  <p>Enter your email below to get the free guide sent straight to your inbox.</p>
+  
+  <div class="ml-embedded" data-form="Giqcus"></div>
+</div>
+
+
+<!-- QUIZ BANNER -->
+<div style="background:var(--taupe);padding:20px 24px;text-align:center;">
+  <p style="font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--forest);margin-bottom:6px;">Not sure where to start?</p>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--forest);margin-bottom:10px;line-height:1.2;">So many options...<br>let's find your perfect fit.</p>
+  <p style="font-size:13px;color:rgba(30,51,41,0.75);margin-bottom:14px;line-height:1.6;">Answer 4 quick questions and I'll tell you exactly where to start. No overwhelm. No guessing.</p>
+  <a href="quiz.html" style="display:inline-block;background:var(--forest);color:var(--cream);font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:12px 28px;border-radius:6px;text-decoration:none;">Find My Perfect Program →</a>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="proof-section">
+  <div class="proof-inner">
+    <span class="proof-label">Real Women. Real Results.</span>
+    <p class="proof-title">This is what the long game looks like.</p>
+    <p class="proof-sub">No 30-day shreds. No perfection. Just showing up — and not quitting.</p>
+
+    <!-- Client A -->
+    <div class="proof-card">
+      <div class="proof-card-header">
+        <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/liz.webp" alt="Client A" class="proof-img">
+        <div>
+          <div class="proof-name">Client A</div>
+          <div class="proof-tag">Multi-year client · Still going</div>
+        </div>
+      </div>
+      <div class="proof-body">
+        She started at 300 lbs. We're headed toward a 100 lb weight loss journey.
+        <br><br>
+        Not because she was perfect. Not because she never had a bad week or took a vacation or fell off.
+        <br><br>
+        Because she never quit. We didn't rush it. We knew if we did it wouldn't last.
+        <div class="proof-quote">And it's lasting.</div>
+      </div>
+    </div>
+
+    <!-- Client B -->
+    <div class="proof-card">
+      <div class="proof-card-header">
+        <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/frankie.webp" alt="Client B" class="proof-img">
+        <div>
+          <div class="proof-name">Client B</div>
+          <div class="proof-tag">3 months in · Just getting started</div>
+        </div>
+      </div>
+      <div class="proof-body">
+        <div class="proof-quote">"I am so happy with not only my body, but my mindset. I'm no longer scared to go to the gym or try new equipment. She trains me based on MY body and what works for me."</div>
+        <br>
+        She wanted to be a gym girl for years. Now she is.
+      </div>
+    </div>
+
+    <!-- Client C -->
+    <div class="proof-card">
+      <div class="proof-card-header">
+        <img src="https://raw.githubusercontent.com/christinfisher74/homebase/main/brielle.webp" alt="Client C" class="proof-img">
+        <div>
+          <div class="proof-name">Client C</div>
+          <div class="proof-tag">Nearly 4 years · Still showing up</div>
+        </div>
+      </div>
+      <div class="proof-body">
+        She's one of South Jersey's most sought-after makeup artists. Long days, early mornings, always in demand.
+        <br><br>
+        And she still shows up.
+        <br><br>
+        She started with 5 and 8 pound dumbbells. She's now pressing 25s and 30s. Nearly 4 years of training together — through busy seasons, slow seasons, and everything in between.
+        <div class="proof-quote">She learned to meet herself where she is. And that changed everything.</div>
+      </div>
+    </div>
+
+    <!-- Christin quote -->
+    <div class="christin-quote">
+      <p>"There are going to be phases. Times where you're dialed in and times where you're just going through the motions. Both are okay. Both count. Stop expecting to always be a hundred percent figured out. Showing up and staying in the path of your fitness and wellness until you get old... that's the win. That's the whole thing."</p>
+      <span>— Christin Fisher</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="main">
+
+
+  <div class="chooser-intro">
+    <span class="chooser-eyebrow">Feminine Strength Co.</span>
+    <div class="chooser-title">What are you looking for?</div>
+  </div>
+
+  <div class="chooser">
+    <div class="choice active" data-group="pdfs" onclick="showGroup('pdfs')">
+      <span class="choice-mark">&#10087;</span>
+      <span class="choice-label">PDFs</span>
+      <span class="choice-sub">Guides &amp; Programs</span>
+    </div>
+    <div class="choice" data-group="apps" onclick="showGroup('apps')">
+      <span class="choice-mark">&#9670;</span>
+      <span class="choice-label">Apps</span>
+      <span class="choice-sub">Ongoing Access</span>
+    </div>
+    <div class="choice" data-group="training" onclick="showGroup('training')">
+      <span class="choice-mark">&#10087;</span>
+      <span class="choice-label">Training</span>
+      <span class="choice-sub">Work With Christin</span>
+    </div>
+  </div>
+
+  <!-- PDFs -->
+  <div class="group-panel active" id="panel-pdfs">
+    <div class="group-heading">PDF Guides &amp; Programs</div>
+    <div class="group-sub">One-time purchase. Download instantly. Yours to keep.</div>
+
+    <!-- Strong Not Sorry -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Strong Not Sorry: The Training Program</div>
+          <div class="mini-punch">8 weeks. Real weight. Zero apologies.</div>
+          <div class="mini-price">$27</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <p class="card-desc">The 8-week, 4-day strength program for women 35+. Training only. No nutrition, no meal plan. Just the program, the cues, and the progression system that actually works.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">What's in it</div>
+          <ul class="preview-list">
+            <li>23 pages — no filler, no fluff</li>
+            <li>Why heavier doesn't mean bulky — and how to actually progress</li>
+            <li>4-day split: Lower A, Upper A, Lower B, Upper B</li>
+            <li>Weeks 1–4 foundation with coaching cues + RPE for every exercise</li>
+            <li>Week 5 deload — why this week is not optional</li>
+            <li>Weeks 6–8 progression — harder variations, more demand</li>
+            <li>Progression rules — exactly when to add weight and when not to</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">From inside the program</div>
+          <div class="preview-quote">"I'm asking you to put down the 5s and 8s and 10s... and work your way down the weight rack toward the 20s, the 25s, the 30s. That's the goal. That's what actually changes your body."</div>
+        </div>
+        <p class="preview-note">Nutrition not included. Want training + nutrition together? See Built for This below.</p>
+        <a href="https://buy.stripe.com/00w14p6UsgMR65QgNvcEw0t" class="btn btn-forest">Get the Program — $27</a>
+      </div>
+    </div>
+
+    <!-- The Standard -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">The Standard: Nutrition + Fat Loss Guide</div>
+          <div class="mini-punch">Your numbers, your food, no guesswork.</div>
+          <div class="mini-price">$27</div>
+          <div class="mini-addon">+ Add the Meal Generator App — bundle for $47</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <p class="card-desc">Your numbers. Your food. Your framework. No banned foods, no earning the right to eat, no restriction plans that don't stick.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">What's in it</div>
+          <ul class="preview-list">
+            <li>Your calorie starting point — bodyweight × 12, adjusted every 2 weeks</li>
+            <li>Protein targets by goal weight — broken down by range</li>
+            <li>The plate method using your hand as the measure</li>
+            <li>A full day of eating with the why behind every decision</li>
+            <li>The estrogen food list — foods that support your hormones</li>
+            <li>NEAT — why your daily movement matters more than your workouts</li>
+            <li>7-day meal rotation + 4 Grab + Go Bistro Boxes</li>
+            <li>Full grocery list + check-in and adjustment system</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">From inside the guide</div>
+          <div class="preview-quote">"Fat loss doesn't stall because you're not trying hard enough. It stalls because the plan asks for perfection instead of consistency. This plan asks for consistency."</div>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">Want the Meal Generator App too?</div>
+          <ul class="preview-list">
+            <li>Build meals based on your protein target and what you have on hand</li>
+            <li>Real food — not diet culture meals</li>
+            <li>Bundle this guide + the app together for $47 instead of buying separately</li>
+          </ul>
+        </div>
+        <p class="preview-note">Training not included. Want nutrition + training together? See Built for This below.</p>
+        <a href="https://buy.stripe.com/4gMcN71A8gMRbqa68RcEw0r" class="btn btn-forest">Get the Guide — $27</a>
+        <a href="https://buy.stripe.com/aFa4gB3Ig405cue54NcEw0s" class="btn btn-taupe">Get the Guide + Meal Generator — $47</a>
+      </div>
+    </div>
+
+    <!-- Built for This -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Built for This: The Complete Roadmap</div>
+          <div class="mini-punch">Training + nutrition. Everything, start to finish.</div>
+          <div class="mini-price">$47</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <div class="save-badge">Save $7 — both guides combined</div>
+        <p class="card-desc">The Training Program + The Nutrition + Fat Loss Guide in one complete document. Everything, start to finish, nothing missing.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">Everything in Strong Not Sorry +</div>
+          <ul class="preview-list">
+            <li>Full 8-week 4-day training split — foundation, deload, progression</li>
+            <li>Coaching cues, RPE, and progression rules for every exercise</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">Everything in The Standard +</div>
+          <ul class="preview-list">
+            <li>Complete nutrition framework — your numbers, the plate method</li>
+            <li>Estrogen food list, NEAT, 7-day meal rotation, grocery list</li>
+            <li>Check-ins and adjustment ladder</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">The math</div>
+          <ul class="preview-list">
+            <li>Strong Not Sorry alone — $27</li>
+            <li>The Standard alone — $27</li>
+            <li>Built for This — $47. You save $7.</li>
+          </ul>
+        </div>
+        <a href="https://buy.stripe.com/5kQ6oJemU4059i21SBcEw0v" class="btn btn-forest">Get the Roadmap — $47</a>
+      </div>
+    </div>
+
+    <!-- Grow -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Grow: 8-Week Glute Program</div>
+          <div class="mini-punch">Build. Shape. Strengthen. Home or gym.</div>
+          <div class="mini-price">$37</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <div class="new-badge">Just Launched</div>
+        <p class="card-desc">Four versions in one — Beginner + Intermediate, Home + Gym. Hip thrusts, progressive overload, and the nutrition basics for muscle growth. 3 days a week. Real results.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">What's in it</div>
+          <ul class="preview-list">
+            <li>Pick your version on page one — Beginner or Intermediate, Home or Gym</li>
+            <li>3 days a week: Day A (hip dominant), Day B (abduction + posterior chain), Day C (full glute)</li>
+            <li>Weeks 1–4 foundation, Week 5 deload, Weeks 6–8 progression</li>
+            <li>The hip thrust is in every version, every week</li>
+            <li>Nutrition basics for muscle growth — protein targets, pre + post workout</li>
+            <li>How to take progress photos so you can actually see what's changing</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">From inside the program</div>
+          <div class="preview-quote">"You cannot grow what you do not feed and you cannot build what you do not challenge. Both apply here."</div>
+        </div>
+        <a href="https://buy.stripe.com/28E7sNdiQ9kpdyi8gZcEw0p" class="btn btn-forest">Get the Program — $37</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apps -->
+  <div class="group-panel" id="panel-apps">
+    <div class="group-heading">Apps &amp; Subscriptions</div>
+    <div class="group-sub">Ongoing access, updated content, in your pocket. Cancel anytime.</div>
+
+    <!-- Compass -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#9670;</div>
+        <div class="mini-info">
+          <div class="mini-name">Compass App</div>
+          <div class="mini-punch">Your cycle, decoded. Track it, don't guess it.</div>
+          <div class="mini-price">$14.99/mo</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <p class="card-desc">Your hormone health companion. Understand what's actually happening in your body during perimenopause — and what to do about it. Free hormone intro guide on signup.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">Free on signup</div>
+          <ul class="preview-list">
+            <li>What's Actually Happening: A Hormone Intro — free download when you create your account. Yours to keep even if you cancel.</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">What the app covers</div>
+          <ul class="preview-list">
+            <li>What perimenopause actually is — plain language, not clinical terms</li>
+            <li>The four phases of your cycle and what to do with each one</li>
+            <li>The signs nobody connects to hormones — until they do</li>
+            <li>How to adjust through the month instead of fighting it</li>
+            <li>What to stop chasing — and why</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">From the hormone guide</div>
+          <div class="preview-quote">"Perimenopause is, by definition, a phase of hormonal fluctuation. Your hormones are not going to balance. Stop chasing balance — start learning your patterns."</div>
+        </div>
+        <p class="preview-note">This app does not include the Meal Generator or Nutrition Guide. Those are separate products under PDFs.</p>
+        <a href="https://buy.stripe.com/dRm8wRa6E1RXam67cVcEw0k" class="btn btn-olive">Start Free Trial — 7 Days</a>
+      </div>
+    </div>
+
+    <!-- Strong Not Sorry App -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#9670;</div>
+        <div class="mini-info">
+          <div class="mini-name">Strong Not Sorry App</div>
+          <div class="mini-punch">The whole program, in your pocket.</div>
+          <div class="mini-price">$19.99/mo</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <p class="card-desc">The interactive 8-week training program. Log your lifts, track your progression, and follow the program week by week inside the app.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">PDF vs App — what's the difference?</div>
+          <ul class="preview-list">
+            <li>The PDF ($27) — download and use forever, reference anytime</li>
+            <li>The App ($19.99/mo) — interactive, log weights, track week by week</li>
+            <li>Same program. Different experience. Choose what works for how you train.</li>
+          </ul>
+        </div>
+        <a href="https://buy.stripe.com/fZu5kFfqY2W1dyi2WFcEw0m" class="btn btn-olive">Start Free Trial — 3 Days</a>
+      </div>
+    </div>
+
+    <!-- Bundle -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#9670;</div>
+        <div class="mini-info">
+          <div class="mini-name">The Bundle</div>
+          <div class="mini-punch">Both apps. One price. No math required.</div>
+          <div class="mini-price">$29.99/mo</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <div class="save-badge">Compass + Strong Not Sorry App</div>
+        <p class="card-desc">Both apps together. Train hard and understand your hormones — everything in one subscription.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">What's included</div>
+          <ul class="preview-list">
+            <li>Compass App — hormone health + free hormone intro guide on signup</li>
+            <li>Strong Not Sorry App — full interactive 8-week training program</li>
+            <li>Both for $29.99/mo — less than buying separately ($34.98/mo)</li>
+          </ul>
+        </div>
+        <p class="preview-note">Does not include the Meal Generator or Nutrition Guide. Available as a separate one-time purchase under PDFs.</p>
+        <a href="https://buy.stripe.com/cNi3cx6UsgMR3XIdBjcEw0n" class="btn btn-forest">Get the Bundle — $29.99/mo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Training -->
+  <div class="group-panel" id="panel-training">
+    <div class="group-heading">Work With Christin</div>
+    <div class="group-sub">Custom coaching and 1-1 support.</div>
+
+    <!-- Built for You -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Built for You: Your Custom App</div>
+          <div class="mini-punch">Your program, your app, nobody else's.</div>
+          <div class="mini-price">$200</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <div class="save-badge">One-time · Yours forever</div>
+        <p class="card-desc">A fully custom app built around your goals, your body, and your life. We do a 30-minute call, Christin builds your app — workouts, nutrition, hormone health, habits, sleep, logging, everything — and it's yours to keep forever.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">How it works</div>
+          <ul class="preview-list">
+            <li>Pay $200 — one time, no subscription ever</li>
+            <li>Book your 30-minute call with Christin</li>
+            <li>Christin builds your fully custom app based on your call</li>
+            <li>You get your app — and keep it forever</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">What goes in your app</div>
+          <ul class="preview-list">
+            <li>Your training program — built for your goals, equipment, schedule</li>
+            <li>Your nutrition framework — your numbers, your food</li>
+            <li>Hormone health support if relevant to you</li>
+            <li>Walk + movement targets, sleep guidance, habit trackers</li>
+            <li>Mobility + corrective work if needed</li>
+            <li>Anything else that matters to your success</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">Why it's different</div>
+          <ul class="preview-list">
+            <li>No two apps look the same — this is built for YOU specifically</li>
+            <li>Yours forever — no subscription, no losing access</li>
+            <li>Built by Christin personally after a real conversation with you</li>
+          </ul>
+        </div>
+        <a href="built-for-you.html" class="btn btn-forest">Learn More + Get Started — $200</a>
+      </div>
+    </div>
+
+    <!-- 1-1 Coaching -->
+    <div class="mini-card">
+      <div class="mini-card-top" onclick="toggleMini(this)">
+        <div class="mini-icon">&#10087;</div>
+        <div class="mini-info">
+          <div class="mini-name">Elite 1-1 &amp; Online Coaching</div>
+          <div class="mini-punch">Just you, me, and a plan built for your body.</div>
+          <div class="mini-price">Apply</div>
+        </div>
+        <div class="mini-arrow">&#9662;</div>
+      </div>
+      <div class="mini-detail">
+        <p class="card-desc">Fully customized programming built around your body, your life, and your goals. In-person South Jersey or online. Direct communication with Christin. This isn't a template — it's yours.</p>
+        <div class="preview-section">
+          <div class="preview-section-title">What you get</div>
+          <ul class="preview-list">
+            <li>Fully personalized training program — built for your body, your schedule, your goals</li>
+            <li>Nutrition guidance integrated into your program</li>
+            <li>Direct communication with Christin — not a support team</li>
+            <li>Regular check-ins and program adjustments as you progress</li>
+            <li>In-person (South Jersey) or fully online</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">Who this is for</div>
+          <ul class="preview-list">
+            <li>Women who are ready to do the work and want someone in their corner</li>
+            <li>Women who have tried programs and need something actually built for them</li>
+            <li>Women who are done starting over</li>
+          </ul>
+        </div>
+        <div class="preview-section">
+          <div class="preview-section-title">How it works</div>
+          <ul class="preview-list">
+            <li>Fill out the application — be honest, it helps me help you</li>
+            <li>I'll review it personally and reach out within 48 hours</li>
+            <li>We'll have a quick conversation to make sure we're the right fit</li>
+            <li>If it's a yes — we get to work</li>
+          </ul>
+        </div>
+        <a href="coaching.html" class="btn btn-taupe">Learn More + Apply →</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ABOUT -->
+  <div style="text-align:center; padding:8px 0 40px;">
+    <span style="font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:8px;">About</span>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;margin-bottom:12px;">I coach what I live.</p>
+    <p style="font-size:13px;color:var(--mid);line-height:1.8;max-width:400px;margin:0 auto 20px;">
+      I'm Christin — strength coach, solo parent, and someone who has been in the thick of it. I built these programs from over a decade of coaching women 35+ and from my own body. No fluff, no clinical claims, no quick fixes. Just the stuff that actually works.
+    </p>
+    <a href="https://instagram.com/christin_fisher" style="font-size:12px;color:var(--olive);text-decoration:none;letter-spacing:0.08em;">@christin_fisher on Instagram</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span class="footer-sig">Feminine Strength Co.</span>
+  <p>Questions? Find me on Instagram <a href="https://instagram.com/christin_fisher">@christin_fisher</a><br>
+  Christin Fisher · South Jersey · Online clients nationwide</p>
+  <p style="margin-top:16px;">These programs are general fitness guidance, not medical advice.<br>Always check with your doctor before starting a new program.</p>
+</div>
+
+<script>
+function showGroup(name) {
+  document.querySelectorAll('.choice').forEach(c => c.classList.toggle('active', c.dataset.group === name));
+  document.querySelectorAll('.group-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
+}
+function toggleMini(topEl) {
+  const card = topEl.closest('.mini-card');
+  const isOpen = card.classList.contains('open');
+  card.closest('.group-panel').querySelectorAll('.mini-card.open').forEach(c => c.classList.remove('open'));
+  if (!isOpen) {
+    card.classList.add('open');
+    card.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+}
+</script>
+  <!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1618645');
+</script>
+<!-- End MailerLite Universal -->
+</body>
+</html>
+
