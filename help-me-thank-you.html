@@ -144,6 +144,92 @@
     border-bottom: 1.5px solid var(--gold);
   }
 
+
+  .offer {
+    text-align: center;
+  }
+  .offer .kicker {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-d);
+    margin-bottom: 18px;
+  }
+  .offer-cover {
+    display: block;
+    width: 190px;
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto 22px;
+    border-radius: 6px;
+    box-shadow: 0 10px 26px rgba(44,36,30,0.16);
+  }
+  .offer h2 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--deep);
+    letter-spacing: -0.01em;
+  }
+  .offer .sub {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--rust-d);
+    margin: 4px 0 14px;
+  }
+  .offer .price {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--rust);
+    margin-bottom: 16px;
+  }
+  .offer .desc {
+    font-size: 14px;
+    max-width: 420px;
+    margin: 0 auto 18px;
+  }
+  .offer ul {
+    list-style: none;
+    text-align: left;
+    max-width: 380px;
+    margin: 0 auto 20px;
+    font-size: 13.5px;
+  }
+  .offer li {
+    padding: 5px 0 5px 22px;
+    position: relative;
+  }
+  .offer li::before {
+    content: "";
+    position: absolute;
+    left: 2px; top: 13px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sage);
+  }
+  .offer .closing {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 15px;
+    max-width: 380px;
+    margin: 0 auto 22px;
+  }
+  .offer-btn {
+    display: inline-block;
+    background: var(--deep);
+    color: var(--cream);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+  }
+  .offer-btn:hover { background: var(--rust-d); }
+
   .signoff {
     margin-top: 30px;
     font-family: 'Lora', serif;
@@ -163,7 +249,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .download-btn { transition: none; }
+    .download-btn, .offer-btn { transition: none; }
   }
 </style>
 </head>
@@ -195,10 +281,31 @@
 
     <div class="divider"></div>
 
-    <p class="next-step">
-      Want the full plan next?
-      <a href="https://femininestrengthco.com">Strong, Not Sorry &mdash; $27 &rarr;</a>
-    </p>
+    <div class="offer">
+      <div class="kicker">Your next step</div>
+
+      
+      <img class="offer-cover" src="fed-and-strong-cover.webp" alt="Fed &amp; Strong: A Practical Nutrition Guide, cover">
+
+      <h2>Fed &amp; Strong</h2>
+      <p class="sub">A Practical Nutrition Guide</p>
+      <div class="price">$37</div>
+
+      <p class="desc">A practical nutrition guide for women who want to understand balanced nutrition, support strength and energy, and build sustainable eating habits in midlife.</p>
+
+      <ul>
+        <li>Education on protein, carbohydrates, fats, and fiber</li>
+        <li>The Strong Plate framework</li>
+        <li>A four-week mix-and-match meal framework</li>
+        <li>Grocery lists and meal-prep guidance</li>
+        <li>Guidance for eating out and navigating holidays</li>
+        <li>30 practical recipes</li>
+      </ul>
+
+      <p class="closing">You don&rsquo;t need another internet rabbit hole. You need a practical place to start.</p>
+
+      <a class="offer-btn" id="fed-strong-checkout" href="https://buy.stripe.com/4gM5kF5Qo8glam6dBjcEw0J">Get Fed &amp; Strong &mdash; $37</a>
+    </div>
 
     <p class="signoff">
       You're not starting over. You're finally starting with the right information.
