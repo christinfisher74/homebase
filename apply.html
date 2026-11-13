@@ -78,6 +78,8 @@ body { background: var(--cream); font-family: 'DM Sans', sans-serif; font-weight
   transition: opacity 0.2s;
 }
 .submit-btn:hover { opacity: 0.88; }
+.submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.error-msg { display: none; margin-top: 14px; padding: 14px 16px; border: 1px solid var(--taupe); border-left: 4px solid var(--forest); border-radius: 6px; background: var(--alt); font-size: 13px; line-height: 1.6; color: var(--forest); }
 
 .back-link {
   display: block; text-align: center; margin-top: 20px;
@@ -253,7 +255,8 @@ body { background: var(--cream); font-family: 'DM Sans', sans-serif; font-weight
       </div>
     </div>
 
-    <button type="submit" class="submit-btn">Submit My Application →</button>
+    <button type="submit" class="submit-btn" id="submitBtn">Submit My Application →</button>
+    <div class="error-msg" id="errorMsg" role="alert" aria-live="assertive"></div>
   <input type="hidden" name="_next" value="https://christinfisher74.github.io/homebase/apply.html?success=true">
 
   </form>
@@ -272,30 +275,56 @@ body { background: var(--cream); font-family: 'DM Sans', sans-serif; font-weight
 </div>
 
 <script>
-function handleSubmit(e) {
-  e.preventDefault();
-  // Collect form data
-  const form = document.getElementById('applicationForm');
-  const data = new FormData(form);
-  const entries = {};
-  for (let [key, value] of data.entries()) {
-    entries[key] = value;
-  }
-  // Send to Formspree (free form service) — replace with your endpoint
-  fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(entries)
-  }).then(() => {
+(function () {
+  var form = document.getElementById('applicationForm');
+  var btn = document.getElementById('submitBtn');
+  var errorMsg = document.getElementById('errorMsg');
+  var successMsg = document.getElementById('successMsg');
+  var sending = false;
+  var btnText = btn.textContent;
+
+  function showSuccess() {
     form.style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
+    errorMsg.style.display = 'none';
+    successMsg.style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }).catch(() => {
-    // Even if fetch fails show success — form data visible in network tab
-    form.style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
+  }
+
+  function showError(text) {
+    errorMsg.textContent = text;
+    errorMsg.style.display = 'block';
+    sending = false;
+    btn.disabled = false;
+    btn.textContent = btnText;
+  }
+
+  // If Formspree redirected back here after a normal (non-JavaScript) submission
+  if (/[?&]success=true/.test(window.location.search)) { showSuccess(); }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (sending) { return; }          // block double submissions
+    sending = true;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    errorMsg.style.display = 'none';
+
+    // Same endpoint as the form's own action (https://formspree.io/f/maqgoadp)
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (res) {
+      if (res.ok) { showSuccess(); return; }
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        var detail = data && data.errors ? data.errors.map(function (x) { return x.message; }).join(' ') : '';
+        showError('Your application did not send, and nothing was lost on this page. ' + (detail ? detail + ' ' : '') + 'Please try again in a moment, or send me a DM on Instagram @christin_fisher.');
+      });
+    }).catch(function () {
+      showError('Your application did not send. Please check your connection and try again, or send me a DM on Instagram @christin_fisher.');
+    });
   });
-}
+})();
 </script>
 </body>
 </html>
